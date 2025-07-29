@@ -1,0 +1,67 @@
+{
+  "id": "lista1",
+  "titulo": "Lista de Exercícios 01: Introdução ao Desenvolvimento de Jogos Digitais",
+  "descricao": "Exercícios para fixar os conceitos das Aulas 1, 2 e 3: panorama da indústria de jogos digitais, gêneros e tipos de gameplay, e análise crítica de jogos Indie e AAA.",
+  "questoes": [
+    {
+      "id": 1,
+      "enunciado": "Defina jogo digital e explique dois impactos econômicos e dois impactos culturais que a indústria de jogos exerce atualmente no mercado global.",
+      "dica": "Pense em como os jogos movimentam bilhões em receitas e influenciam filmes, músicas e comportamento social.",
+      "solucao": "Resposta aberta. Exemplo: 'Jogos digitais são softwares interativos criados para entretenimento ou aprendizado. Impacto econômico: movimentação da indústria de consoles e periféricos, criação de empregos. Impacto cultural: mudança nos padrões de consumo de mídia, influência em narrativas audiovisuais.'"
+    },
+    {
+      "id": 2,
+      "enunciado": "Cite três profissões dentro da indústria de jogos digitais e descreva a principal responsabilidade de cada uma no ciclo de desenvolvimento.",
+      "dica": "Considere áreas como programação, design, arte e QA.",
+      "solucao": "Resposta aberta. Exemplo: 'Game Designer – define mecânicas e experiência do jogador. Programador de Gameplay – implementa as interações. Artista 3D – cria modelos e cenários.'"
+    },
+    {
+      "id": 3,
+      "enunciado": "Explique como o papel do desenvolvedor se conecta ao ciclo de criação de um jogo, relacionando com os gêneros e plataformas mais comuns do mercado.",
+      "dica": "Desenvolvedor precisa pensar no design, no hardware alvo e no público.",
+      "solucao": "Resposta aberta. Exemplo: 'O desenvolvedor conecta a ideia ao produto final, adaptando mecânicas ao gênero e plataforma (mobile, console). Ele garante performance e experiência adequada para o público.'"
+    },
+    {
+      "id": 4,
+      "enunciado": "Qual é a diferença entre gênero de jogo e tipo de gameplay? Dê um exemplo real de jogo para cada tipo de gameplay: singleplayer, multiplayer e cooperativo.",
+      "dica": "Gênero define tema/mecânicas gerais (RPG, FPS); gameplay define forma de interação (jogar sozinho, em grupo).",
+      "solucao": "Resposta aberta. Exemplo: 'Gênero: RPG, FPS. Gameplay: singleplayer – The Witcher 3; multiplayer – CS:GO; cooperativo – It Takes Two.'"
+    },
+    {
+      "id": 5,
+      "enunciado": "Analise um jogo de sua preferência e identifique: gênero principal, gênero secundário (se houver) e o tipo de gameplay predominante. Justifique sua escolha com base nas mecânicas observadas.",
+      "dica": "Observe o core loop e as interações principais.",
+      "solucao": "Resposta aberta. Exemplo: 'Hollow Knight: gênero – Metroidvania; gameplay – singleplayer. Justificativa: exploração e combate solo com progressão não linear.'"
+    },
+    {
+      "id": 6,
+      "enunciado": "Explique como as mecânicas centrais de um jogo ajudam a definir seu gênero. Use como exemplo um RPG e um jogo de plataforma.",
+      "dica": "Mecânicas centrais são o coração do core loop.",
+      "solucao": "Resposta aberta. Exemplo: 'RPG: evolução de personagem, inventário, quests definem o gênero. Plataforma: saltos, obstáculos, física de movimento definem o gênero.'"
+    },
+    {
+      "id": 7,
+      "enunciado": "Quais são as principais diferenças entre jogos Indie e AAA em termos de: tamanho da equipe, orçamento e liberdade criativa?",
+      "dica": "Compare equipes pequenas x grandes e recursos limitados x massivos.",
+      "solucao": "Resposta aberta. Exemplo: 'Indie: equipes pequenas, baixo orçamento, alta liberdade criativa. AAA: equipes grandes, orçamentos milionários, foco em mercado e polimento.'"
+    },
+    {
+      "id": 8,
+      "enunciado": "Assista a um trailer de um jogo AAA e um de um Indie (ex.: Hollow Knight e The Last of Us Part II). Identifique uma mecânica central em cada um e explique como ela afeta o público-alvo.",
+      "dica": "Observe interação, feedback visual e dificuldade.",
+      "solucao": "Resposta aberta. Exemplo: 'Hollow Knight: exploração e combate preciso – público hardcore. TLOU2: stealth e narrativa emocional – público que busca experiência cinematográfica.'"
+    },
+    {
+      "id": 9,
+      "enunciado": "Cite duas tendências atuais na indústria de jogos (ex.: IA generativa, cloud gaming) e descreva como elas podem impactar o desenvolvimento de jogos.",
+      "dica": "Pense em tecnologias que mudam produção e distribuição.",
+      "solucao": "Resposta aberta. Exemplo: 'Cloud gaming – reduz barreiras de hardware e amplia público. IA generativa – acelera criação de assets e conteúdo procedural.'"
+    },
+    {
+      "id": 10,
+      "enunciado": "Analise o papel da análise crítica para um game designer. Por que não basta dizer que um jogo é “bom” ou “ruim”? Relacione com os conceitos de mecânica, público-alvo e experiência do jogador.",
+      "dica": "Análise crítica identifica por que algo funciona e para quem.",
+      "solucao": "Resposta aberta. Exemplo: 'Porque a função do designer é entender a relação mecânica-experiência. O que é bom para um público pode falhar para outro. É preciso avaliar design, contexto e objetivo do jogo.'"
+    }
+  ]
+}
