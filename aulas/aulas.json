@@ -26,5 +26,12 @@
     "descricao": "Entenda os modificadores de acesso (public, private, protected, default) e como aplicar encapsulamento para proteger e organizar o código em Java.",
     "arquivo": "aula4.html",
     "ativo": true
+  },
+  {
+    "id": "aula5",
+    "titulo": "Aula 5: Resolução da AV1 e Introdução à Herança",
+    "descricao": "Resolução comentada da AV1 e introdução ao conceito de Herança em Java com extends, superclasses e subclasses.",
+    "arquivo": "aula5.html",
+    "ativo": true
   }
 ]
