@@ -1,9 +1,30 @@
 [
   {
     "id": "aula1",
-    "titulo": "Aula 1: ...",
-    "descricao": "...",
+    "titulo": "Aula 1: Fundamentos da Programação Orientada a Objetos",
+    "descricao": "Explora o paradigma OO, sintaxe do Java e criação de classes e objetos.",
     "arquivo": "aula1.html",
+    "ativo": true
+  },
+  {
+    "id": "aula2",
+    "titulo": "Aula 2: Estrutura de um Programa Java e Sintaxe Básica",
+    "descricao": "Aprenda a estrutura mínima de um programa Java, o método main, sintaxe básica e entrada/saída de dados.",
+    "arquivo": "aula2.html",
+    "ativo": true
+  },
+  {
+    "id": "aula3",
+    "titulo": "Aula 3: Objetos, Atributos e Métodos",
+    "descricao": "Aprenda os conceitos fundamentais de objetos, atributos e métodos em Java, base da Programação Orientada a Objetos.",
+    "arquivo": "aula3.html",
+    "ativo": true
+  },
+  {
+    "id": "aula4",
+    "titulo": "Aula 4: Visibilidade, Modificadores de Acesso e Encapsulamento",
+    "descricao": "Entenda os modificadores de acesso (public, private, protected, default) e como aplicar encapsulamento para proteger e organizar o código em Java.",
+    "arquivo": "aula4.html",
     "ativo": true
   }
 ]

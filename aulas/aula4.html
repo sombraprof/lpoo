@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <!-- Metadados Essenciais -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      LPOO - Aula 4: Visibilidade, Modificadores de Acesso e Encapsulamento
+    </title>
+    <meta
+      name="description"
+      content="Aula 4 da disciplina de LPOO. Entenda os modificadores de acesso (public, private, protected) e aprenda a aplicar o encapsulamento com getters e setters em Java."
+    />
+    <meta name="author" content="Prof. Tiago Guimarães Sombra" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="URL_DA_SUA_PAGINA_AQUI" />
+    <meta
+      property="og:title"
+      content="LPOO - Aula 4: Visibilidade, Modificadores de Acesso e Encapsulamento"
+    />
+    <meta
+      property="og:description"
+      content="Entenda os modificadores de acesso (public, private, protected) e aprenda a aplicar o encapsulamento com getters e setters em Java."
+    />
+    <meta
+      property="og:image"
+      content="https://placehold.co/1200x630/4f46e5/ffffff?text=LPOO%0AAula%204"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="URL_DA_SUA_PAGINA_AQUI" />
+    <meta
+      property="twitter:title"
+      content="LPOO - Aula 4: Visibilidade, Modificadores de Acesso e Encapsulamento"
+    />
+    <meta
+      property="twitter:description"
+      content="Entenda os modificadores de acesso (public, private, protected) e aprenda a aplicar o encapsulamento com getters e setters em Java."
+    />
+    <meta
+      property="twitter:image"
+      content="https://placehold.co/1200x630/4f46e5/ffffff?text=LPOO%0AAula%204"
+    />
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Roboto Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Estilos Customizados -->
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8fafc;
+        color: #334155;
+        padding-top: 60px;
+      }
+
+      .callout {
+        border-left-width: 4px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 0.5rem;
+      }
+
+      .callout-info {
+        background-color: #f0f9ff;
+        border-color: #7dd3fc;
+        color: #0c4a6e;
+      }
+
+      .callout-practice {
+        background-color: #f0fdf4;
+        border-color: #6ee7b7;
+        color: #065f46;
+      }
+
+      .callout-academic {
+        background-color: #fefce8;
+        border-color: #facc15;
+        color: #854d0e;
+      }
+
+      .code-block {
+        background-color: #1e293b;
+        color: #f8fafc;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin-top: 1rem;
+        position: relative;
+        overflow-x: auto;
+      }
+
+      .code-block pre {
+        font-family: "Roboto Mono", monospace;
+        font-size: 0.875rem;
+      }
+
+      .copy-btn {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        background-color: #334155;
+        color: #cbd5e1;
+        border: none;
+        padding: 0.25rem 0.75rem;
+        border-radius: 0.375rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .copy-btn:hover {
+        background-color: #475569;
+      }
+    </style>
+  </head>
+
+  <body class="text-slate-800">
+    <nav
+      class="bg-white/80 backdrop-blur-md shadow-sm fixed top-0 left-0 right-0 z-50"
+      aria-label="Menu de navegação principal"
+    >
+      <div class="container mx-auto px-6">
+        <div class="flex justify-between items-center h-16">
+          <span class="text-lg font-bold text-indigo-700">LPOO - Aula 4</span>
+          <div class="hidden md:flex space-x-4 text-sm font-semibold">
+            <a href="#plano-aula" class="text-slate-600 hover:text-indigo-600"
+              >Plano</a
+            >
+            <a href="#teoria" class="text-slate-600 hover:text-indigo-600"
+              >Teoria</a
+            >
+            <a href="#pratica" class="text-slate-600 hover:text-indigo-600"
+              >Prática</a
+            >
+            <a href="#ted" class="text-slate-600 hover:text-indigo-600">TED</a>
+            <a href="#bibliografia" class="text-slate-600 hover:text-indigo-600"
+              >Bibliografia</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <header
+      class="bg-gradient-to-r from-indigo-700 to-indigo-900 text-white shadow-lg"
+    >
+      <div class="container mx-auto px-6 py-10">
+        <h1 class="text-4xl font-bold">
+          Visibilidade, Modificadores de Acesso e Encapsulamento
+        </h1>
+        <p class="text-xl text-indigo-200 mt-2">
+          Aula 4: Unidade II – Noções básicas e de OO e seus conceitos
+        </p>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-10" role="main">
+      <section
+        id="ementa"
+        class="mb-12 bg-white p-8 rounded-lg shadow"
+        aria-labelledby="ementa-heading"
+      >
+        <h2
+          id="ementa-heading"
+          class="text-3xl font-semibold text-slate-800 mb-6"
+        >
+          Ementa e Contextualização
+        </h2>
+        <p class="text-slate-700 leading-relaxed">
+          Até agora, nossos atributos e métodos estavam "abertos" para o mundo.
+          Mas e se quiséssemos proteger os dados de um objeto contra
+          modificações indevidas? É aqui que entram os
+          <strong>modificadores de acesso</strong> e o
+          <strong>encapsulamento</strong>. O encapsulamento é um dos pilares da
+          POO e consiste em "esconder" os detalhes internos de um objeto,
+          expondo apenas uma interface segura para interação. Isso não só
+          aumenta a segurança do software, mas também o torna mais flexível e
+          fácil de manter.
+        </p>
+      </section>
+
+      <section
+        id="plano-aula"
+        class="mb-12 bg-indigo-50 border border-indigo-200 p-8 rounded-2xl shadow-lg"
+        aria-labelledby="plano-aula-heading"
+      >
+        <h2
+          id="plano-aula-heading"
+          class="text-3xl font-bold text-indigo-700 mb-6 text-center"
+        >
+          Plano da Aula
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+              <i class="fa-solid fa-book-open mr-2" aria-hidden="true"></i
+              >CONTEÚDO
+            </h3>
+            <p class="text-slate-600">
+              Modificadores de acesso em Java (public, private, protected),
+              encapsulamento, getters e setters, e boas práticas.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+              <i class="fa-solid fa-bullseye mr-2" aria-hidden="true"></i
+              >OBJETIVO
+            </h3>
+            <p class="text-slate-600">
+              Controlar a visibilidade de atributos e métodos, e aplicar o
+              encapsulamento para proteger o estado dos objetos.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+              <i class="fa-solid fa-gears mr-2" aria-hidden="true"></i
+              >METODOLOGIA
+            </h3>
+            <p class="text-slate-600">
+              Aula expositiva com analogias, exemplos práticos de código e uma
+              atividade de refatoração para aplicar os conceitos.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="teoria" class="mb-12" aria-labelledby="teoria-heading">
+        <h2
+          id="teoria-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8"
+        >
+          🛡️ Protegendo Seus Objetos
+        </h2>
+
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-2xl font-semibold text-slate-800 mb-4">
+            1. Modificadores de Acesso
+          </h3>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            Java oferece quatro níveis de controle de acesso para membros de uma
+            classe (atributos e métodos):
+          </p>
+          <ul class="list-none space-y-4">
+            <li class="flex items-start">
+              <span
+                class="font-bold text-green-600 bg-green-100 px-2 py-1 rounded-full w-28 text-center mr-4"
+                >public</span
+              ><span
+                >Acessível de qualquer classe, em qualquer pacote. É o nível
+                menos restritivo.</span
+              >
+            </li>
+            <li class="flex items-start">
+              <span
+                class="font-bold text-sky-600 bg-sky-100 px-2 py-1 rounded-full w-28 text-center mr-4"
+                >protected</span
+              ><span
+                >Acessível dentro do mesmo pacote e por subclasses (mesmo em
+                pacotes diferentes).</span
+              >
+            </li>
+            <li class="flex items-start">
+              <span
+                class="font-bold text-gray-600 bg-gray-100 px-2 py-1 rounded-full w-28 text-center mr-4"
+                >package-private</span
+              ><span
+                >(Sem modificador) Acessível apenas por classes dentro do mesmo
+                pacote. É o padrão.</span
+              >
+            </li>
+            <li class="flex items-start">
+              <span
+                class="font-bold text-red-600 bg-red-100 px-2 py-1 rounded-full w-28 text-center mr-4"
+                >private</span
+              ><span
+                >Acessível apenas dentro da própria classe. É o nível mais
+                restritivo.</span
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-2xl font-semibold text-slate-800 mb-4">
+            2. Encapsulamento: O Princípio da Caixa-Preta
+          </h3>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            Encapsular significa agrupar os dados (atributos) e os métodos que
+            operam nesses dados dentro de uma única unidade (a classe), e
+            esconder os detalhes da implementação do mundo exterior. A boa
+            prática é declarar os <strong>atributos como <code-text>private</code-text></strong> e
+            fornecer <strong>métodos <code-text>public</code-text></strong>
+            para acessá-los e modificá-los de forma controlada.
+          </p>
+          <p class="text-slate-700 leading-relaxed">
+            Pense em um caixa eletrônico: você não tem acesso direto ao dinheiro
+            no cofre (atributo <code-text>private</code-text>). Em vez disso, você usa uma interface
+            pública (a tela e os botões) para realizar operações seguras como
+            <code-text>sacar()</code-text> e <code-text>verificarSaldo()</code-text>.
+          </p>
+          <!-- CORREÇÃO: Imagem substituída por HTML/CSS para representar o diagrama UML -->
+          <div class="flex justify-center bg-slate-50 p-4 rounded-lg mt-6">
+            <div
+              class="bg-white border-2 border-slate-300 rounded-lg shadow-md w-full max-w-sm mx-auto font-mono text-sm"
+            >
+              <div
+                class="p-2 font-bold text-center bg-slate-100 border-b-2 border-slate-300"
+              >
+                ContaBancaria
+              </div>
+              <div class="p-3 border-b-2 border-slate-300">
+                <ul class="space-y-1">
+                  <li>
+                    <span class="text-red-500 font-bold mr-2">-</span>saldo:
+                    double
+                  </li>
+                  <li>
+                    <span class="text-red-500 font-bold mr-2">-</span>titular:
+                    String
+                  </li>
+                </ul>
+              </div>
+              <div class="p-3">
+                <ul class="space-y-1">
+                  <li>
+                    <span class="text-green-500 font-bold mr-2">+</span
+                    >depositar(valor: double): void
+                  </li>
+                  <li>
+                    <span class="text-green-500 font-bold mr-2">+</span
+                    >sacar(valor: double): void
+                  </li>
+                  <li>
+                    <span class="text-green-500 font-bold mr-2">+</span
+                    >getSaldo(): double
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="pratica" class="mb-12" aria-labelledby="pratica-heading">
+        <h2
+          id="pratica-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8"
+        >
+          💻 Exemplos Práticos: Gerenciando uma Conta Bancária
+        </h2>
+
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-xl font-semibold text-slate-800 mb-2">
+            Exemplo 1: Classe <code-text>ContaBancaria</code-text> Encapsulada
+          </h3>
+          <p class="text-slate-600 mb-4">
+            Note como o <code-text>saldo</code-text> é <code-text>private</code-text>. A única forma de alterá-lo é
+            através dos métodos públicos <code-text>depositar</code-text> e <code-text>sacar</code-text>.
+          </p>
+          <div class="code-block">
+            <button
+              class="copy-btn"
+              title="Copiar código"
+              aria-label="Copiar código da classe ContaBancaria"
+            >
+              <i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar
+            </button>
+            <pre><code class="language-java">
+public class ContaBancaria {
+    // Attributes are private to protect them from direct external access.
+    private String titular;
+    private double saldo;
+
+    // A public constructor to initialize the object.
+    public ContaBancaria(String titular) {
+        this.titular = titular;
+        this.saldo = 0.0; // Initial balance is always zero.
+    }
+
+    // Public method to deposit money. This is a controlled way to modify 'saldo'.
+    public void depositar(double valor) {
+        if (valor > 0) {
+            this.saldo += valor;
+            System.out.println("Depósito de R$ " + valor + " realizado com sucesso.");
+        } else {
+            System.out.println("Valor de depósito inválido.");
+        }
+    }
+
+    // Public method to withdraw money.
+    public void sacar(double valor) {
+        if (valor > 0 && valor <= this.saldo) {
+            this.saldo -= valor;
+            System.out.println("Saque de R$ " + valor + " realizado com sucesso.");
+        } else {
+            System.out.println("Saque não permitido. Saldo insuficiente ou valor inválido.");
+        }
+    }
+
+    // Public "getter" method to allow read-only access to the balance.
+    public double getSaldo() {
+        return this.saldo;
+    }
+}
+                </code></pre>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h3 class="text-xl font-semibold text-slate-800 mb-2">
+            Exemplo 2: Usando a Classe Encapsulada
+          </h3>
+          <p class="text-slate-600 mb-4">
+            Na classe <code-text>Banco</code-text>, não podemos fazer <code-text>minhaConta.saldo = -500;</code-text>.
+            Somos forçados a usar os métodos seguros.
+          </p>
+          <div class="code-block">
+            <button
+              class="copy-btn"
+              title="Copiar código"
+              aria-label="Copiar código da classe Banco"
+            >
+              <i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar
+            </button>
+            <pre><code class="language-java">
+public class Banco {
+    public static void main(String[] args) {
+        ContaBancaria minhaConta = new ContaBancaria("Ana Souza");
+
+        System.out.println("Saldo inicial: R$ " + minhaConta.getSaldo());
+
+        minhaConta.depositar(500.0);
+        minhaConta.sacar(200.0);
+        
+        // This line would cause a compilation error because 'saldo' is private.
+        // minhaConta.saldo = 1000000; 
+        
+        minhaConta.sacar(400.0); // This will fail due to insufficient funds.
+
+        System.out.println("Saldo final: R$ " + minhaConta.getSaldo());
+    }
+}
+                </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="recursos-auxiliares"
+        class="mb-12"
+        aria-labelledby="recursos-heading"
+      >
+        <h2
+          id="recursos-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8"
+        >
+          🎥 Vídeos e Links de Apoio
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="space-y-6">
+            <!-- CORREÇÃO: Links de vídeo atualizados e container responsivo -->
+            <div class="bg-white p-4 rounded-lg shadow mb-6">
+              <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+                Encapsulamento em Java (Loiane Groner)
+              </h3>
+              <div class="aspect-video w-full">
+                <iframe
+                  class="w-full h-full rounded-md"
+                  src="https://www.youtube.com/embed/6oD7TE90e-M"
+                  title="Encapsulamento em Java - Loiane Groner"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                >
+                </iframe>
+              </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-lg shadow">
+              <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+                Getters e Setters em Java (Tutorial Java #84)
+              </h3>
+              <div class="aspect-video w-full">
+                <iframe
+                  class="w-full h-full rounded-md"
+                  src="https://www.youtube.com/embed/6wVmqY-CrGM"
+                  title="Getters and Setters Java Tutorial #84"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                >
+                </iframe>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow">
+            <h3 class="font-semibold text-lg text-indigo-800 mb-4">
+              Leituras Recomendadas
+            </h3>
+            <ul class="space-y-4">
+              <li>
+                <a
+                  href="https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block font-semibold text-indigo-600 hover:underline"
+                >
+                  <i class="fa-solid fa-book-bookmark mr-2"></i>Controlling
+                  Access to Members of a Class (Oracle)
+                </a>
+                <p class="text-sm text-slate-600">
+                  A documentação oficial sobre modificadores de acesso.
+                </p>
+              </li>
+              <li>
+                <a
+                  href="https://www.w3schools.com/java/java_encapsulation.asp"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block font-semibold text-indigo-600 hover:underline"
+                >
+                  <i class="fa-solid fa-file-alt mr-2"></i>Java Encapsulation
+                  (Getters and Setters) (W3Schools)
+                </a>
+                <p class="text-sm text-slate-600">
+                  Um guia rápido e prático sobre como implementar
+                  encapsulamento.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="ted"
+        class="mb-12 bg-amber-50 border border-amber-300 p-8 rounded-lg shadow-lg"
+        aria-labelledby="ted-heading"
+      >
+        <h2 id="ted-heading" class="text-3xl font-bold text-amber-800 mb-6">
+          <i class="fa-solid fa-laptop-code mr-2" aria-hidden="true"></i
+          >Atividade Prática (TED): Refatorando a Classe <code-text>Funcionario</code-text>
+        </h2>
+        <p class="text-amber-900 leading-relaxed mb-4">
+          Vamos refatorar uma classe <code-text>Funcionario</code-text> para aplicar o encapsulamento
+          e garantir a integridade dos seus dados.
+        </p>
+        <ol class="list-decimal list-inside space-y-4 text-amber-900">
+          <li>
+            <strong>Crie a classe <code-text>Funcionario.java</code-text></strong> com os atributos
+            <code-text>private String nome</code-text> e <code-text>private double salario</code-text>.
+          </li>
+          <li>
+            <strong>Implemente os métodos <code-text>public</code-text> getters e setters</strong>
+            para ambos os atributos: <code-text>getNome()</code-text>, <code-text>setNome(String nome)</code-text>,
+            <code-text>getSalario()</code-text>, <code-text>setSalario(double salario)</code-text>.
+          </li>
+          <li>
+            <strong>Adicione uma regra de negócio no <code-text>setSalario</code-text></strong>: o
+            salário não pode ser definido com um valor menor que o salário
+            mínimo (R$ 1.212,00). Se o valor for inválido, exiba uma mensagem de
+            erro e não altere o salário.
+          </li>
+          <li>
+            <strong>Crie uma classe <code-text>Empresa.java</code-text> com um método <code-text>main</code-text></strong>
+            para testar. Crie um objeto <code-text>Funcionario</code-text>, tente definir um salário
+            válido e um inválido, e exiba os resultados usando os getters.
+          </li>
+        </ol>
+        <div class="mt-6 callout callout-info">
+          <h4 class="font-bold text-lg mb-2">Sugestão de Metodologia Ativa</h4>
+          <p class="text-sm">
+            Realize esta atividade em dupla (*pair programming*). Discutam por
+            que a validação no método <code-text>setSalario</code-text> é importante para a
+            consistência do sistema. Como essa abordagem ajuda a evitar bugs no
+            futuro?
+          </p>
+        </div>
+      </section>
+
+      <section id="checklist" class="mt-12" aria-labelledby="checklist-heading">
+        <div
+          class="bg-green-50 border-l-4 border-green-500 text-green-800 p-6 rounded-lg shadow"
+        >
+          <h3 id="checklist-heading" class="font-bold text-lg mb-3">
+            <i class="fa-solid fa-list-check mr-2" aria-hidden="true"></i
+            >Checklist de Aprendizagem da Aula
+          </h3>
+          <p>Ao final desta aula, você deve ser capaz de:</p>
+          <ul class="list-none space-y-2 mt-2">
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Diferenciar os modificadores de acesso <code-text>public</code-text>, <code-text>private</code-text> e
+              <code-text>protected</code-text>.
+            </li>
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Explicar o conceito de encapsulamento e sua importância.
+            </li>
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Implementar encapsulamento usando atributos privados e métodos
+              getters/setters públicos.
+            </li>
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Adicionar regras de validação dentro dos métodos setters para
+              proteger o estado do objeto.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section
+        id="bibliografia"
+        class="prose prose-slate max-w-none lg:prose-lg mt-12"
+        aria-labelledby="bibliografia-heading"
+      >
+        <h2
+          id="bibliografia-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-4"
+        >
+          📚 Bibliografia de Apoio
+        </h2>
+        <div class="bg-white p-8 rounded-lg shadow space-y-4 not-prose">
+          <p>
+            <strong>DEITEL, Harvey M.; DEITEL, Paul J.</strong>
+            <em>Java: como programar.</em> 8. ed. São Paulo: Pearson Prentice
+            Hall, 2014.
+          </p>
+          <p>
+            <strong>SCHILDT, Herbert.</strong>
+            <em
+              >Java para iniciantes: crie, compile e execute programas Java
+              rapidamente.</em
+            >
+            6. ed. Porto Alegre: Bookman, 2015.
+          </p>
+          <p>
+            <strong>GOODRICH, Michael T.; TAMASSIA, Roberto.</strong>
+            <em>Estruturas de dados e algoritmos em Java.</em> 5. ed. Porto
+            Alegre: Bookman, 2013.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-slate-800 text-slate-300 mt-12" role="contentinfo">
+      <div class="container mx-auto px-6 py-8 text-center">
+        <p class="font-semibold text-white">Prof. Tiago Guimarães Sombra</p>
+        <p class="text-sm mt-1">
+          Material acadêmico para os cursos de ADS e SI.
+        </p>
+        <p class="text-sm font-bold text-indigo-300">UniFametro</p>
+        <div class="mt-4 flex justify-center items-center space-x-4">
+          <a
+            href="https://github.com/sombraprof/lpoo"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-indigo-400 hover:text-white transition-colors"
+            aria-label="Visitar o repositório do projeto no GitHub"
+          >
+            <i class="fab fa-github fa-lg mr-1" aria-hidden="true"></i>
+            Repositório GitHub
+          </a>
+          <span class="text-slate-500">|</span>
+          <a
+            href="#"
+            class="text-indigo-400 hover:text-white transition-colors"
+            aria-label="Ver a política de uso do material"
+            >Política de Uso</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

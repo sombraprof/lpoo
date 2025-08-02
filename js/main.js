@@ -48,7 +48,7 @@ function loadAula(file) {
       const conteudo = document.getElementById("conteudo");
       conteudo.innerHTML = html;
       initAccordions();
-      initCopyButtons();
+      initAdvancedCopyButtons();
       initLaboratorioGeneros();
       window.scrollTo({ top: conteudo.offsetTop - 20, behavior: "smooth" });
     })
@@ -181,35 +181,48 @@ function initAccordions() {
   });
 }
 
-// Inicializa botão de copiar código
-function initCopyButtons() {
-  const copyButton = document.querySelector(".copy-code-btn");
-  if (copyButton) {
-    copyButton.addEventListener("click", () => {
-      const codeToCopy = document.getElementById("code-sizeof").innerText;
+// Inicializa os botões de copiar código com suporte a múltiplos blocos
+function initAdvancedCopyButtons() {
+  const allCopyButtons = document.querySelectorAll(".copy-btn");
+
+  allCopyButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const codeBlock = button.closest(".code-block");
+      if (!codeBlock) return;
+
+      const codeToCopy = codeBlock.querySelector("pre").innerText;
+
       navigator.clipboard
         .writeText(codeToCopy)
         .then(() => {
-          copyButton.innerText = "Copiado!";
+          // ✅ Feedback visual de sucesso
+          const originalText = button.innerHTML;
+          button.innerHTML = '<i class="fa-solid fa-check mr-1"></i>Copiado!';
           setTimeout(() => {
-            copyButton.innerText = "Copiar Código";
+            button.innerHTML = originalText;
           }, 2000);
         })
         .catch((err) => {
-          console.error("Erro ao copiar o texto: ", err);
-          const textarea = document.createElement("textarea");
-          textarea.value = codeToCopy;
-          document.body.appendChild(textarea);
-          textarea.select();
-          document.execCommand("copy");
-          document.body.removeChild(textarea);
-          copyButton.innerText = "Copiado!";
-          setTimeout(() => {
-            copyButton.innerText = "Copiar Código";
-          }, 2000);
+          console.error("Falha ao copiar o código: ", err);
+          // 🔄 Fallback para navegadores antigos
+          const textArea = document.createElement("textarea");
+          textArea.value = codeToCopy;
+          document.body.appendChild(textArea);
+          textArea.select();
+          try {
+            document.execCommand("copy");
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fa-solid fa-check mr-1"></i>Copiado!';
+            setTimeout(() => {
+              button.innerHTML = originalText;
+            }, 2000);
+          } catch (err) {
+            console.error("Fallback de cópia também falhou", err);
+          }
+          document.body.removeChild(textArea);
         });
     });
-  }
+  });
 }
 
 function initLaboratorioGeneros() {

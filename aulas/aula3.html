@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <!-- Metadados Essenciais -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LPOO - Aula 3: Objetos, Atributos e Métodos</title>
+    <meta
+      name="description"
+      content="Aula 3 da disciplina de LPOO. Aprenda os conceitos de objetos, atributos e métodos na Programação Orientada a Objetos com Java."
+    />
+    <meta name="author" content="Prof. Tiago Guimarães Sombra" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="URL_DA_SUA_PAGINA_AQUI" />
+    <meta
+      property="og:title"
+      content="LPOO - Aula 3: Objetos, Atributos e Métodos"
+    />
+    <meta
+      property="og:description"
+      content="Aprenda os conceitos de objetos, atributos e métodos na Programação Orientada a Objetos com Java."
+    />
+    <meta
+      property="og:image"
+      content="https://placehold.co/1200x630/4f46e5/ffffff?text=LPOO%0AAula%203"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="URL_DA_SUA_PAGINA_AQUI" />
+    <meta
+      property="twitter:title"
+      content="LPOO - Aula 3: Objetos, Atributos e Métodos"
+    />
+    <meta
+      property="twitter:description"
+      content="Aprenda os conceitos de objetos, atributos e métodos na Programação Orientada a Objetos com Java."
+    />
+    <meta
+      property="twitter:image"
+      content="https://placehold.co/1200x630/4f46e5/ffffff?text=LPOO%0AAula%203"
+    />
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Roboto Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Estilos Customizados -->
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8fafc;
+        color: #334155;
+        padding-top: 60px;
+      }
+      .callout {
+        border-left-width: 4px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 0.5rem;
+      }
+      .callout-info {
+        background-color: #f0f9ff;
+        border-color: #7dd3fc;
+        color: #0c4a6e;
+      }
+      .callout-practice {
+        background-color: #f0fdf4;
+        border-color: #6ee7b7;
+        color: #065f46;
+      }
+      .callout-academic {
+        background-color: #fefce8;
+        border-color: #facc15;
+        color: #854d0e;
+      }
+      .code-block {
+        background-color: #1e293b;
+        color: #f8fafc;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin-top: 1rem;
+        position: relative;
+        overflow-x: auto;
+      }
+      .code-block pre {
+        font-family: "Roboto Mono", monospace;
+        font-size: 0.875rem;
+      }
+      .copy-btn {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        background-color: #334155;
+        color: #cbd5e1;
+        border: none;
+        padding: 0.25rem 0.75rem;
+        border-radius: 0.375rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+      .copy-btn:hover {
+        background-color: #475569;
+      }
+    </style>
+  </head>
+
+  <body class="text-slate-800">
+    <nav
+      class="bg-white/80 backdrop-blur-md shadow-sm fixed top-0 left-0 right-0 z-50"
+      aria-label="Menu de navegação principal"
+    >
+      <div class="container mx-auto px-6">
+        <div class="flex justify-between items-center h-16">
+          <span class="text-lg font-bold text-indigo-700">LPOO - Aula 3</span>
+          <div class="hidden md:flex space-x-4 text-sm font-semibold">
+            <a
+              href="#plano-aula"
+              class="text-slate-600 hover:text-indigo-600"
+              aria-label="Ir para a seção Plano da Aula"
+              >Plano</a
+            >
+            <a
+              href="#teoria"
+              class="text-slate-600 hover:text-indigo-600"
+              aria-label="Ir para a seção de Teoria"
+              >Teoria</a
+            >
+            <a
+              href="#pratica"
+              class="text-slate-600 hover:text-indigo-600"
+              aria-label="Ir para a seção de Exemplos Práticos"
+              >Prática</a
+            >
+            <a
+              href="#ted"
+              class="text-slate-600 hover:text-indigo-600"
+              aria-label="Ir para a Atividade Prática (TED)"
+              >TED</a
+            >
+            <a
+              href="#bibliografia"
+              class="text-slate-600 hover:text-indigo-600"
+              aria-label="Ir para a seção de Bibliografia"
+              >Bibliografia</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <header
+      class="bg-gradient-to-r from-indigo-700 to-indigo-900 text-white shadow-lg"
+    >
+      <div class="container mx-auto px-6 py-10">
+        <h1 class="text-4xl font-bold">Objetos, Atributos e Métodos</h1>
+        <p class="text-xl text-indigo-200 mt-2">
+          Aula 3: Unidade I – Introdução à Programação OO
+        </p>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-10" role="main">
+      <section
+        id="ementa"
+        class="mb-12 bg-white p-8 rounded-lg shadow"
+        aria-labelledby="ementa-heading"
+      >
+        <h2
+          id="ementa-heading"
+          class="text-3xl font-semibold text-slate-800 mb-6"
+        >
+          Ementa e Contextualização
+        </h2>
+        <p class="text-slate-700 leading-relaxed">
+          Na aula anterior, vimos a estrutura básica de um programa. Agora,
+          vamos mergulhar no coração da Programação Orientada a Objetos. Os
+          objetos são a base de tudo o que construiremos. Entender como modelar
+          entidades do mundo real (um produto, um cliente, uma transação) em
+          objetos com estado (atributos) e comportamento (métodos) é a
+          habilidade fundamental que nos permite criar software modular,
+          reutilizável e fácil de manter.
+        </p>
+      </section>
+
+      <section
+        id="plano-aula"
+        class="mb-12 bg-indigo-50 border border-indigo-200 p-8 rounded-2xl shadow-lg"
+        aria-labelledby="plano-aula-heading"
+      >
+        <h2
+          id="plano-aula-heading"
+          class="text-3xl font-bold text-indigo-700 mb-6 text-center"
+        >
+          Plano da Aula
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+              <i class="fa-solid fa-book-open mr-2" aria-hidden="true"></i
+              >CONTEÚDO
+            </h3>
+            <p class="text-slate-600">
+              Definição de objetos, atributos (estado) e métodos
+              (comportamento). Relação entre classes e instâncias.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+              <i class="fa-solid fa-bullseye mr-2" aria-hidden="true"></i
+              >OBJETIVO
+            </h3>
+            <p class="text-slate-600">
+              Modelar e implementar classes com atributos e métodos, e
+              instanciar objetos a partir delas, manipulando seu estado e
+              comportamento.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+              <i class="fa-solid fa-gears mr-2" aria-hidden="true"></i
+              >METODOLOGIA
+            </h3>
+            <p class="text-slate-600">
+              Exposição teórica com analogias, modelagem visual, codificação de
+              exemplos práticos e atividade guiada.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="teoria" class="mb-12" aria-labelledby="teoria-heading">
+        <h2
+          id="teoria-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8"
+        >
+          🧱 Os Blocos de Construção da POO
+        </h2>
+
+        <!-- Classes e Objetos -->
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-2xl font-semibold text-slate-800 mb-4">
+            1. Classes, Objetos e Instâncias
+          </h3>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            Segundo <strong>Deitel & Deitel (Java: Como Programar)</strong>,
+            <em
+              >"uma classe descreve os atributos e comportamentos de um conjunto
+              de objetos semelhantes; cada objeto é uma instância dessa
+              classe."</em
+            >
+          </p>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            A relação entre classe e objeto é como a de um
+            <strong>molde</strong> e o
+            <strong>item criado a partir dele</strong>. A classe define a
+            estrutura e comportamento; o objeto é a concretização que usamos no
+            código.
+          </p>
+          <ul class="list-disc list-inside space-y-2 text-slate-700 mb-6">
+            <li>
+              <strong>Classe:</strong> O projeto, a planta baixa. Define
+              atributos e métodos que todos os objetos daquele tipo terão.
+            </li>
+            <li>
+              <strong>Objeto (ou Instância):</strong> Uma cópia única criada a
+              partir da classe. Cada objeto tem seu próprio estado.
+            </li>
+          </ul>
+          <div
+            class="flex flex-col md:flex-row justify-center items-center gap-6 bg-slate-50 p-4 rounded-lg"
+          >
+            <img
+              src="https://placehold.co/400x250/e2e8f0/4f46e5?text=Classe+Molde"
+              alt="Diagrama de Classe"
+              class="rounded-md shadow-md"
+            />
+            <img
+              src="https://placehold.co/400x250/e2e8f0/16a34a?text=Objetos+Instanciados"
+              alt="Objetos criados a partir da classe"
+              class="rounded-md shadow-md"
+            />
+          </div>
+
+          <!-- Diagrama UML simples -->
+          <div class="flex justify-center my-6">
+            <div
+              class="bg-white border border-slate-300 rounded-lg shadow-lg w-80"
+            >
+              <div
+                class="bg-indigo-600 text-white text-center font-bold py-2 rounded-t-lg"
+              >
+                Carro
+              </div>
+              <div
+                class="border-t border-b border-slate-300 p-4 text-slate-700 font-mono text-sm"
+              >
+                - cor : String <br />
+                - modelo : String <br />
+                - ano : int
+              </div>
+              <div class="p-4 text-slate-700 font-mono text-sm">
+                + ligar() : void <br />
+                + acelerar() : void <br />
+                + getVelocidadeAtual() : int
+              </div>
+            </div>
+          </div>
+
+          <!-- Código de exemplo -->
+          <div class="code-block mt-6">
+            <button
+              class="copy-btn"
+              title="Copiar código"
+              aria-label="Copiar exemplo de classe e objeto"
+            >
+              <i class="fa-solid fa-copy mr-1"></i>Copiar
+            </button>
+            <pre><code class="language-java">
+// Defining a simple class Car
+public class Car {
+    String color;
+    String model;
+}
+
+// Creating objects (instances) in the main method
+public class TestCar {
+    public static void main(String[] args) {
+        Car car1 = new Car();
+        car1.color = "Red";
+        car1.model = "Sedan";
+
+        Car car2 = new Car();
+        car2.color = "Black";
+        car2.model = "SUV";
+
+        System.out.println(car1.color); // Prints "Red"
+    }
+}
+      </code></pre>
+          </div>
+        </div>
+
+        <!-- Atributos -->
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-2xl font-semibold text-slate-800 mb-4">
+            2. Atributos: O Estado de um Objeto
+          </h3>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            Atributos são <strong>variáveis internas da classe</strong> que
+            guardam dados. Eles representam o <strong>estado</strong> de cada
+            objeto.
+          </p>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            Exemplo: A classe <code-text>Carro</code-text> pode ter os atributos
+            <code-text>cor</code-text>, <code-text>modelo</code-text> e
+            <code-text>ano</code-text>. Cada objeto terá seus próprios valores.
+          </p>
+
+          <div class="code-block">
+            <button
+              class="copy-btn"
+              title="Copiar código"
+              aria-label="Copiar exemplo de atributos"
+            >
+              <i class="fa-solid fa-copy mr-1"></i>Copiar
+            </button>
+            <pre><code class="language-java">
+public class Carro {
+    String cor;
+    String modelo;
+    int ano;
+}
+
+Carro meuCarro = new Carro();
+meuCarro.cor = "Vermelho"; // State of the object
+      </code></pre>
+          </div>
+
+          <div class="mt-4 callout callout-info">
+            <h4 class="font-bold mb-2">💡 Dica:</h4>
+            <p class="text-sm">
+              Atributos são geralmente <strong>privados</strong> em boas
+              práticas de POO e acessados via métodos (getters/setters) para
+              respeitar o encapsulamento.
+            </p>
+          </div>
+        </div>
+
+        <!-- Métodos -->
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h3 class="text-2xl font-semibold text-slate-800 mb-4">
+            3. Métodos: O Comportamento de um Objeto
+          </h3>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            Métodos são <strong>funções dentro da classe</strong> que definem o
+            comportamento do objeto. Eles podem ler/modificar atributos e
+            interagir com outros objetos.
+          </p>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            Na classe <code-text>Carro</code-text>, métodos como
+            <code-text>ligar()</code-text> ou <code-text>acelerar()</code-text>
+            alteram o estado do objeto.
+          </p>
+
+          <div class="code-block">
+            <button
+              class="copy-btn"
+              title="Copiar código"
+              aria-label="Copiar exemplo de métodos"
+            >
+              <i class="fa-solid fa-copy mr-1"></i>Copiar
+            </button>
+            <pre><code class="language-java">
+public class Carro {
+    String modelo;
+    int velocidade;
+
+    public void acelerar() {
+        velocidade += 10;
+        System.out.println(modelo + " acelerou. Velocidade: " + velocidade);
+    }
+}
+
+Carro carro1 = new Carro();
+carro1.modelo = "Sedan";
+carro1.acelerar(); // Output: Sedan acelerou. Velocidade: 10
+      </code></pre>
+          </div>
+
+          <div class="mt-4 callout callout-practice">
+            <h4 class="font-bold mb-2">📌 Exercício Rápido:</h4>
+            <p class="text-sm">
+              Adicione um método <code-text>frear()</code-text> que reduza a
+              velocidade em 5 e teste a chamada em dois objetos diferentes.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="pratica" class="mb-12" aria-labelledby="pratica-heading">
+        <h2
+          id="pratica-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8"
+        >
+          💻 Exemplos Práticos: Modelando um Produto
+        </h2>
+
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-xl font-semibold text-slate-800 mb-2">
+            Exemplo 1: Criando a Classe <code-text>Produto</code-text>
+          </h3>
+          <p class="text-slate-600 mb-4">
+            Vamos modelar um produto de uma loja virtual. A classe terá
+            atributos para nome, preço e um método para exibir suas informações.
+          </p>
+          <div class="code-block">
+            <button
+              class="copy-btn"
+              title="Copiar código"
+              aria-label="Copiar código da classe Produto"
+            >
+              <i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar
+            </button>
+            <pre><code class="language-java">
+/**
+ * Represents a product in an e-commerce system.
+ */
+public class Produto {
+    // Attributes that define the state of a product.
+    String nome;
+    double preco;
+    int quantidadeEmEstoque;
+
+    /**
+     * Displays the product's data sheet.
+     * This method accesses the object's own attributes.
+     */
+    public void exibirFichaTecnica() {
+        System.out.println("---- FICHA TÉCNICA ----");
+        System.out.println("Produto: " + nome);
+        System.out.println("Preço: R$ " + preco);
+        System.out.println("Estoque: " + quantidadeEmEstoque + " unidades");
+        System.out.println("-----------------------");
+    }
+}
+                </code></pre>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-xl font-semibold text-slate-800 mb-2">
+            Exemplo 2: Criando e Usando Objetos <code-text>Produto</code-text>
+          </h3>
+          <p class="text-slate-600 mb-4">
+            Agora, em uma classe <code-text>Loja</code-text>, vamos criar
+            instâncias de <code-text>Produto</code-text> e interagir com elas.
+          </p>
+          <div class="code-block">
+            <button
+              class="copy-btn"
+              title="Copiar código"
+              aria-label="Copiar código da classe Loja"
+            >
+              <i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar
+            </button>
+            <pre><code class="language-java">
+public class Loja {
+    public static void main(String[] args) {
+        // Creating the first product object (instance of Produto).
+        Produto produto1 = new Produto();
+        produto1.nome = "Smartphone Modelo X";
+        produto1.preco = 1999.90;
+        produto1.quantidadeEmEstoque = 50;
+
+        // Creating the second product object.
+        Produto produto2 = new Produto();
+        produto2.nome = "Notebook Gamer Y";
+        produto2.preco = 4599.00;
+        produto2.quantidadeEmEstoque = 25;
+
+        // Calling the method on each object.
+        System.out.println("Produtos disponíveis:");
+        produto1.exibirFichaTecnica();
+        produto2.exibirFichaTecnica();
+    }
+}
+                </code></pre>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h3 class="text-xl font-semibold text-slate-800 mb-2">
+            Exemplo 3: Método com Parâmetro e Retorno
+          </h3>
+          <p class="text-slate-600 mb-4">
+            Vamos adicionar um método à classe
+            <code-text>Produto</code-text> que calcula o preço com desconto. Ele
+            recebe o percentual de desconto como parâmetro e retorna o novo
+            preço.
+          </p>
+          <div class="code-block">
+            <button
+              class="copy-btn"
+              title="Copiar código"
+              aria-label="Copiar código do método com retorno"
+            >
+              <i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar
+            </button>
+            <pre><code class="language-java">
+// Add this method inside your Produto class.
+/**
+ * Calculates the product price with a given discount.
+ * @param percentualDesconto The discount percentage (e.g., 10 for 10%).
+ * @return The new price after applying the discount.
+ */
+public double calcularPrecoComDesconto(double percentualDesconto) {
+    double valorDoDesconto = this.preco * (percentualDesconto / 100.0);
+    return this.preco - valorDoDesconto;
+}
+
+// How to use it in the main method of Loja class:
+// double precoCom10porcentoOff = produto1.calcularPrecoComDesconto(10.0);
+// System.out.println("Preço com desconto: R$ " + precoCom10porcentoOff);
+                </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="recursos-auxiliares"
+        class="mb-12"
+        aria-labelledby="recursos-heading"
+      >
+        <h2
+          id="recursos-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8"
+        >
+          🎥 Vídeos e Links de Apoio
+        </h2>
+
+        <!-- Vídeos -->
+        <div class="grid grid-cols-1 gap-12 mb-12">
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="font-semibold text-xl text-indigo-800 mb-4">
+              Criando Classes e Objetos em Java (Curso POO Java)
+            </h3>
+            <div class="w-full" style="aspect-ratio: 16/9">
+              <iframe
+                class="w-full h-full rounded-lg"
+                src="https://www.youtube.com/embed/n1VZFmjuhqg"
+                title="YouTube video player"
+                frameborder="0"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="font-semibold text-xl text-indigo-800 mb-4">
+              Introduction to Classes and Objects in Java
+            </h3>
+            <div class="w-full" style="aspect-ratio: 16/9">
+              <iframe
+                class="w-full h-full rounded-lg"
+                src="https://www.youtube.com/embed/W-D71ZeMixQ"
+                title="YouTube video player"
+                frameborder="0"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leituras -->
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+          <h3 class="font-semibold text-xl text-indigo-800 mb-4">
+            📖 Leituras Recomendadas
+          </h3>
+          <ul class="space-y-4">
+            <li>
+              <a
+                href="https://docs.oracle.com/javase/tutorial/java/concepts/object.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block font-semibold text-indigo-600 hover:underline"
+              >
+                <i class="fa-solid fa-book-bookmark mr-2"></i>What Is an Object?
+                (Documentação Oficial da Oracle)
+              </a>
+              <p class="text-sm text-slate-600">
+                A fonte oficial para entender o conceito de objeto em Java
+                diretamente da Oracle.
+              </p>
+            </li>
+            <li>
+              <a
+                href="https://www.w3schools.com/java/java_classes.asp"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block font-semibold text-indigo-600 hover:underline"
+              >
+                <i class="fa-solid fa-file-alt mr-2"></i>Java Classes and
+                Objects (W3Schools)
+              </a>
+              <p class="text-sm text-slate-600">
+                Tutorial simples e prático com exemplos básicos para iniciantes.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section
+        id="ted"
+        class="mb-12 bg-amber-50 border border-amber-300 p-8 rounded-lg shadow-lg"
+        aria-labelledby="ted-heading"
+      >
+        <h2 id="ted-heading" class="text-3xl font-bold text-amber-800 mb-6">
+          <i class="fa-solid fa-laptop-code mr-2" aria-hidden="true"></i
+          >Atividade Prática (TED): Modelando Alunos e Cursos
+        </h2>
+        <p class="text-amber-900 leading-relaxed mb-4">
+          Vamos praticar a modelagem criando um sistema acadêmico simples. O
+          objetivo é representar um <code-text>Aluno</code-text> e o
+          <code-text>Curso</code-text> em que ele está matriculado.
+        </p>
+        <ol class="list-decimal list-inside space-y-4 text-amber-900">
+          <li>
+            <strong>Crie a classe <code-text>Curso.java</code-text></strong> com
+            os atributos <code-text>String nome</code-text> e
+            <code-text>int duracaoHoras</code-text>.
+          </li>
+          <li>
+            <strong>Crie a classe <code-text>Aluno.java</code-text></strong> com
+            os atributos <code-text>String nome</code-text>,
+            <code-text>String matricula</code-text> e
+            <code-text>Curso cursoMatriculado</code-text>. Note que um atributo
+            pode ser outro objeto!
+          </li>
+          <li>
+            Adicione um método <code-text>void exibirRelatorio()</code-text> na
+            classe <code-text>Aluno</code-text> que imprima o nome do aluno, sua
+            matrícula e o nome do curso em que está matriculado.
+          </li>
+          <li>
+            <strong
+              >Crie uma classe <code-text>Secretaria.java</code-text> com um
+              método <code-text>main</code-text></strong
+            >
+            para testar. Nela, crie um objeto <code-text>Curso</code-text> (ex:
+            "Análise e Desenvolvimento de Sistemas") e um objeto
+            <code-text>Aluno</code-text>. Associe o curso ao aluno e chame o
+            método <code-text>exibirRelatorio()</code-text>.
+          </li>
+        </ol>
+      </section>
+
+      <section id="checklist" class="mt-12" aria-labelledby="checklist-heading">
+        <div
+          class="bg-green-50 border-l-4 border-green-500 text-green-800 p-6 rounded-lg shadow"
+        >
+          <h3 id="checklist-heading" class="font-bold text-lg mb-3">
+            <i class="fa-solid fa-list-check mr-2" aria-hidden="true"></i
+            >Checklist de Aprendizagem da Aula
+          </h3>
+          <p>Ao final desta aula, você deve ser capaz de:</p>
+          <ul class="list-none space-y-2 mt-2">
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Diferenciar claramente os conceitos de Classe e Objeto.
+            </li>
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Modelar uma entidade do mundo real em uma Classe Java com
+              atributos e métodos.
+            </li>
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Criar múltiplos objetos (instâncias) a partir de uma mesma
+              classe.
+            </li>
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Implementar e chamar métodos que recebem parâmetros e retornam
+              valores.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section
+        id="bibliografia"
+        class="prose prose-slate max-w-none lg:prose-lg mt-12"
+        aria-labelledby="bibliografia-heading"
+      >
+        <h2
+          id="bibliografia-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-4"
+        >
+          📚 Bibliografia de Apoio
+        </h2>
+        <div class="bg-white p-8 rounded-lg shadow space-y-4 not-prose">
+          <p>
+            <strong>DEITEL, Harvey M.; DEITEL, Paul J.</strong>
+            <em>Java: como programar.</em> 8. ed. São Paulo: Pearson Prentice
+            Hall, 2014.
+          </p>
+          <p>
+            <strong>SCHILDT, Herbert.</strong>
+            <em
+              >Java para iniciantes: crie, compile e execute programas Java
+              rapidamente.</em
+            >
+            6. ed. Porto Alegre: Bookman, 2015.
+          </p>
+          <p>
+            <strong>GOODRICH, Michael T.; TAMASSIA, Roberto.</strong>
+            <em>Estruturas de dados e algoritmos em Java.</em> 5. ed. Porto
+            Alegre: Bookman, 2013.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-slate-800 text-slate-300 mt-12" role="contentinfo">
+      <div class="container mx-auto px-6 py-8 text-center">
+        <p class="font-semibold text-white">Prof. Tiago Guimarães Sombra</p>
+        <p class="text-sm mt-1">
+          Material acadêmico para os cursos de ADS e SI.
+        </p>
+        <p class="text-sm font-bold text-indigo-300">UniFametro</p>
+        <div class="mt-4 flex justify-center items-center space-x-4">
+          <a
+            href="https://github.com/sombraprof/lpoo"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-indigo-400 hover:text-white transition-colors"
+            aria-label="Visitar o repositório do projeto no GitHub"
+          >
+            <i class="fab fa-github fa-lg mr-1" aria-hidden="true"></i>
+            Repositório GitHub
+          </a>
+          <span class="text-slate-500">|</span>
+          <a
+            href="#"
+            class="text-indigo-400 hover:text-white transition-colors"
+            aria-label="Ver a política de uso do material"
+            >Política de Uso</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

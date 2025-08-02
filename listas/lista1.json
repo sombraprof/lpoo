@@ -1,67 +1,127 @@
 {
   "id": "lista1",
-  "titulo": "Lista de Exercícios 01: Introdução ao Desenvolvimento de Jogos Digitais",
-  "descricao": "Exercícios para fixar os conceitos das Aulas 1, 2 e 3: panorama da indústria de jogos digitais, gêneros e tipos de gameplay, e análise crítica de jogos Indie e AAA.",
+  "titulo": "Lista de Exercícios 01: Fundamentos de Java e POO",
+  "descricao": "Exercícios para fixar os conceitos das Aulas 1 a 4: Paradigma OO, sintaxe Java, classes, objetos, atributos, métodos e encapsulamento.",
   "questoes": [
     {
       "id": 1,
-      "enunciado": "Defina jogo digital e explique dois impactos econômicos e dois impactos culturais que a indústria de jogos exerce atualmente no mercado global.",
-      "dica": "Pense em como os jogos movimentam bilhões em receitas e influenciam filmes, músicas e comportamento social.",
-      "solucao": "Resposta aberta. Exemplo: 'Jogos digitais são softwares interativos criados para entretenimento ou aprendizado. Impacto econômico: movimentação da indústria de consoles e periféricos, criação de empregos. Impacto cultural: mudança nos padrões de consumo de mídia, influência em narrativas audiovisuais.'"
+      "enunciado": "Explique a principal diferença entre Programação Estruturada e Programação Orientada a Objetos em termos de como os dados e os comportamentos são organizados.",
+      "dica": "Pense em como a POO agrupa dados e as funções que operam nesses dados, enquanto a programação estruturada os mantém separados.",
+      "solucao": "Na Programação Estruturada, dados e comportamentos (funções) são entidades separadas.\nNa POO, eles são agrupados em 'objetos', onde os dados são os atributos e os comportamentos são os métodos, promovendo encapsulamento e modularidade."
     },
     {
       "id": 2,
-      "enunciado": "Cite três profissões dentro da indústria de jogos digitais e descreva a principal responsabilidade de cada uma no ciclo de desenvolvimento.",
-      "dica": "Considere áreas como programação, design, arte e QA.",
-      "solucao": "Resposta aberta. Exemplo: 'Game Designer – define mecânicas e experiência do jogador. Programador de Gameplay – implementa as interações. Artista 3D – cria modelos e cenários.'"
+      "enunciado": "Diferencie os papéis do JDK e da JVM no ecossistema Java. Qual deles é necessário para desenvolver e qual é necessário para apenas executar um programa Java?",
+      "dica": "Um é o kit de ferramentas do desenvolvedor, o outro é o ambiente de execução.",
+      "solucao": "O JDK (Java Development Kit) é para DESENVOLVER programas, pois inclui o compilador.\nA JVM (Java Virtual Machine) é para EXECUTAR programas, pois interpreta o bytecode.\nUm usuário final precisa apenas da JVM (via JRE), enquanto um desenvolvedor precisa do JDK."
     },
     {
       "id": 3,
-      "enunciado": "Explique como o papel do desenvolvedor se conecta ao ciclo de criação de um jogo, relacionando com os gêneros e plataformas mais comuns do mercado.",
-      "dica": "Desenvolvedor precisa pensar no design, no hardware alvo e no público.",
-      "solucao": "Resposta aberta. Exemplo: 'O desenvolvedor conecta a ideia ao produto final, adaptando mecânicas ao gênero e plataforma (mobile, console). Ele garante performance e experiência adequada para o público.'"
+      "enunciado": "O que é uma classe em POO e qual a sua relação com um objeto? Use uma analogia para explicar.",
+      "dica": "Pense na relação entre uma planta de uma casa e a casa em si.",
+      "solucao": "Uma classe é um 'molde' que define a estrutura (atributos) e os comportamentos (métodos) de um tipo de entidade.\nUm objeto é a 'instância' ou a 'concretização' dessa classe.\nAnalogia: A classe é a 'planta de um carro', enquanto os objetos são os 'carros reais' fabricados a partir dessa planta."
     },
     {
       "id": 4,
-      "enunciado": "Qual é a diferença entre gênero de jogo e tipo de gameplay? Dê um exemplo real de jogo para cada tipo de gameplay: singleplayer, multiplayer e cooperativo.",
-      "dica": "Gênero define tema/mecânicas gerais (RPG, FPS); gameplay define forma de interação (jogar sozinho, em grupo).",
-      "solucao": "Resposta aberta. Exemplo: 'Gênero: RPG, FPS. Gameplay: singleplayer – The Witcher 3; multiplayer – CS:GO; cooperativo – It Takes Two.'"
+      "enunciado": "Defina o que são atributos e métodos no contexto de uma classe Java.",
+      "dica": "Um representa o 'estado' (características) e o outro representa o 'comportamento' (ações).",
+      "solucao": "Atributos são variáveis que representam as características ou dados de um objeto (seu estado).\nMétodos são funções que representam as ações ou comportamentos que um objeto pode realizar."
     },
     {
       "id": 5,
-      "enunciado": "Analise um jogo de sua preferência e identifique: gênero principal, gênero secundário (se houver) e o tipo de gameplay predominante. Justifique sua escolha com base nas mecânicas observadas.",
-      "dica": "Observe o core loop e as interações principais.",
-      "solucao": "Resposta aberta. Exemplo: 'Hollow Knight: gênero – Metroidvania; gameplay – singleplayer. Justificativa: exploração e combate solo com progressão não linear.'"
+      "enunciado": "Qual é a convenção de nomenclatura para classes e para métodos/variáveis em Java?",
+      "dica": "Uma usa a primeira letra de cada palavra em maiúscula, e a outra usa a primeira letra da primeira palavra em minúscula.",
+      "solucao": "A convenção para nomes de classes é PascalCase (ex: `MinhaClasseLegal`).\nA convenção para nomes de métodos e variáveis é camelCase (ex: `minhaVariavel`, `calcularImposto()`)."
     },
     {
       "id": 6,
-      "enunciado": "Explique como as mecânicas centrais de um jogo ajudam a definir seu gênero. Use como exemplo um RPG e um jogo de plataforma.",
-      "dica": "Mecânicas centrais são o coração do core loop.",
-      "solucao": "Resposta aberta. Exemplo: 'RPG: evolução de personagem, inventário, quests definem o gênero. Plataforma: saltos, obstáculos, física de movimento definem o gênero.'"
+      "enunciado": "Qual é a finalidade do método `public static void main(String[] args)` em um programa Java?",
+      "dica": "É o ponto de partida de qualquer aplicação Java executável.",
+      "solucao": "O método `main` é o ponto de entrada padrão para a Java Virtual Machine (JVM).\nQuando você executa uma classe Java, a JVM procura por este método para iniciar a execução do programa."
     },
     {
       "id": 7,
-      "enunciado": "Quais são as principais diferenças entre jogos Indie e AAA em termos de: tamanho da equipe, orçamento e liberdade criativa?",
-      "dica": "Compare equipes pequenas x grandes e recursos limitados x massivos.",
-      "solucao": "Resposta aberta. Exemplo: 'Indie: equipes pequenas, baixo orçamento, alta liberdade criativa. AAA: equipes grandes, orçamentos milionários, foco em mercado e polimento.'"
+      "enunciado": "Como você imprimiria a frase 'Bem-vindo à LPOO!' no console em Java?",
+      "dica": "Use o objeto `out` da classe `System`.",
+      "solucao": "System.out.println(\"Bem-vindo à LPOO!\");"
     },
     {
       "id": 8,
-      "enunciado": "Assista a um trailer de um jogo AAA e um de um Indie (ex.: Hollow Knight e The Last of Us Part II). Identifique uma mecânica central em cada um e explique como ela afeta o público-alvo.",
-      "dica": "Observe interação, feedback visual e dificuldade.",
-      "solucao": "Resposta aberta. Exemplo: 'Hollow Knight: exploração e combate preciso – público hardcore. TLOU2: stealth e narrativa emocional – público que busca experiência cinematográfica.'"
+      "enunciado": "Qual classe do pacote `java.util` é comumente usada para ler dados do teclado? Crie o código para instanciar um objeto dessa classe.",
+      "dica": "O nome da classe lembra um 'scanner' de mesa.",
+      "solucao": "A classe é a `Scanner`.\nO código para instanciá-la é: `Scanner leitor = new Scanner(System.in);`"
     },
     {
       "id": 9,
-      "enunciado": "Cite duas tendências atuais na indústria de jogos (ex.: IA generativa, cloud gaming) e descreva como elas podem impactar o desenvolvimento de jogos.",
-      "dica": "Pense em tecnologias que mudam produção e distribuição.",
-      "solucao": "Resposta aberta. Exemplo: 'Cloud gaming – reduz barreiras de hardware e amplia público. IA generativa – acelera criação de assets e conteúdo procedural.'"
+      "enunciado": "Declare uma variável para armazenar a idade de uma pessoa e outra para armazenar seu salário. Quais tipos primitivos seriam mais adequados?",
+      "dica": "Para idade, um número inteiro. Para salário, um número com casas decimais.",
+      "solucao": "Para a idade, o tipo `int` é o mais adequado (ex: `int idade;`).\nPara o salário, o tipo `double` é o mais apropriado por suportar valores decimais (ex: `double salario;`)."
     },
     {
       "id": 10,
-      "enunciado": "Analise o papel da análise crítica para um game designer. Por que não basta dizer que um jogo é “bom” ou “ruim”? Relacione com os conceitos de mecânica, público-alvo e experiência do jogador.",
-      "dica": "Análise crítica identifica por que algo funciona e para quem.",
-      "solucao": "Resposta aberta. Exemplo: 'Porque a função do designer é entender a relação mecânica-experiência. O que é bom para um público pode falhar para outro. É preciso avaliar design, contexto e objetivo do jogo.'"
+      "enunciado": "Escreva um trecho de código que solicita ao usuário dois números inteiros, os soma e imprime o resultado.",
+      "dica": "Você precisará de um `Scanner` e do método `nextInt()`.",
+      "solucao": "Scanner sc = new Scanner(System.in);\nSystem.out.print(\"Digite o primeiro número: \");\nint n1 = sc.nextInt();\nSystem.out.print(\"Digite o segundo número: \");\nint n2 = sc.nextInt();\nint soma = n1 + n2;\nSystem.out.println(\"A soma é: \" + soma);"
+    },
+    {
+      "id": 11,
+      "enunciado": "Qual a diferença entre um método `void` e um método que retorna um `int`? Dê um exemplo de assinatura para cada um.",
+      "dica": "Um realiza uma ação sem devolver um resultado, enquanto o outro realiza um cálculo e o devolve.",
+      "solucao": "Um método `void` executa uma ação mas não retorna nenhum valor (ex: `public void exibirMensagem()`).\nUm método que retorna `int` executa uma ação e obrigatoriamente retorna um valor do tipo inteiro (ex: `public int somar(int a, int b)`)."
+    },
+    {
+      "id": 12,
+      "enunciado": "Crie uma classe `Livro` com os atributos `titulo` (String) e `totalPaginas` (int).",
+      "dica": "Lembre-se da estrutura `public class NomeDaClasse { ... }` e da declaração de variáveis dentro dela.",
+      "solucao": "public class Livro {\n    String titulo;\n    int totalPaginas;\n}"
+    },
+    {
+      "id": 13,
+      "enunciado": "Na classe `Livro` da questão anterior, adicione um método `exibirDetalhes()` que imprime as informações do livro no console.",
+      "dica": "O método deve ser `void` e usar `System.out.println()` para mostrar os valores dos atributos.",
+      "solucao": "public void exibirDetalhes() {\n    System.out.println(\"Título: \" + this.titulo);\n    System.out.println(\"Páginas: \" + this.totalPaginas);\n}"
+    },
+    {
+      "id": 14,
+      "enunciado": "O que a palavra-chave `this` representa dentro de um método de um objeto?",
+      "dica": "É uma forma de se referir à própria instância que está executando o método.",
+      "solucao": "A palavra-chave `this` é uma referência ao próprio objeto (a instância atual) cujo método foi chamado.\nÉ usada para desambiguar entre atributos da classe e parâmetros de métodos com o mesmo nome."
+    },
+    {
+      "id": 15,
+      "enunciado": "Como você criaria um objeto (instância) da classe `Livro` em um método `main` e definiria seu título como 'Java para Iniciantes'?",
+      "dica": "Use a palavra-chave `new` para instanciar e o operador `.` para acessar o atributo.",
+      "solucao": "Livro meuLivro = new Livro();\nmeuLivro.titulo = \"Java para Iniciantes\";"
+    },
+    {
+      "id": 16,
+      "enunciado": "O que é encapsulamento e qual modificador de acesso é fundamental para aplicá-lo corretamente nos atributos de uma classe?",
+      "dica": "O conceito é sobre 'esconder' os dados e o modificador é o mais restritivo de todos.",
+      "solucao": "Encapsulamento é o princípio de ocultar os dados internos (atributos) de um objeto e expor apenas uma interface pública (métodos) para interagir com eles.\nO modificador de acesso fundamental para isso é o `private`."
+    },
+    {
+      "id": 17,
+      "enunciado": "Para que servem os métodos getters e setters?",
+      "dica": "Um serve para 'obter' um valor e o outro para 'definir' um valor de um atributo privado.",
+      "solucao": "Getters são métodos públicos para ler o valor de um atributo privado (ex: `public String getNome()`).\nSetters são métodos públicos para alterar o valor de um atributo privado, permitindo validações (ex: `public void setNome(String nome)`)."
+    },
+    {
+      "id": 18,
+      "enunciado": "Qual é a principal diferença de visibilidade entre os modificadores `public` e `private`?",
+      "dica": "Pense em 'acessível por todos' versus 'acessível apenas por si mesmo'.",
+      "solucao": "Um membro `public` pode ser acessado por qualquer outra classe em qualquer pacote.\nUm membro `private` só pode ser acessado de dentro da própria classe onde foi declarado."
+    },
+    {
+      "id": 19,
+      "enunciado": "Refatore o atributo `double salario` de uma classe `Funcionario` para que seja encapsulado. Escreva o atributo e seus métodos get/set.",
+      "dica": "Declare o atributo como `private` e crie os métodos `getSalario` e `setSalario`.",
+      "solucao": "private double salario;\n\npublic double getSalario() {\n    return this.salario;\n}\n\npublic void setSalario(double salario) {\n    this.salario = salario;\n}"
+    },
+    {
+      "id": 20,
+      "enunciado": "No método `setSalario` da questão anterior, adicione uma validação para que o salário nunca possa ser um valor negativo. Se for, exiba uma mensagem de erro.",
+      "dica": "Use uma estrutura `if-else` dentro do método setter.",
+      "solucao": "public void setSalario(double salario) {\n    if (salario >= 0) {\n        this.salario = salario;\n    } else {\n        System.out.println(\"Erro: O salário não pode ser negativo.\");\n    }\n}"
     }
   ]
 }

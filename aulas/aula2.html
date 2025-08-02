@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <!-- Metadados Essenciais -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LPOO - Aula 2: Estrutura de um Programa Java e Sintaxe Básica</title>
+    <meta
+      name="description"
+      content="Aula 2 da disciplina de LPOO. Aprenda a estrutura de um programa Java, a sintaxe básica e como usar o método main, entrada e saída de dados."
+    />
+    <meta name="author" content="Prof. Tiago Guimarães Sombra" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="URL_DA_SUA_PAGINA_AQUI" />
+    <meta
+      property="og:title"
+      content="LPOO - Aula 2: Estrutura de um Programa Java e Sintaxe Básica"
+    />
+    <meta
+      property="og:description"
+      content="Aprenda a estrutura de um programa Java, a sintaxe básica e como usar o método main, entrada e saída de dados."
+    />
+    <meta
+      property="og:image"
+      content="https://placehold.co/1200x630/4f46e5/ffffff?text=LPOO%0AAula%202"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="URL_DA_SUA_PAGINA_AQUI" />
+    <meta
+      property="twitter:title"
+      content="LPOO - Aula 2: Estrutura de um Programa Java e Sintaxe Básica"
+    />
+    <meta
+      property="twitter:description"
+      content="Aprenda a estrutura de um programa Java, a sintaxe básica e como usar o método main, entrada e saída de dados."
+    />
+    <meta
+      property="twitter:image"
+      content="https://placehold.co/1200x630/4f46e5/ffffff?text=LPOO%0AAula%202"
+    />
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Roboto Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Estilos Customizados -->
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8fafc;
+        color: #334155;
+        padding-top: 60px;
+      }
+      .callout {
+        border-left-width: 4px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 0.5rem;
+      }
+      .callout-info {
+        background-color: #f0f9ff;
+        border-color: #7dd3fc;
+        color: #0c4a6e;
+      }
+      .callout-practice {
+        background-color: #f0fdf4;
+        border-color: #6ee7b7;
+        color: #065f46;
+      }
+      .callout-academic {
+        background-color: #fefce8;
+        border-color: #facc15;
+        color: #854d0e;
+      }
+      .code-block {
+        background-color: #1e293b;
+        color: #f8fafc;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin-top: 1rem;
+        position: relative;
+        overflow-x: auto;
+      }
+      .code-block pre {
+        font-family: "Roboto Mono", monospace;
+        font-size: 0.875rem;
+      }
+      .copy-btn {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        background-color: #334155;
+        color: #cbd5e1;
+        border: none;
+        padding: 0.25rem 0.75rem;
+        border-radius: 0.375rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+      .copy-btn:hover {
+        background-color: #475569;
+      }
+    </style>
+  </head>
+
+  <body class="text-slate-800">
+    <nav
+      class="bg-white/80 backdrop-blur-md shadow-sm fixed top-0 left-0 right-0 z-50"
+      aria-label="Menu de navegação principal"
+    >
+      <div class="container mx-auto px-6">
+        <div class="flex justify-between items-center h-16">
+          <span class="text-lg font-bold text-indigo-700">LPOO - Aula 2</span>
+          <div class="hidden md:flex space-x-4 text-sm font-semibold">
+            <a
+              href="#plano-aula"
+              class="text-slate-600 hover:text-indigo-600"
+              aria-label="Ir para a seção Plano da Aula"
+              >Plano</a
+            >
+            <a
+              href="#teoria"
+              class="text-slate-600 hover:text-indigo-600"
+              aria-label="Ir para a seção de Teoria"
+              >Teoria</a
+            >
+            <a
+              href="#pratica"
+              class="text-slate-600 hover:text-indigo-600"
+              aria-label="Ir para a seção de Exemplos Práticos"
+              >Prática</a
+            >
+            <a
+              href="#ted"
+              class="text-slate-600 hover:text-indigo-600"
+              aria-label="Ir para a Atividade Prática (TED)"
+              >TED</a
+            >
+            <a
+              href="#bibliografia"
+              class="text-slate-600 hover:text-indigo-600"
+              aria-label="Ir para a seção de Bibliografia"
+              >Bibliografia</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <header
+      class="bg-gradient-to-r from-indigo-700 to-indigo-900 text-white shadow-lg"
+    >
+      <div class="container mx-auto px-6 py-10">
+        <h1 class="text-4xl font-bold">
+          Estrutura de um Programa Java e Sintaxe Básica
+        </h1>
+        <p class="text-xl text-indigo-200 mt-2">
+          Aula 2: Unidade I – Introdução à Programação OO
+        </p>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-10" role="main">
+      <section
+        id="ementa"
+        class="mb-12 bg-white p-8 rounded-lg shadow"
+        aria-labelledby="ementa-heading"
+      >
+        <h2
+          id="ementa-heading"
+          class="text-3xl font-semibold text-slate-800 mb-6"
+        >
+          Ementa e Contextualização
+        </h2>
+
+        <div class="callout callout-info mb-6">
+          <p class="text-sm">
+            <strong>Pré-requisito:</strong> Certifique-se de que o
+            <code-text>Java JDK</code-text> e uma IDE como
+            <code-text>Eclipse</code-text>, <code-text>IntelliJ</code-text> ou
+            <code-text>NetBeans</code-text> estão instalados. Esses passos foram
+            abordados na <strong>Aula 1</strong>.
+          </p>
+        </div>
+
+        <p class="text-slate-700 leading-relaxed mb-4">
+          Antes de construirmos sistemas complexos, precisamos dominar os
+          fundamentos. Nesta aula, vamos dissecar a estrutura de um programa
+          <code-text>Java</code-text>, entender sua sintaxe e aprender a
+          interagir com o usuário.
+        </p>
+        <p class="text-slate-700 leading-relaxed">
+          Dominar esses pilares é essencial para escrever código limpo,
+          funcional e legível, habilidades que conectam diretamente esta unidade
+          às <strong>APS</strong> e ao mercado de trabalho no desenvolvimento de
+          software.
+        </p>
+      </section>
+
+      <section
+        id="plano-aula"
+        class="mb-12 bg-indigo-50 border border-indigo-200 p-8 rounded-2xl shadow-lg"
+        aria-labelledby="plano-aula-heading"
+      >
+        <h2
+          id="plano-aula-heading"
+          class="text-3xl font-bold text-indigo-700 mb-6 text-center"
+        >
+          Plano da Aula
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+              <i class="fa-solid fa-book-open mr-2" aria-hidden="true"></i
+              >CONTEÚDO
+            </h3>
+            <p class="text-slate-600">
+              Estrutura de um programa Java, sintaxe básica, método
+              <code-text>main</code-text>, tipos primitivos, e entrada/saída de
+              dados com <code-text>Scanner</code-text>.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+              <i class="fa-solid fa-bullseye mr-2" aria-hidden="true"></i
+              >OBJETIVO
+            </h3>
+            <p class="text-slate-600">
+              Compreender e aplicar a estrutura e sintaxe fundamental do Java
+              para criar programas simples que interagem com o usuário.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+              <i class="fa-solid fa-gears mr-2" aria-hidden="true"></i
+              >METODOLOGIA
+            </h3>
+            <p class="text-slate-600">
+              Aula expositiva, exemplos de código comentados, e uma atividade
+              prática para reforçar os conceitos de entrada e saída.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="teoria" class="mb-12" aria-labelledby="teoria-heading">
+        <h2
+          id="teoria-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8"
+        >
+          🔩 A Anatomia de um Programa Java
+        </h2>
+
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-2xl font-semibold text-slate-800 mb-4">
+            1. Estrutura Geral de um Arquivo Java
+          </h3>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            Um arquivo <code-text>.java</code-text> pode conter várias partes.
+            Em programas simples, usamos apenas a classe e o método
+            <code-text>main</code-text>, mas é importante conhecer a estrutura
+            completa:
+          </p>
+          <ul class="list-disc list-inside space-y-2 text-slate-700">
+            <li>
+              <strong>Package:</strong> Define o pacote da classe. Ex.:
+              <code-text>package br.edu.unifametro;</code-text>
+            </li>
+            <li>
+              <strong>Imports:</strong> Traz classes externas. Ex.:
+              <code-text>import java.util.Scanner;</code-text>
+            </li>
+            <li>
+              <strong>Classe:</strong> Contém atributos e métodos. Ex.:
+              <code-text>public class Programa { }</code-text>
+            </li>
+            <li>
+              <strong>Método main:</strong> Ponto de entrada. Ex.:
+              <code-text>public static void main(String[] args)</code-text>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-2xl font-semibold text-slate-800 mb-4">
+            2. Estrutura Mínima de um Programa
+          </h3>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            Todo programa executável em <code-text>Java</code-text> precisa de,
+            no mínimo, uma classe pública e um método
+            <code-text>main</code-text>. Pense na classe como o "container" do
+            código e no método <code-text>main</code-text> como a porta de
+            entrada.
+          </p>
+          <ul class="list-disc list-inside space-y-2 text-slate-700">
+            <li>
+              <strong
+                ><code-text
+                  >public class NomeDaClasse { ... }</code-text
+                ></strong
+              >: O nome do arquivo deve ser idêntico ao da classe.
+            </li>
+            <li>
+              <strong><code-text>{ ... }</code-text></strong
+              >: As chaves delimitam blocos de código.
+            </li>
+            <li>
+              <strong><code-text>;</code-text></strong
+              >: Finaliza uma instrução, como um ponto final em uma frase.
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-2xl font-semibold text-slate-800 mb-4">
+            3. Tipos de Dados e Sintaxe Básica
+          </h3>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            O Java é uma linguagem fortemente tipada, ou seja, cada variável
+            precisa ter um tipo definido. Os mais comuns são:
+          </p>
+          <ul class="list-disc list-inside space-y-2 text-slate-700">
+            <li><code-text>int</code-text>: números inteiros.</li>
+            <li><code-text>double</code-text>: números com ponto flutuante.</li>
+            <li>
+              <code-text>boolean</code-text>: valores lógicos (<code-text
+                >true</code-text
+              >
+              ou <code-text>false</code-text>).
+            </li>
+            <li><code-text>char</code-text>: um único caractere.</li>
+            <li>
+              <code-text>String</code-text>: sequência de caracteres (não é
+              primitivo, mas usado como tal).
+            </li>
+          </ul>
+          <div class="callout callout-practice mt-4">
+            <p class="text-sm">
+              <strong>Dica:</strong> Use nomes de variáveis que descrevam o
+              propósito. Ex.: <code-text>idadeAluno</code-text> é melhor que
+              <code-text>x</code-text>.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-2xl font-semibold text-slate-800 mb-4">
+            4. O Método <code-text>main</code-text>
+          </h3>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            A assinatura
+            <code-text>public static void main(String[] args)</code-text> é onde
+            tudo começa. A JVM procura por esse método como ponto de entrada.
+          </p>
+          <ul class="list-disc list-inside space-y-2 text-slate-700">
+            <li><code-text>public</code-text>: Acessível de qualquer lugar.</li>
+            <li>
+              <code-text>static</code-text>: Pertence à classe, não a uma
+              instância.
+            </li>
+            <li><code-text>void</code-text>: Não retorna valor.</li>
+            <li>
+              <code-text>String[] args</code-text>: Recebe argumentos da linha
+              de comando.
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-2xl font-semibold text-slate-800 mb-4">
+            5. Entrada e Saída de Dados
+          </h3>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            Programas interativos precisam exibir informações e ler dados do
+            usuário:
+          </p>
+          <ul class="list-disc list-inside space-y-2 text-slate-700">
+            <li>
+              <strong>Saída:</strong>
+              <code-text>System.out.println()</code-text> imprime no console.
+            </li>
+            <li>
+              <strong>Entrada:</strong> A classe
+              <code-text>Scanner</code-text> lê dados do teclado. Exige o import
+              <code-text>import java.util.Scanner;</code-text>.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="pratica" class="mb-12" aria-labelledby="pratica-heading">
+        <h2
+          id="pratica-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8"
+        >
+          💻 Exemplos Práticos
+        </h2>
+
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-xl font-semibold text-slate-800 mb-2">
+            Exemplo 1: O Clássico "Hello, World!"
+          </h3>
+          <p class="text-slate-600 mb-4">
+            Nosso primeiro programa. Ele apenas imprime uma mensagem no console.
+          </p>
+          <div class="code-block">
+            <button
+              class="copy-btn"
+              title="Copiar código"
+              aria-label="Copiar código do programa Hello World"
+            >
+              <i class="fa-solid fa-copy mr-1"></i>Copiar
+            </button>
+            <pre><code class="language-java">
+/**
+ * A classic "Hello, World!" program in Java.
+ * This demonstrates the basic structure of a Java class with the main method.
+ */
+public class HelloWorld {
+    public static void main(String[] args) {
+        // Prints the text "Hello, LPOO World!" to the console.
+        System.out.println("Hello, LPOO World!");
+        
+        // Using printf for formatted output (no line break by default).
+        System.out.printf("Welcome to %s, Aula %d\n", "LPOO", 2);
+    }
+}
+    </code></pre>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-xl font-semibold text-slate-800 mb-2">
+            Exemplo 2: Lendo o Nome do Usuário
+          </h3>
+          <p class="text-slate-600 mb-4">
+            Este programa usa a classe <code-text>Scanner</code-text> para ler
+            um nome digitado pelo usuário e depois exibe uma saudação
+            personalizada.
+          </p>
+          <div class="code-block">
+            <button
+              class="copy-btn"
+              title="Copiar código"
+              aria-label="Copiar código do programa de saudação"
+            >
+              <i class="fa-solid fa-copy mr-1"></i>Copiar
+            </button>
+            <pre><code class="language-java">
+// Import the Scanner class from the java.util package to read user input.
+import java.util.Scanner;
+
+/**
+ * A program that reads the user's name and prints a personalized greeting.
+ */
+public class Greeting {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the console.
+        Scanner inputReader = new Scanner(System.in);
+
+        System.out.print("Please, enter your name: ");
+        // Read the next line entered by the user.
+        String userName = inputReader.nextLine();
+
+        // Print a personalized greeting using printf.
+        System.out.printf("Hello, %s! Welcome to LPOO.\n", userName);
+
+        // Always close the Scanner to release resources.
+        inputReader.close();
+    }
+}
+    </code></pre>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h3 class="text-xl font-semibold text-slate-800 mb-2">
+            Exemplo 3: Somando Dois Números
+          </h3>
+          <p class="text-slate-600 mb-4">
+            Aqui, lemos dois números inteiros, realizamos a soma e exibimos o
+            resultado.
+          </p>
+          <div class="code-block">
+            <button
+              class="copy-btn"
+              title="Copiar código"
+              aria-label="Copiar código do programa de soma"
+            >
+              <i class="fa-solid fa-copy mr-1"></i>Copiar
+            </button>
+            <pre><code class="language-java">
+import java.util.Scanner;
+
+/**
+ * A program that reads two integers, validates input, and prints their sum.
+ */
+public class SimpleCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the first number: ");
+        int number1 = scanner.nextInt();
+
+        System.out.print("Enter the second number: ");
+        int number2 = scanner.nextInt();
+
+        int sum = number1 + number2;
+
+        // Using printf to format the output.
+        System.out.printf("The sum of %d and %d is: %d\n", number1, number2, sum);
+
+        // Basic validation example (just a demonstration)
+        if(sum < 0) {
+            System.out.println("Note: The sum is negative.");
+        }
+
+        scanner.close();
+    }
+}
+    </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="ted"
+        class="mb-12 bg-amber-50 border border-amber-300 p-8 rounded-lg shadow-lg"
+        aria-labelledby="ted-heading"
+      >
+        <h2 id="ted-heading" class="text-3xl font-bold text-amber-800 mb-6">
+          <i class="fa-solid fa-laptop-code mr-2" aria-hidden="true"></i
+          >Atividade Prática (TED): Cadastro Simples
+        </h2>
+        <p class="text-amber-900 leading-relaxed mb-4">
+          Vamos criar um programa que simula um cadastro simples, coletando nome
+          e idade do usuário e exibindo uma mensagem formatada. Esta atividade é
+          o primeiro passo para a APS, onde construiremos sistemas que gerenciam
+          dados.
+        </p>
+        <ol class="list-decimal list-inside space-y-4 text-amber-900">
+          <li>
+            Crie uma nova classe chamada
+            <code-text>SimpleRegistration.java</code-text>.
+          </li>
+          <li>
+            Dentro do método <code-text>main</code-text>, crie um objeto
+            <code-text>Scanner</code-text> para ler a entrada do teclado.
+          </li>
+          <li>
+            Peça para o usuário digitar seu nome completo e armazene em uma
+            variável <code-text>String</code-text>.
+          </li>
+          <li>
+            Em seguida, peça para o usuário digitar sua idade e armazene em uma
+            variável <code-text>int</code-text>.
+          </li>
+          <li>
+            No final, imprima uma frase formatada no console, como:
+            <code-text
+              >Cadastro realizado! Olá, [Nome], você tem [Idade]
+              anos.</code-text
+            >
+          </li>
+          <li>
+            Não se esqueça de fechar o <code-text>Scanner</code-text> no final
+            do programa.
+          </li>
+        </ol>
+        <div class="mt-6 callout callout-info">
+          <h4 class="font-bold text-lg mb-2">Sugestão de Metodologia Ativa</h4>
+          <p class="text-sm">
+            Tente resolver esta atividade em dupla (*pair programming*). Um
+            colega digita ("piloto") enquanto o outro orienta e revisa
+            ("co-piloto"). Troquem de papéis no meio da atividade. Isso ajuda a
+            encontrar erros e a aprender mais rápido!
+          </p>
+        </div>
+      </section>
+
+      <section id="checklist" class="mt-12" aria-labelledby="checklist-heading">
+        <div
+          class="bg-green-50 border-l-4 border-green-500 text-green-800 p-6 rounded-lg shadow"
+        >
+          <h3 id="checklist-heading" class="font-bold text-lg mb-3">
+            <i class="fa-solid fa-list-check mr-2" aria-hidden="true"></i
+            >Checklist de Aprendizagem da Aula
+          </h3>
+          <p>Ao final desta aula, você deve ser capaz de:</p>
+          <ul class="list-none space-y-2 mt-2">
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Descrever a estrutura básica de uma classe Java com um método
+              <code-text>main</code-text>.
+            </li>
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Declarar variáveis de tipos primitivos como
+              <code-text>String</code-text> e <code-text>int</code-text>.
+            </li>
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Usar <code-text>System.out.println()</code-text> para exibir
+              informações no console.
+            </li>
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Utilizar a classe <code-text>Scanner</code-text> para ler dados
+              do teclado.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section
+        id="bibliografia"
+        class="prose prose-slate max-w-none lg:prose-lg mt-12"
+        aria-labelledby="bibliografia-heading"
+      >
+        <h2
+          id="bibliografia-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-4"
+        >
+          📚 Bibliografia de Apoio
+        </h2>
+        <div class="bg-white p-8 rounded-lg shadow space-y-4 not-prose">
+          <p>
+            <strong>DEITEL, Harvey M.; DEITEL, Paul J.</strong>
+            <em>Java: como programar.</em> 8. ed. São Paulo: Pearson Prentice
+            Hall, 2014.
+          </p>
+          <p>
+            <strong>SCHILDT, Herbert.</strong>
+            <em
+              >Java para iniciantes: crie, compile e execute programas Java
+              rapidamente.</em
+            >
+            6. ed. Porto Alegre: Bookman, 2015.
+          </p>
+          <p>
+            <strong>GOODRICH, Michael T.; TAMASSIA, Roberto.</strong>
+            <em>Estruturas de dados e algoritmos em Java.</em> 5. ed. Porto
+            Alegre: Bookman, 2013.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-slate-800 text-slate-300 mt-12" role="contentinfo">
+      <div class="container mx-auto px-6 py-8 text-center">
+        <p class="font-semibold text-white">Prof. Tiago Guimarães Sombra</p>
+        <p class="text-sm mt-1">
+          Material acadêmico para os cursos de ADS e SI.
+        </p>
+        <p class="text-sm font-bold text-indigo-300">UniFametro</p>
+        <div class="mt-4 flex justify-center items-center space-x-4">
+          <a
+            href="https://github.com/sombraprof/lpoo"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-indigo-400 hover:text-white transition-colors"
+            aria-label="Visitar o repositório do projeto no GitHub"
+          >
+            <i class="fab fa-github fa-lg mr-1" aria-hidden="true"></i>
+            Repositório GitHub
+          </a>
+          <span class="text-slate-500">|</span>
+          <a
+            href="#"
+            class="text-indigo-400 hover:text-white transition-colors"
+            aria-label="Ver a política de uso do material"
+            >Política de Uso</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

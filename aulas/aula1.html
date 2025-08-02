@@ -1,1063 +1,387 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
-  <head>
+<head>
     <!-- Metadados Essenciais -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      TDJD - Aula 1: Introdução ao Desenvolvimento de Jogos Digitais
-    </title>
-    <meta
-      name="description"
-      content="Aula 1 da disciplina de Tecnologia e Desenvolvimento de Jogos Digitais. Explore o mercado, gêneros, plataformas e o pontapé inicial para criar seu primeiro jogo."
-    />
+    <title>LPOO - Aula 1: Fundamentos da Programação Orientada a Objetos</title>
+    <meta name="description" content="Aula 1 da disciplina de LPOO. Explore os fundamentos do paradigma OO, a sintaxe do Java e crie suas primeiras classes e objetos." />
     <meta name="author" content="Prof. Tiago Guimarães Sombra" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="URL_DA_SUA_PAGINA_AQUI" />
-    <meta
-      property="og:title"
-      content="TDJD - Aula 1: Introdução ao Desenvolvimento de Jogos Digitais"
-    />
-    <meta
-      property="og:description"
-      content="Explore o mercado, gêneros, plataformas e o pontapé inicial para criar seu primeiro jogo."
-    />
-    <meta
-      property="og:image"
-      content="https://placehold.co/1200x630/4338ca/ffffff?text=TDJD\nAula+1"
-    />
+    <meta property="og:title" content="LPOO - Aula 1: Fundamentos da Programação Orientada a Objetos" />
+    <meta property="og:description" content="Explore os fundamentos do paradigma OO, a sintaxe do Java e crie suas primeiras classes e objetos."/>
+    <meta property="og:image" content="https://placehold.co/1200x630/4f46e5/ffffff?text=LPOO%0AAula%201"/>
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="URL_DA_SUA_PAGINA_AQUI" />
-    <meta
-      property="twitter:title"
-      content="TDJD - Aula 1: Introdução ao Desenvolvimento de Jogos Digitais"
-    />
-    <meta
-      property="twitter:description"
-      content="Explore o mercado, gêneros, plataformas e o pontapé inicial para criar seu primeiro jogo."
-    />
-    <meta
-      property="twitter:image"
-      content="https://placehold.co/1200x630/4338ca/ffffff?text=TDJD\nAula+1"
-    />
+    <meta property="twitter:title" content="LPOO - Aula 1: Fundamentos da Programação Orientada a Objetos" />
+    <meta property="twitter:description" content="Explore os fundamentos do paradigma OO, a sintaxe do Java e crie suas primeiras classes e objetos." />
+    <meta property="twitter:image" content="https://placehold.co/1200x630/4f46e5/ffffff?text=LPOO%0AAula%201" />
 
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Tailwind Typography Plugin -->
-    <script src="https://cdn.tailwindcss.com/3.4.1?plugins=typography"></script>
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts: Inter & Roboto Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet" />
     <!-- Font Awesome for icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <!-- Estilos Customizados -->
     <style>
       body {
         font-family: "Inter", sans-serif;
-        background-color: #f8fafc; /* bg-slate-50 */
-        padding-top: 60px; /* Espaço para o menu fixo */
+        background-color: #f8fafc;
+        color: #334155;
+        padding-top: 60px;
       }
       .callout {
-        border-left-width: 4px;
-        padding: 1.5rem;
-        margin: 1.5rem 0;
-        border-radius: 0.5rem;
+        border-left-width: 4px; padding: 1.5rem; margin: 1.5rem 0; border-radius: 0.5rem;
       }
       .callout-info {
-        background-color: #f0f9ff; /* bg-sky-50 */
-        border-color: #7dd3fc; /* border-sky-300 */
-        color: #0c4a6e; /* text-sky-800 */
+        background-color: #f0f9ff; border-color: #7dd3fc; color: #0c4a6e;
       }
       .callout-practice {
-        background-color: #f0fdf4; /* bg-emerald-50 */
-        border-color: #6ee7b7; /* border-emerald-300 */
-        color: #065f46; /* text-emerald-800 */
+        background-color: #f0fdf4; border-color: #6ee7b7; color: #065f46;
       }
-      .callout-challenge {
-        background-color: #fffbeb; /* bg-amber-50 */
-        border-color: #fcd34d; /* border-amber-300 */
-        color: #92400e; /* text-amber-800 */
+      .callout-academic {
+        background-color: #fefce8; border-color: #facc15; color: #854d0e;
       }
-      details > summary {
-        cursor: pointer;
-        font-weight: 600;
-        padding: 0.75rem 1.25rem;
-        background-color: #f1f5f9;
-        border-radius: 0.375rem;
-        transition: background-color 0.2s;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+      .code-block {
+        background-color: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 0.5rem;
+        margin-top: 1rem; position: relative; overflow-x: auto;
       }
-      details > summary:hover {
-        background-color: #e2e8f0;
+      .code-block pre {
+          font-family: "Roboto Mono", monospace; font-size: 0.875rem;
       }
-      details[open] > summary {
-        background-color: #e2e8f0;
+      .copy-btn {
+        position: absolute; top: 0.5rem; right: 0.5rem; background-color: #334155;
+        color: #cbd5e1; border: none; padding: 0.25rem 0.75rem; border-radius: 0.375rem;
+        font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: background-color 0.2s;
       }
-      .quiz-answer {
-        padding: 1rem 1.25rem;
-        background-color: #f8fafc;
-        border: 1px solid #e2e8f0;
-        border-top: none;
-        border-radius: 0 0 0.375rem 0.375rem;
-      }
-      .summary-arrow {
-        transition: transform 0.3s;
-      }
-      details[open] .summary-arrow {
-        transform: rotate(180deg);
-      }
-      /* Estilo para a linha do tempo */
-      .timeline-item {
-        position: relative;
-        padding-bottom: 2.5rem;
-        padding-left: 2.5rem;
-        border-left: 2px solid #e2e8f0; /* border-slate-200 */
-      }
-      .timeline-item:last-child {
-        border-left: 2px solid transparent;
-      }
-      .timeline-icon {
-        position: absolute;
-        left: -0.8rem;
-        top: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 1.6rem;
-        height: 1.6rem;
-        border-radius: 9999px;
-        background-color: #fff;
-        border: 2px solid #e2e8f0;
+      .copy-btn:hover {
+        background-color: #475569;
       }
     </style>
-  </head>
-  <body class="text-slate-800">
-    <!-- Menu de Navegação Fixo -->
-    <nav
-      class="bg-white/80 backdrop-blur-md shadow-sm fixed top-0 left-0 right-0 z-50"
-    >
+</head>
+
+<body class="text-slate-800">
+    <nav class="bg-white/80 backdrop-blur-md shadow-sm fixed top-0 left-0 right-0 z-50" aria-label="Menu de navegação principal">
       <div class="container mx-auto px-6">
         <div class="flex justify-between items-center h-16">
-          <span class="text-lg font-bold text-indigo-700">TDJD - Aula 1</span>
+          <span class="text-lg font-bold text-indigo-700">LPOO - Aula 1</span>
           <div class="hidden md:flex space-x-4 text-sm font-semibold">
-            <a href="#plano-aula" class="text-slate-600 hover:text-indigo-600"
-              >Plano</a
-            >
-            <a href="#mercado" class="text-slate-600 hover:text-indigo-600"
-              >Mercado</a
-            >
-            <a href="#conceitos" class="text-slate-600 hover:text-indigo-600"
-              >Conceitos</a
-            >
-            <a
-              href="#generos-plataformas"
-              class="text-slate-600 hover:text-indigo-600"
-              >Gêneros</a
-            >
-            <a
-              href="#projeto-final"
-              class="text-slate-600 hover:text-indigo-600"
-              >Projeto</a
-            >
-            <a href="#tarefa" class="text-slate-600 hover:text-indigo-600"
-              >TED</a
-            >
+            <a href="#plano-aula" class="text-slate-600 hover:text-indigo-600" aria-label="Ir para a seção Plano da Aula">Plano</a>
+            <a href="#introducao" class="text-slate-600 hover:text-indigo-600" aria-label="Ir para a seção de Introdução">Introdução</a>
+            <a href="#conceitos" class="text-slate-600 hover:text-indigo-600" aria-label="Ir para a seção de Conceitos Fundamentais">Conceitos</a>
+            <a href="#ted" class="text-slate-600 hover:text-indigo-600" aria-label="Ir para a Atividade Prática (TED)">Atividade (TED)</a>
+            <a href="#bibliografia" class="text-slate-600 hover:text-indigo-600" aria-label="Ir para a seção de Bibliografia">Bibliografia</a>
           </div>
         </div>
       </div>
     </nav>
 
-    <!-- Cabeçalho da Aula -->
-    <header class="bg-white shadow-md">
-      <div class="container mx-auto px-6 py-8">
-        <h1 class="text-4xl font-bold text-indigo-800">
-          Tecnologia e Desenvolvimento de Jogos Digitais
-        </h1>
-        <p class="text-xl text-slate-600 mt-2">
-          Aula 1: Unidade I – Introdução ao Desenvolvimento de Jogos Digitais
-        </p>
+    <header class="bg-gradient-to-r from-indigo-700 to-indigo-900 text-white shadow-lg">
+      <div class="container mx-auto px-6 py-10">
+        <h1 class="text-4xl font-bold">Linguagem de Programação Orientada a Objetos</h1>
+        <p class="text-xl text-indigo-200 mt-2">Aula 1: Unidade I – Introdução à Programação OO</p>
       </div>
     </header>
 
-    <!-- Corpo Principal da Aula -->
-    <main class="container mx-auto px-6 py-10">
-      <!-- Seção: Plano da Aula -->
-      <section
-        id="plano-aula"
-        aria-labelledby="plano-aula-heading"
-        class="mb-12 bg-indigo-50 border border-indigo-200 p-8 rounded-2xl shadow-lg"
-      >
-        <h2
-          id="plano-aula-heading"
-          class="text-3xl font-bold text-indigo-700 mb-6 text-center"
-        >
-          Plano da Aula
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div
-            class="bg-white p-6 rounded-lg shadow-sm col-span-1 md:col-span-2 lg:col-span-3"
-          >
-            <h3 class="font-semibold text-lg text-indigo-800 mb-2">
-              <i class="fa-solid fa-book-open mr-2"></i>UNIDADE E CONTEÚDO
-            </h3>
-            <p class="font-bold text-slate-700">
-              Unidade I – Introdução ao Desenvolvimento de Jogos Digitais
-            </p>
-            <p class="text-slate-600 mt-1">
-              Apresentação da disciplina. Panorama do mercado, gêneros,
-              plataformas e expectativas do projeto final.
-            </p>
+    <main class="container mx-auto px-6 py-10" role="main">
+      
+      <section id="ementa" class="mb-12 bg-white p-8 rounded-lg shadow" aria-labelledby="ementa-heading">
+        <h2 id="ementa-heading" class="text-3xl font-semibold text-slate-800 mb-6">Ementa e Contextualização</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <h3 class="text-xl font-bold text-indigo-700 mb-3">Informações Gerais</h3>
+                <ul class="list-none space-y-2">
+                    <li><i class="fa-solid fa-puzzle-piece mr-2 text-indigo-500" aria-hidden="true"></i><strong>Unidade Curricular:</strong> Linguagem de Programação Orientada a Objetos</li>
+                    <li><i class="fa-solid fa-clock mr-2 text-indigo-500" aria-hidden="true"></i><strong>Carga Horária:</strong> 90h</li>
+                    <li><i class="fa-solid fa-shapes mr-2 text-indigo-500" aria-hidden="true"></i><strong>Competências:</strong> Modelagem de sistemas, abstração, encapsulamento, herança, polimorfismo, desenvolvimento em Java.</li>
+                </ul>
+            </div>
+            <div class="callout callout-academic">
+                <h4 class="font-bold text-lg mb-2"><i class="fa-solid fa-graduation-cap mr-2" aria-hidden="true"></i>Alinhamento Acadêmico</h4>
+                <p class="text-sm">Esta disciplina desenvolve competências essenciais de pensamento computacional e abstração, alinhadas às diretrizes curriculares para cursos de tecnologia. O foco em modelagem e resolução de problemas com POO prepara o aluno para desafios reais do mercado de desenvolvimento de software.</p>
+            </div>
+        </div>
+      </section>
+
+      <section id="plano-aula" class="mb-12 bg-indigo-50 border border-indigo-200 p-8 rounded-2xl shadow-lg" aria-labelledby="plano-aula-heading">
+        <h2 id="plano-aula-heading" class="text-3xl font-bold text-indigo-700 mb-6 text-center">Plano da Aula</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-lg text-indigo-800 mb-2"><i class="fa-solid fa-book-open mr-2" aria-hidden="true"></i>CONTEÚDO</h3>
+            <p class="text-slate-600">Fundamentos do paradigma OO, diferença para programação estruturada, e visão geral de Java (JDK, JVM, IDEs).</p>
           </div>
           <div class="bg-white p-6 rounded-lg shadow-sm">
-            <h3 class="font-semibold text-lg text-indigo-800 mb-2">
-              <i class="fa-solid fa-bullseye mr-2"></i>OBJETIVO
-            </h3>
-            <p class="text-slate-600">
-              Compreender o escopo da disciplina, analisar o mercado,
-              identificar gêneros e contextualizar o papel do desenvolvedor.
-            </p>
+            <h3 class="font-semibold text-lg text-indigo-800 mb-2"><i class="fa-solid fa-bullseye mr-2" aria-hidden="true"></i>OBJETIVO</h3>
+            <p class="text-slate-600">Apresentar os conceitos iniciais de POO, sua relevância, e guiar na configuração do ambiente de desenvolvimento Java.</p>
           </div>
           <div class="bg-white p-6 rounded-lg shadow-sm">
-            <h3 class="font-semibold text-lg text-indigo-800 mb-2">
-              <i class="fa-solid fa-gears mr-2"></i>METODOLOGIA
-            </h3>
-            <p class="text-slate-600">
-              Aula expositiva dialogada, vídeo, roda de conversa e dinâmicas em
-              grupo (aula invertida).
-            </p>
-          </div>
-          <div class="bg-white p-6 rounded-lg shadow-sm">
-            <h3 class="font-semibold text-lg text-indigo-800 mb-2">
-              <i class="fa-solid fa-desktop mr-2"></i>RECURSOS
-            </h3>
-            <p class="text-slate-600">
-              Projetor, YouTube, slides e ferramentas colaborativas online.
-            </p>
+            <h3 class="font-semibold text-lg text-indigo-800 mb-2"><i class="fa-solid fa-gears mr-2" aria-hidden="true"></i>METODOLOGIA</h3>
+            <p class="text-slate-600">Aula expositiva com exemplos práticos de código e uma atividade guiada para criar a primeira classe e objeto.</p>
           </div>
         </div>
       </section>
 
-      <!-- Pergunta Norteadora Interativa -->
-      <section
-        id="pergunta-norteadora"
-        aria-labelledby="pergunta-norteadora-heading"
-        class="mb-12 callout callout-info"
-      >
-        <h2 id="pergunta-norteadora-heading" class="font-bold text-lg mb-2">
-          <i class="fa-solid fa-comments mr-2"></i>Dinâmica Inicial: O Jogo
-          Inesquecível
-        </h2>
-        <p>
-          Em duplas, conversem por 3 minutos sobre o jogo que mais marcou cada
-          um. Discutam:
+      <section id="introducao" class="mb-12 bg-white p-8 rounded-lg shadow" aria-labelledby="introducao-heading">
+        <h2 id="introducao-heading" class="text-3xl font-semibold text-slate-800 mb-6">🚀 O Que é Programação Orientada a Objetos (POO)?</h2>
+        <p class="text-slate-700 leading-relaxed mb-4">
+          A Programação Orientada a Objetos (POO) é mais do que um conjunto de regras; é uma nova forma de pensar e estruturar soluções para problemas. Em vez de focarmos em procedimentos e lógica sequencial, a POO nos convida a modelar o mundo real através de "objetos".
         </p>
-        <ul class="list-disc list-inside mt-2 pl-4">
-          <li>
-            Qual foi o elemento principal que o tornou memorável (história,
-            jogabilidade, arte, desafio)?
-          </li>
-          <li>
-            Após a conversa, vamos listar no quadro os fatores mais comuns que
-            tornam um jogo especial.
-          </li>
+        <p class="text-slate-700 leading-relaxed mb-4">
+          Pense em um carro. Ele tem <strong>características</strong> (cor, marca, modelo) e pode realizar <strong>ações</strong> (ligar, acelerar, frear). Na POO, as características são os <strong>atributos</strong> e as ações são os <strong>métodos</strong>. Juntos, eles formam um <strong>objeto</strong>, uma entidade autônoma que encapsula seus próprios dados e comportamentos.
+        </p>
+      </section>
+
+      <section id="comparativo-paradigmas" class="mb-12" aria-labelledby="comparativo-heading">
+        <h2 id="comparativo-heading" class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8">Paradigmas em Perspectiva</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-slate-400">
+                <h3 class="text-2xl font-bold text-slate-700 mb-3">Programação Estruturada</h3>
+                <p class="text-slate-600 mb-4">Foco em <strong>funções e procedimentos</strong>. Os dados e as operações sobre os dados são separados.</p>
+                <ul class="list-disc list-inside space-y-2 text-slate-700">
+                    <li><strong>Lógica:</strong> Top-down, sequencial.</li>
+                    <li><strong>Reuso:</strong> Limitado a funções.</li>
+                    <li><strong>Manutenção:</strong> Alterações podem ter impacto global.</li>
+                    <li><strong>Exemplo:</strong> Linguagem C.</li>
+                </ul>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-indigo-600">
+                <h3 class="text-2xl font-bold text-indigo-700 mb-3">Programação Orientada a Objetos</h3>
+                <p class="text-slate-600 mb-4">Foco em <strong>objetos</strong> que unem dados (atributos) e comportamentos (métodos).</p>
+                <ul class="list-disc list-inside space-y-2 text-slate-700">
+                    <li><strong>Lógica:</strong> Modelagem do mundo real.</li>
+                    <li><strong>Reuso:</strong> Alto, através de herança e composição.</li>
+                    <li><strong>Manutenção:</strong> Modular, alterações são encapsuladas.</li>
+                    <li><strong>Exemplo:</strong> Java, C#, Python.</li>
+                </ul>
+            </div>
+        </div>
+      </section>
+
+      <section id="boas-praticas" class="mb-12 callout callout-practice" aria-labelledby="boas-praticas-heading">
+        <h3 id="boas-praticas-heading" class="font-bold text-lg mb-3"><i class="fa-solid fa-lightbulb mr-2" aria-hidden="true"></i>Boas Práticas para Iniciar em Java</h3>
+        <p class="mb-4">Escrever código limpo desde o início acelera seu aprendizado e facilita a colaboração. Siga estas convenções:</p>
+        <ul class="list-none space-y-2">
+            <li><i class="fa-solid fa-check text-emerald-600 mr-2" aria-hidden="true"></i><strong>Classes em PascalCase:</strong> <code-text>CalculadoraDeImposto</code-text>, <code-text>Book</code-text>.</li>
+            <li><i class="fa-solid fa-check text-emerald-600 mr-2" aria-hidden="true"></i><strong>Variáveis e Métodos em camelCase:</strong> <code-text>pageCount</code-text>, <code-text>displayInfo()</code-text>.</li>
+            <li><i class="fa-solid fa-check text-emerald-600 mr-2" aria-hidden="true"></i><strong>Comentários Javadoc:</strong> Use <code-text>/** ... */</code-text> para documentar classes e métodos, explicando o "porquê" do código.</li>
         </ul>
       </section>
 
-      <!-- Seção: Contexto Inicial -->
-      <section
-        id="contexto"
-        aria-labelledby="contexto-heading"
-        class="mb-12 bg-white p-8 rounded-lg shadow"
-      >
-        <h2
-          id="contexto-heading"
-          class="text-3xl font-semibold text-slate-800 mb-6"
-        >
-          🚀 Bem-vindos à Indústria que mais Cresce no Mundo!
-        </h2>
+      <section id="conceitos" class="mb-12" aria-labelledby="conceitos-heading">
+        <h2 id="conceitos-heading" class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8">🔑 Conceitos Fundamentais em Java</h2>
+        
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+            <h3 class="text-2xl font-semibold text-slate-800 mb-4">1. Classes e Objetos</h3>
+            <p class="text-slate-700 leading-relaxed mb-4">A <strong>classe</strong> é o molde. O <strong>objeto</strong> é a instância concreta criada a partir do molde. Usamos a palavra-chave <code-text>new</code-text> para criar um objeto.</p>
+            <div class="code-block">
+                <button class="copy-btn" title="Copiar código" aria-label="Copiar código da classe Book"><i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar</button>
+                <pre><code class="language-java">
+/**
+ * Represents a book with a title, author, and page count.
+ * This class serves as a blueprint for creating book objects.
+ */
+public class Book {
+    String title;
+    String author;
+    int pageCount;
 
-        <p class="text-slate-700 leading-relaxed mb-4">
-          A indústria de games é um gigante do entretenimento que supera os
-          mercados de cinema e música somados. Ela não apenas dita tendências
-          tecnológicas, mas também molda a cultura, a interação social e novas
-          economias. Ser um desenvolvedor de jogos hoje significa estar no
-          centro de um ecossistema vibrante, atuando em áreas como
-          <strong>programação de gameplay</strong>,
-          <strong>design de narrativas</strong>, <strong>arte 2D/3D</strong>,
-          <strong>garantia de qualidade (QA)</strong>,
-          <strong>design de som</strong> e muito mais.
+    /**
+     * Displays the book's information to the console.
+     * This is a 'void' method because it does not return any value.
+     */
+    public void displayInfo() {
+        System.out.println("Title: " + title);
+    }
+}
+                </code></pre>
+            </div>
+        </div>
+        
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+            <h3 class="text-2xl font-semibold text-slate-800 mb-4">2. Métodos com Retorno</h3>
+            <p class="text-slate-700 leading-relaxed mb-4">Nem todos os métodos são <code-text>void</code-text>. Muitos realizam um cálculo ou uma operação e <strong>retornam</strong> um valor. Para isso, declaramos o tipo de retorno (ex: <code-text>String</code-text>, <code-text>int</code-text>) e usamos a palavra-chave <code-text>return</code-text>.</p>
+            <div class="code-block">
+                <button class="copy-btn" title="Copiar código" aria-label="Copiar código da classe Calculator"><i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar</button>
+                <pre><code class="language-java">
+/**
+ * A simple calculator to demonstrate methods that return values.
+ */
+public class Calculator {
+    /**
+     * Adds two integers and returns the result.
+     * @param a The first number.
+     * @param b The second number.
+     * @return The sum of a and b.
+     */
+    public int add(int a, int b) {
+        return a + b;
+    }
+}
+
+// How to use it in the main method:
+public class TestCalculator {
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        int result = calc.add(5, 7); // The returned value (12) is stored in 'result'.
+        System.out.println("The result is: " + result); // Prints "The result is: 12"
+    }
+}
+                </code></pre>
+            </div>
+        </div>
+      </section>
+
+      <section id="compilacao" class="mb-12 callout callout-info" aria-labelledby="compilacao-heading">
+        <h3 id="compilacao-heading" class="font-bold text-lg mb-3"><i class="fa-solid fa-terminal mr-2" aria-hidden="true"></i>Do Código-Fonte ao Programa: Compilação e Execução</h3>
+        <p class="mb-4">Para que a JVM entenda nosso código Java, precisamos primeiro compilá-lo. Este processo transforma nosso arquivo <code-text>.java</code-text> em um arquivo <code-text>.class</code-text> (bytecode).</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
+            <div class="bg-sky-100 p-4 rounded-lg">
+                <p class="font-semibold">1. Compilar <i class="fa-solid fa-keyboard" aria-hidden="true"></i></p>
+                <code class="font-mono bg-slate-800 text-white px-2 py-1 rounded text-sm">javac NomeDaClasse.java</code>
+            </div>
+            <div class="bg-sky-100 p-4 rounded-lg">
+                <p class="font-semibold">2. Executar <i class="fa-solid fa-keyboard" aria-hidden="true"></i></p>
+                <code class="font-mono bg-slate-800 text-white px-2 py-1 rounded text-sm">java NomeDaClasse</code>
+            </div>
+        </div>
+        <p class="mt-4 text-xs">💡 <strong>Dica:</strong> Para listar arquivos no terminal, use <code-text>ls</code-text> (Linux/Mac) ou <code-text>dir</code-text> (Windows).</p>
+      </section>
+
+      <section id="ted" class="mb-12 bg-amber-50 border border-amber-300 p-8 rounded-lg shadow-lg" aria-labelledby="ted-heading">
+        <h2 id="ted-heading" class="text-3xl font-bold text-amber-800 mb-6"><i class="fa-solid fa-laptop-code mr-2" aria-hidden="true"></i>Atividade Prática (TED): Modelando seus Primeiros Objetos</h2>
+        <p class="text-amber-900 leading-relaxed mb-4">
+          Vamos aplicar os conceitos criando um pequeno cenário com duas classes que se relacionam: <code-text>Motorista</code-text> e <code-text>Carro</code-text>.
         </p>
-
-        <blockquote
-          class="text-xl italic text-slate-600 border-l-4 border-indigo-300 pl-4 leading-relaxed mb-4"
-        >
-          "Os jogos são a forma de arte mais expressiva e a plataforma de
-          entretenimento mais poderosa da nossa era. Entender como criá-los é
-          entender a linguagem do futuro."
-        </blockquote>
-
-        <p class="text-slate-700 leading-relaxed">
-          Nesta disciplina, vamos desvendar os segredos por trás da magia. Vocês
-          não serão apenas jogadores, mas os arquitetos de novos mundos. Nosso
-          objetivo é transformar a paixão por jogar na habilidade de criar,
-          combinando <strong>criatividade</strong> com
-          <strong>tecnologia</strong>.
-        </p>
-      </section>
-
-      <!-- Seção: Linha do Tempo -->
-      <section id="historia" aria-labelledby="historia-heading" class="mb-12">
-        <h2
-          id="historia-heading"
-          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8"
-        >
-          ⏳ Uma Breve História dos Jogos Digitais
-        </h2>
-        <div class="container mx-auto">
-          <div class="timeline-item">
-            <div class="timeline-icon">
-              <i class="fa-solid fa-ghost text-yellow-500"></i>
-            </div>
-            <h3 class="text-xl font-semibold text-slate-700">
-              1970-1980: A Era dos Arcades e Consoles Primitivos
-            </h3>
-            <p class="text-slate-600 mt-1">
-              Nascimento de ícones como Pong, Space Invaders e Pac-Man. O Atari
-              2600 populariza os jogos em casa.
-            </p>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-icon">
-              <i class="fa-solid fa-gamepad text-red-500"></i>
-            </div>
-            <h3 class="text-xl font-semibold text-slate-700">
-              1985-1995: A Revolução 8-bit e 16-bit
-            </h3>
-            <p class="text-slate-600 mt-1">
-              A Nintendo resgata o mercado com o NES (Super Mario Bros.). A
-              guerra de consoles entre Nintendo e Sega define uma geração.
-            </p>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-icon">
-              <i class="fa-solid fa-cube text-blue-500"></i>
-            </div>
-            <h3 class="text-xl font-semibold text-slate-700">
-              1996-2005: A Chegada do 3D e do Multiplayer Online
-            </h3>
-            <p class="text-slate-600 mt-1">
-              PlayStation, Nintendo 64 e o PC popularizam os gráficos 3D. Jogos
-              como Quake e Ultima Online dão início à era dos jogos online.
-            </p>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-icon">
-              <i class="fa-solid fa-mobile-screen-button text-green-500"></i>
-            </div>
-            <h3 class="text-xl font-semibold text-slate-700">
-              2006-Hoje: A Era Digital, Mobile e Indie
-            </h3>
-            <p class="text-slate-600 mt-1">
-              A distribuição digital (Steam), os smartphones (Angry Birds) e o
-              acesso a ferramentas como a Unity democratizam o desenvolvimento,
-              dando origem à explosão dos jogos indie.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Seção: Panorama do Mercado -->
-      <section id="mercado" aria-labelledby="mercado-heading" class="mb-12">
-        <h2
-          id="mercado-heading"
-          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8"
-        >
-          📈 Panorama do Mercado de Jogos
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div class="bg-white p-6 rounded-lg shadow-md">
-            <div class="flex items-center mb-3">
-              <i
-                class="fa-solid fa-sack-dollar text-3xl text-emerald-500 mr-4"
-              ></i>
-              <h3 class="text-xl font-bold text-slate-700">
-                Impacto Econômico
-              </h3>
-            </div>
-            <p class="text-slate-600">
-              Receita global bilionária, com o Brasil sendo o maior mercado da
-              América Latina. Gera empregos em desenvolvimento, marketing,
-              e-sports e mais.
-            </p>
-          </div>
-          <div class="bg-white p-6 rounded-lg shadow-md">
-            <div class="flex items-center mb-3">
-              <i class="fa-solid fa-users text-3xl text-sky-500 mr-4"></i>
-              <h3 class="text-xl font-bold text-slate-700">Impacto Social</h3>
-            </div>
-            <p class="text-slate-600">
-              Criação de comunidades online, eventos globais (e-sports) e novas
-              formas de socialização. Jogos como ferramenta de conexão.
-            </p>
-          </div>
-          <div class="bg-white p-6 rounded-lg shadow-md">
-            <div class="flex items-center mb-3">
-              <i class="fa-solid fa-palette text-3xl text-purple-500 mr-4"></i>
-              <h3 class="text-xl font-bold text-slate-700">Impacto Cultural</h3>
-            </div>
-            <p class="text-slate-600">
-              Jogos influenciam filmes, músicas e moda. São reconhecidos como
-              uma forma de arte, com narrativas complexas e experiências
-              imersivas.
-            </p>
-          </div>
-        </div>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div class="prose prose-slate max-w-none lg:prose-lg">
-            <p>
-              O mercado global de jogos atingiu uma receita de
-              <strong>$187.7 bilhões em 2023</strong>, com projeção de alcançar
-              $212.4 bilhões até 2026 (Fonte: Newzoo). O Brasil se destaca como
-              o <strong>maior mercado da América Latina</strong> e o 10º do
-              mundo, movimentando cerca de R$ 12 bilhões anualmente (Fonte: PGB
-              2024).
-            </p>
-            <p>
-              Este crescimento é impulsionado principalmente pelo segmento
-              mobile, mas os mercados de PC e consoles continuam extremamente
-              relevantes e lucrativos, especialmente com o crescimento dos
-              serviços de assinatura e dos e-sports.
-            </p>
-          </div>
-          <div class="bg-white p-6 rounded-lg shadow-md">
-            <h3 class="font-semibold text-center text-slate-700 mb-4">
-              Receita Anual Global (Comparativo)
-            </h3>
-            <div class="space-y-4">
-              <div class="flex items-center">
-                <span class="w-24 font-bold text-indigo-700">Games:</span>
-                <div class="flex-1 bg-slate-200 rounded-full h-8">
-                  <div
-                    class="bg-indigo-600 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold"
-                    style="width: 100%"
-                  >
-                    $187.7 Bi
-                  </div>
-                </div>
-              </div>
-              <div class="flex items-center">
-                <span class="w-24 font-bold text-sky-700">Cinema:</span>
-                <div class="flex-1 bg-slate-200 rounded-full h-8">
-                  <div
-                    class="bg-sky-500 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold"
-                    style="width: 52%"
-                  >
-                    $99.7 Bi
-                  </div>
-                </div>
-              </div>
-              <div class="flex items-center">
-                <span class="w-24 font-bold text-emerald-700">Música:</span>
-                <div class="flex-1 bg-slate-200 rounded-full h-8">
-                  <div
-                    class="bg-emerald-500 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold"
-                    style="width: 20%"
-                  >
-                    $28.6 Bi
-                  </div>
-                </div>
-              </div>
-            </div>
-            <p class="text-xs text-slate-500 text-center mt-2">
-              Fonte: Newzoo, Gower (2023). Valores aproximados.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Diagrama do Ecossistema de um Jogo -->
-      <section
-        id="diagrama"
-        aria-labelledby="diagrama-heading"
-        class="my-12 p-6 bg-white rounded-lg shadow text-center"
-      >
-        <h2
-          id="diagrama-heading"
-          class="text-2xl font-semibold text-slate-800 mb-4"
-        >
-          Anatomia do Ecossistema de um Jogo
-        </h2>
-        <div class="flex justify-center">
-          <img
-            src="/imagens/aula_1_imagem_1.png"
-            alt="Diagrama ilustrando o ecossistema de um jogo, com os núcleos de Desenvolvimento, Publicação e Comunidade interligados."
-            class="rounded-md"
-          />
-        </div>
-        <p class="text-sm text-slate-600 mt-4">
-          Um jogo de sucesso depende da interação entre o time de
-          <strong>Desenvolvimento</strong> (que cria o jogo), a
-          <strong>Publicadora</strong> (que cuida do marketing e distribuição) e
-          a <strong>Comunidade</strong> (que joga, dá feedback e mantém o jogo
-          vivo).
-        </p>
-      </section>
-
-      <!-- Seção: Conceitos-Chave Interativos -->
-      <section id="conceitos" aria-labelledby="conceitos-heading" class="mb-12">
-        <h2
-          id="conceitos-heading"
-          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8"
-        >
-          🔑 Pilares do Game Design
-        </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div
-            class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300"
-          >
-            <div class="flex items-center mb-3">
-              <i class="fa-solid fa-gears text-2xl text-slate-600 mr-4"></i>
-              <h3 class="text-xl font-bold text-slate-700">Mecânicas</h3>
-            </div>
-            <p class="text-slate-600">
-              As regras e os sistemas que governam o jogo. São as ações que o
-              jogador pode realizar (pular, atirar, construir).
-            </p>
-          </div>
-          <div
-            class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300"
-          >
-            <div class="flex items-center mb-3">
-              <i class="fa-solid fa-users-line text-2xl text-sky-600 mr-4"></i>
-              <h3 class="text-xl font-bold text-slate-700">Dinâmicas</h3>
-            </div>
-            <p class="text-slate-600">
-              O comportamento que emerge da interação do jogador com as
-              mecânicas. Ex: estratégias, táticas, cooperação.
-            </p>
-          </div>
-          <div
-            class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300"
-          >
-            <div class="flex items-center mb-3">
-              <i class="fa-solid fa-heart text-2xl text-red-600 mr-4"></i>
-              <h3 class="text-xl font-bold text-slate-700">Estética</h3>
-            </div>
-            <p class="text-slate-600">
-              As respostas emocionais evocadas no jogador. Ex: diversão,
-              desafio, descoberta, fantasia, narrativa.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Seção: Gêneros e Plataformas -->
-      <section
-        id="generos-plataformas"
-        aria-labelledby="generos-heading"
-        class="mb-12"
-      >
-        <h2
-          id="generos-heading"
-          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8"
-        >
-          🎮 Gêneros e Plataformas
-        </h2>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div class="bg-white p-6 rounded-lg shadow">
-            <h3 class="text-2xl font-semibold text-slate-800 mb-4">
-              Principais Gêneros
-            </h3>
-            <ul class="list-disc list-inside space-y-2 text-slate-700">
-              <li>
-                <strong>RPG (Role-Playing Game):</strong> Foco em progressão de
-                personagem e história. (Ex: The Witcher, Final Fantasy)
-              </li>
-              <li>
-                <strong>Ação/Aventura:</strong> Combina combate, exploração e
-                puzzles. (Ex: Zelda, God of War)
-              </li>
-              <li>
-                <strong>Estratégia (RTS/TBS):</strong> Requer planejamento e
-                gerenciamento de recursos. (Ex: Age of Empires, XCOM)
-              </li>
-              <li>
-                <strong>Simulação:</strong> Recria atividades do mundo real.
-                (Ex: The Sims, Flight Simulator)
-              </li>
-              <li>
-                <strong>Indie:</strong> Jogos criados por estúdios pequenos,
-                focados em inovação e arte. (Ex: Celeste, Hollow Knight)
-              </li>
-            </ul>
-          </div>
-          <div class="bg-white p-6 rounded-lg shadow">
-            <h3 class="text-2xl font-semibold text-slate-800 mb-4">
-              Principais Plataformas
-            </h3>
-            <ul class="list-disc list-inside space-y-2 text-slate-700">
-              <li>
-                <i class="fa-solid fa-computer text-sky-600 mr-2"></i
-                ><strong>PC:</strong> Flexibilidade, poder gráfico e
-                distribuição digital (Steam, Epic Games).
-              </li>
-              <li>
-                <i class="fa-solid fa-gamepad text-red-600 mr-2"></i
-                ><strong>Consoles:</strong> Experiência otimizada e ecossistemas
-                exclusivos (PlayStation, Xbox, Nintendo).
-              </li>
-              <li>
-                <i
-                  class="fa-solid fa-mobile-screen-button text-green-600 mr-2"
-                ></i
-                ><strong>Mobile:</strong> Acessibilidade massiva, jogos casuais
-                e monetização via apps.
-              </li>
-              <li>
-                <i class="fa-solid fa-vr-cardboard text-purple-600 mr-2"></i
-                ><strong>XR (VR/AR):</strong> A nova fronteira da imersão, com
-                realidade virtual e aumentada.
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Seção: Exemplos Práticos -->
-      <section
-        id="exemplos"
-        aria-labelledby="exemplos-heading"
-        class="mb-12 not-prose"
-      >
-        <h2
-          id="exemplos-heading"
-          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-6"
-        >
-          💡 Analisando Jogos Famosos
-        </h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="bg-white p-6 rounded-lg shadow">
-            <h4 class="text-xl font-semibold mb-3">The Witcher 3: Wild Hunt</h4>
-            <ul class="space-y-2">
-              <li><strong>Gênero:</strong> RPG de Ação / Mundo Aberto</li>
-              <li>
-                <strong>Plataforma:</strong> PC, PlayStation, Xbox, Nintendo
-                Switch
-              </li>
-              <li>
-                <strong>Inovação Chave:</strong> Narrativa madura e complexa com
-                missões secundárias que possuem o mesmo nível de profundidade da
-                campanha principal, estabelecendo um novo padrão para
-                storytelling em RPGs.
-              </li>
-              <li>
-                <strong>Impacto:</strong> Considerado um dos melhores RPGs já
-                feitos, elevou o padrão de qualidade para mundos abertos e
-                mostrou como narrativas interativas podem ter peso literário.
-              </li>
-            </ul>
-          </div>
-          <div class="bg-white p-6 rounded-lg shadow">
-            <h4 class="text-xl font-semibold mb-3">Among Us</h4>
-            <ul class="space-y-2">
-              <li><strong>Gênero:</strong> Social Deduction / Indie</li>
-              <li><strong>Plataforma:</strong> Mobile, PC, Consoles</li>
-              <li>
-                <strong>Inovação Chave:</strong> Mecânica simples de dedução
-                social com interação intensa entre jogadores, provando que jogos
-                de baixo orçamento podem se tornar fenômenos culturais globais.
-              </li>
-              <li>
-                <strong>Impacto:</strong> Popularizou jogos de dedução social no
-                ambiente digital, destacando o papel da comunidade e streamers
-                na propagação de jogos independentes.
-              </li>
-            </ul>
-          </div>
-          <div class="bg-white p-6 rounded-lg shadow">
-            <h4 class="text-xl font-semibold mb-3">Minecraft</h4>
-            <ul class="space-y-2">
-              <li>
-                <strong>Gênero:</strong> Sandbox / Sobrevivência / Criativo
-              </li>
-              <li><strong>Plataforma:</strong> Todas (PC, Consoles, Mobile)</li>
-              <li>
-                <strong>Inovação Chave:</strong> Mundo procedural que oferece
-                liberdade criativa quase infinita, permitindo que jogadores
-                construam suas próprias experiências e narrativas.
-              </li>
-              <li>
-                <strong>Impacto:</strong> Transformou o conceito de sandbox,
-                tornou-se uma ferramenta de educação e colaboração, e é um dos
-                jogos mais vendidos e influentes da história.
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Seção: Vídeo Panorama -->
-      <section
-        id="video-mercado"
-        aria-label="Vídeo Panorama de Mercado"
-        class="mb-12 callout callout-practice"
-      >
-        <h3 class="font-bold text-lg mb-2">
-          <i class="fa-solid fa-video mr-2"></i>Pausa para Análise: O Mercado em
-          Ação
-        </h3>
-        <p>
-          Vamos assistir a um vídeo curto que destaca os
-          <strong>melhores games brasileiros de fevereiro de 2025</strong>.
-          Durante a exibição, anotem um dado ou tendência que mais chamou a
-          atenção e discutiremos em seguida.
-        </p>
-        <div class="mt-4 flex justify-center">
-          <div class="w-full max-w-3xl aspect-video">
-            <iframe
-              class="w-full h-full rounded-lg shadow"
-              src="https://www.youtube.com/embed/iM-Qc11_pHI?start=61"
-              title="Melhores Games Brasileiros • Fevereiro 2025"
-              frameborder="0"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
-      </section>
-
-      <!-- Seção: Quiz -->
-      <section id="quiz" aria-labelledby="quiz-heading" class="mb-12">
-        <h2
-          id="quiz-heading"
-          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8"
-        >
-          🧐 Teste seu Conhecimento
-        </h2>
-        <div class="space-y-4">
-          <details>
-            <summary>
-              1. Qual gênero de jogo, simbolizado por "RTS", foca em
-              gerenciamento de recursos e exércitos em tempo real?
-              <span class="summary-arrow">▼</span>
-            </summary>
-            <div class="quiz-answer">
-              <p>
-                <strong>Resposta:</strong> Estratégia em Tempo Real (Real-Time
-                Strategy), como Age of Empires ou StarCraft.
-              </p>
-            </div>
-          </details>
-          <details>
-            <summary>
-              2. A Steam é a principal plataforma de distribuição digital para
-              qual ambiente de jogos? <span class="summary-arrow">▼</span>
-            </summary>
-            <div class="quiz-answer">
-              <p>
-                <strong>Resposta:</strong> PC (Computador). É a maior loja
-                digital para jogos de PC no mundo.
-              </p>
-            </div>
-          </details>
-          <details>
-            <summary>
-              3. Jogos como "Celeste" e "Stardew Valley", criados por equipes
-              pequenas com foco em inovação, pertencem a qual categoria?
-              <span class="summary-arrow">▼</span>
-            </summary>
-            <div class="quiz-answer">
-              <p>
-                <strong>Resposta:</strong> Indie (Independentes). Eles são
-                conhecidos pela liberdade criativa e por não terem grandes
-                publicadoras por trás.
-              </p>
-            </div>
-          </details>
-        </div>
-      </section>
-
-      <!-- Seção: Projeto Final -->
-      <section
-        id="projeto-final"
-        aria-labelledby="projeto-final-heading"
-        class="mb-12 callout callout-challenge"
-      >
-        <h2 id="projeto-final-heading" class="font-bold text-lg mb-2">
-          <i class="fa-solid fa-trophy mr-2"></i>Nosso Grande Desafio: O Projeto
-          Final
-        </h2>
-        <p class="mb-3">
-          Ao longo da disciplina, vocês irão trabalhar em
-          <strong>equipes multidisciplinares</strong>
-          para conceber, desenvolver e apresentar um jogo digital completo. Este
-          projeto não será apenas uma avaliação: será a primeira peça sólida do
-          <strong>portfólio profissional</strong> de cada um, mostrando suas
-          habilidades técnicas, de design e colaboração.
-        </p>
-        <p class="mb-4">
-          O jogo deve ser pensado com
-          <strong>design de mecânicas, experiência do jogador</strong> e
-          <strong>viabilidade de publicação</strong>. A ideia é simular o ciclo
-          real de desenvolvimento, incluindo documentação, prototipagem,
-          implementação e apresentação final.
-        </p>
-
-        <h3 class="font-semibold mt-4 mb-3 text-indigo-900">
-          📌 Roadmap do Projeto
-        </h3>
-        <div
-          class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-4 text-center"
-        >
-          <!-- Etapa 1 -->
-          <div class="flex-1 bg-white rounded-lg p-4 shadow">
-            <span class="font-bold block text-lg">1. GDD</span>
-            <span class="text-sm text-slate-600"
-              >(Documento de Design - Ideia e Mecânicas)</span
-            >
-          </div>
-
-          <!-- Etapa 2 -->
-          <div class="flex-1 bg-white rounded-lg p-4 shadow">
-            <span class="font-bold block text-lg">2. Prototipagem</span>
-            <span class="text-sm text-slate-600"
-              >(Testar a ideia rapidamente)</span
-            >
-          </div>
-
-          <!-- Etapa 3 -->
-          <div class="flex-1 bg-white rounded-lg p-4 shadow">
-            <span class="font-bold block text-lg">3. Implementação</span>
-            <span class="text-sm text-slate-600"
-              >(Desenvolvimento com Unity e C#)</span
-            >
-          </div>
-
-          <!-- Etapa 4 -->
-          <div class="flex-1 bg-white rounded-lg p-4 shadow">
-            <span class="font-bold block text-lg">4. Apresentação</span>
-            <span class="text-sm text-slate-600"
-              >(Pitch + Demonstração jogável)</span
-            >
-          </div>
-        </div>
-
-        <div class="mt-6 bg-amber-50 border border-amber-200 p-4 rounded-lg">
-          <p class="text-sm text-amber-900">
-            💡 <strong>Dica:</strong> Documentem todo o processo. Screenshots,
-            protótipos e decisões de design serão parte do seu portfólio e podem
-            ser usados em entrevistas e apresentações futuras.
-          </p>
-        </div>
-      </section>
-
-      <!-- Seção: Tarefa (TED) -->
-      <section
-        id="tarefa"
-        aria-labelledby="tarefa-heading"
-        class="mb-12 prose prose-slate max-w-none lg:prose-lg"
-      >
-        <h2
-          id="tarefa-heading"
-          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-4"
-        >
-          📝 Tarefa (TED): Conectando com o Mercado
-        </h2>
-        <div class="bg-white p-8 rounded-lg shadow not-prose">
-          <p class="text-lg leading-relaxed mb-4">
-            Para a próxima aula, a tarefa tem dois objetivos: entender as
-            profissões e o que o mercado exige.
-          </p>
-          <ol class="list-decimal list-inside space-y-4">
-            <li>
-              <strong>Fórum - A Minha Profissão Gamer:</strong> Acesse o artigo
-              "Profissões na Indústria de Jogos" no Moodle. Após a leitura,
-              participe do fórum respondendo:
-              <blockquote
-                class="bg-slate-100 p-4 rounded-md text-lg italic border-l-4 border-slate-300 my-2"
-              >
-                "Com qual profissão dentro da indústria de jogos você mais se
-                identifica e por quê?"
-              </blockquote>
-            </li>
-            <li>
-              <strong>Pesquisa de Mercado - Vaga Real:</strong> Pesquise em
-              sites como LinkedIn ou Catho por uma vaga real na área de jogos
-              que te interesse (ex: "Programador Unity Júnior", "Game Designer",
-              "Artista 3D"). Anote e traga para a próxima aula:
-              <ul class="list-disc list-inside mt-2 pl-4">
-                <li>O nome da vaga e da empresa.</li>
+        
+        <div class="mt-6">
+            <h3 class="text-xl font-bold text-amber-900 mb-2">Parte 1: A Estrutura Básica</h3>
+            <ol class="list-decimal list-inside space-y-6 text-amber-900">
                 <li>
-                  Pelo menos 3 habilidades (skills) técnicas ou comportamentais
-                  exigidas na descrição.
-                </li>
-              </ul>
-            </li>
-          </ol>
-        </div>
-      </section>
-
-      <!-- Seção: Tarefa (TED) -->
-      <section
-        id="tarefa"
-        aria-labelledby="tarefa-heading"
-        class="mb-12 prose prose-slate max-w-none lg:prose-lg"
-      >
-        <h2
-          id="tarefa-heading"
-          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-4"
-        >
-          📝 Tarefa (TED): Conectando com o Mercado
-        </h2>
-        <div class="bg-white p-8 rounded-lg shadow not-prose">
-          <p class="text-lg leading-relaxed mb-4">
-            Para a próxima aula, a tarefa tem dois objetivos: entender as
-            <strong>profissões</strong> e o que o
-            <strong>mercado</strong> exige.
-          </p>
-
-          <ol class="list-decimal list-inside space-y-4">
-            <!-- Fórum -->
-            <li>
-              <strong>Fórum - A Minha Profissão Gamer:</strong>
-              Leia um dos artigos recomendados abaixo e participe do fórum no
-              Moodle respondendo:
-              <blockquote
-                class="bg-slate-100 p-4 rounded-md text-lg italic border-l-4 border-slate-300 my-2"
-              >
-                "Com qual profissão dentro da indústria de jogos você mais se
-                identifica e por quê?"
-              </blockquote>
-
-              <p class="mt-3 font-semibold">📚 Leitura recomendada:</p>
-              <ul class="list-disc list-inside mt-2 pl-4">
-                <li>
-                  <a
-                    href="https://ebaconline.com.br/blog/games-mercado-de-trabalho-em-expansao-no-brasil"
-                    target="_blank"
-                    class="text-indigo-600 hover:underline"
-                  >
-                    Games: um mercado de trabalho em expansão no Brasil (EBAC)
-                  </a>
+                    <strong>Crie a classe <code-text>Carro.java</code-text></strong>
+                    <p class="text-sm mb-2">Um carro simples com marca, modelo e ano.</p>
+                    <div class="code-block">
+                        <button class="copy-btn" title="Copiar código" aria-label="Copiar código da classe Carro (Parte 1)"><i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar</button>
+                        <pre><code class="language-java">
+public class Carro {
+    String marca;
+    String modelo;
+    int ano;
+}
+                        </code></pre>
+                    </div>
                 </li>
                 <li>
-                  <a
-                    href="https://blog.uniasselvi.com.br/carreira-em-jogos-digitais/"
-                    target="_blank"
-                    class="text-indigo-600 hover:underline"
-                  >
-                    Carreira em Jogos Digitais: como trabalhar na indústria dos
-                    games (Uniasselvi)
-                  </a>
-                </li>
-              </ul>
-            </li>
+                    <strong>Crie a classe <code-text>Motorista.java</code-text></strong>
+                    <p class="text-sm mb-2">O motorista terá um nome e um carro associado a ele.</p>
+                    <div class="code-block">
+                        <button class="copy-btn" title="Copiar código" aria-label="Copiar código da classe Motorista (Parte 1)"><i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar</button>
+                        <pre><code class="language-java">
+public class Motorista {
+    String nome;
+    Carro carro; // A motorista "tem um" carro
 
-            <!-- Pesquisa de Vaga -->
-            <li>
-              <strong>Pesquisa de Mercado - Vaga Real:</strong>
-              Pesquise em sites como
-              <a
-                href="https://www.linkedin.com/jobs/"
-                target="_blank"
-                class="text-indigo-600 hover:underline"
-                >LinkedIn</a
-              >
-              ou
-              <a
-                href="https://www.catho.com.br/vagas/"
-                target="_blank"
-                class="text-indigo-600 hover:underline"
-                >Catho</a
-              >
-              por uma vaga real na área de jogos que te interesse (ex:
-              "Programador Unity Júnior", "Game Designer", "Artista 3D"). Anote
-              e traga para a próxima aula:
-              <ul class="list-disc list-inside mt-2 pl-4">
-                <li>O nome da vaga e da empresa.</li>
-                <li>
-                  Pelo menos 3 habilidades (skills) técnicas ou comportamentais
-                  exigidas na descrição.
+    public void exibirInfo() {
+        System.out.println("Motorista: " + nome);
+        System.out.println("Carro: " + carro.marca + " " + carro.modelo);
+    }
+}
+                        </code></pre>
+                    </div>
                 </li>
-              </ul>
-            </li>
-          </ol>
+                 <li>
+                    <strong>Crie a classe <code-text>Corrida.java</code-text> para testar</strong>
+                    <p class="text-sm mb-2">Aqui vamos criar os objetos e conectá-los.</p>
+                    <div class="code-block">
+                        <button class="copy-btn" title="Copiar código" aria-label="Copiar código da classe Corrida para teste"><i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar</button>
+                        <pre><code class="language-java">
+public class Corrida {
+    public static void main(String[] args) {
+        // 1. Create a Carro object
+        Carro carroDoJoao = new Carro();
+        carroDoJoao.marca = "VW";
+        carroDoJoao.modelo = "Nivus";
+        carroDoJoao.ano = 2023;
 
-          <div
-            class="mt-6 bg-indigo-50 border border-indigo-200 p-4 rounded-lg"
-          >
-            <p class="text-sm text-indigo-800">
-              💡 <strong>Dica:</strong> Ao escolher a vaga, observe quais
-              habilidades se repetem entre diferentes empresas. Isso dará uma
-              visão clara de quais competências são mais valorizadas na
-              indústria de jogos.
-            </p>
-          </div>
+        // 2. Create a Motorista object
+        Motorista joao = new Motorista();
+        joao.nome = "João";
+        
+        // 3. Associate the car with the driver
+        joao.carro = carroDoJoao;
+
+        // 4. Display the driver's info
+        joao.exibirInfo();
+    }
+}
+                        </code></pre>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-amber-200">
+            <h3 class="text-xl font-bold text-amber-900 mb-2">Parte 2 (Avançado): Construtores e Desafios</h3>
+            <p class="text-amber-900 mb-4 text-sm">Agora, vamos refatorar o código usando construtores e adicionar um desafio.</p>
+            <ul class="list-disc list-inside space-y-2 text-amber-900">
+                <li><strong>Refatore as classes <code-text>Carro</code-text> e <code-text>Motorista</code-text></strong> para usar construtores, como fizemos no exemplo da aula.</li>
+                <li><strong>Desafio Opcional:</strong> Adicione um método <code-text>acelerar()</code-text> na classe <code-text>Carro</code-text>. Depois, crie uma sobrecarga: um <code-text>acelerar()</code-text> sem parâmetros e outro <code-text>acelerar(int limiteDeVelocidade)</code-text> que recebe um valor.</li>
+            </ul>
         </div>
       </section>
 
-      <!-- Seção: Bibliografia -->
-      <section
-        id="bibliografia"
-        aria-labelledby="bibliografia-heading"
-        class="prose prose-slate max-w-none lg:prose-lg"
-      >
-        <h2
-          id="bibliografia-heading"
-          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-4"
-        >
-          📚 Bibliografia de Apoio
-        </h2>
+      <section id="recursos" class="mb-12" aria-labelledby="recursos-heading">
+        <h2 id="recursos-heading" class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-4">🔗 Recursos Extras</h2>
+        <div class="bg-white p-6 rounded-lg shadow space-y-3">
+            <a href="https://docs.oracle.com/en/java/" target="_blank" rel="noopener noreferrer" class="block font-semibold text-indigo-600 hover:underline" aria-label="Abrir documentação oficial do Java da Oracle em uma nova aba"><i class="fa-solid fa-book-bookmark mr-2" aria-hidden="true"></i>Documentação Oficial do Java (Oracle)</a>
+            <a href="https://github.com/sombraprof/lpoo" target="_blank" rel="noopener noreferrer" class="block font-semibold text-indigo-600 hover:underline" aria-label="Abrir repositório da disciplina no GitHub em uma nova aba"><i class="fab fa-github mr-2" aria-hidden="true"></i>Repositório da Disciplina no GitHub</a>
+        </div>
+      </section>
+      
+      <section id="bibliografia" class="prose prose-slate max-w-none lg:prose-lg" aria-labelledby="bibliografia-heading">
+        <h2 id="bibliografia-heading" class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-4">📚 Bibliografia de Apoio</h2>
         <div class="bg-white p-8 rounded-lg shadow space-y-4 not-prose">
-          <p>
-            <strong>ALVES, W. P.</strong>
-            <em>Unity: design e desenvolvimento de jogos.</em> Rio de Janeiro:
-            Alta Books, 2019.
-          </p>
-          <p>
-            <strong>SCHUYTEMA, Paul.</strong>
-            <em>Design de games: uma abordagem prática.</em> São Paulo: Cengage
-            Learning, 2008.
-          </p>
+          <p><strong>DEITEL, Harvey M.; DEITEL, Paul J.</strong> <em>Java: como programar.</em> 8. ed. São Paulo: Pearson Prentice Hall, 2014.</p>
+          <p><strong>SCHILDT, Herbert.</strong> <em>Java para iniciantes: crie, compile e execute programas Java rapidamente.</em> 6. ed. Porto Alegre: Bookman, 2015.</p>
+          <p><strong>BATES, Bert; SIERRA, Kathy.</strong> <em>Use a cabeça: Java.</em> 2. ed. Rio de Janeiro: ALTA BOOKS, 2010.</p>
+        </div>
+      </section>
+
+      <section id="checklist" class="mt-12" aria-labelledby="checklist-heading">
+        <div class="bg-green-50 border-l-4 border-green-500 text-green-800 p-6 rounded-lg shadow">
+            <h3 id="checklist-heading" class="font-bold text-lg mb-3"><i class="fa-solid fa-list-check mr-2" aria-hidden="true"></i>Checklist de Aprendizagem da Aula</h3>
+            <p>Ao final desta aula, você deve ser capaz de:</p>
+            <ul class="list-none space-y-2 mt-2">
+                <li><i class="fa-solid fa-check text-green-600 mr-2" aria-hidden="true"></i>Explicar o que é uma classe e um objeto.</li>
+                <li><i class="fa-solid fa-check text-green-600 mr-2" aria-hidden="true"></i>Criar uma classe simples com atributos e métodos em Java.</li>
+                <li><i class="fa-solid fa-check text-green-600 mr-2" aria-hidden="true"></i>Instanciar um objeto a partir de uma classe.</li>
+                <li><i class="fa-solid fa-check text-green-600 mr-2" aria-hidden="true"></i>Compilar e executar um programa Java simples no terminal.</li>
+            </ul>
         </div>
       </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-slate-800 text-white mt-12" role="contentinfo">
-      <div class="container mx-auto px-6 py-6 text-center">
-        <p>
-          &copy; 2025 - Tecnologia e Desenvolvimento de Jogos Digitais |
-          Semestre 2025.2
-        </p>
-        <p class="text-sm text-slate-400">
-          Material desenvolvido para os cursos de ADS e SI da UniChristus.
-        </p>
-        <div class="mt-4">
-          <a
-            href="https://eadsp.unichristus.edu.br/"
-            class="text-indigo-400 hover:underline text-sm"
-            >Acessar Moodle</a
-          >
-          <span class="text-slate-500 mx-2">|</span>
-          <a
-            href="/politica_uso/"
-            class="text-indigo-400 hover:underline text-sm"
-            >Política de Uso</a
-          >
+    <footer class="bg-slate-800 text-slate-300 mt-12" role="contentinfo">
+      <div class="container mx-auto px-6 py-8 text-center">
+        <p class="font-semibold text-white">Prof. Tiago Guimarães Sombra</p>
+        <p class="text-sm mt-1">Material acadêmico para os cursos de ADS e SI.</p>
+        <p class="text-sm font-bold text-indigo-300">UniFametro</p>
+        <div class="mt-4 flex justify-center items-center space-x-4">
+          <a href="https://github.com/sombraprof/lpoo" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-white transition-colors" aria-label="Visitar o repositório do projeto no GitHub">
+            <i class="fab fa-github fa-lg mr-1" aria-hidden="true"></i> Repositório GitHub
+          </a>
+          <span class="text-slate-500">|</span>
+          <a href="politica_uso/polita-uso.html" class="text-indigo-400 hover:text-white transition-colors" aria-label="Ver a política de uso do material">Política de Uso</a>
         </div>
       </div>
     </footer>
-  </body>
+</body>
 </html>
