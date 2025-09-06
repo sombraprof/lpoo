@@ -12,21 +12,33 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <style>
-    body {
-      font-family: "Inter", sans-serif;
-      background-color: #f8fafc;
-    }
-  </style>
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('lpoo:theme');
+        if (saved === 'dark' || (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('theme-dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 
 <body class="text-slate-800">
   <!-- Header -->
   <header class="bg-slate-800 shadow-md">
-    <div class="container mx-auto px-6 py-6 text-center">
-      <h1 class="text-3xl font-bold text-white">Política de Uso</h1>
-      <p class="text-slate-300 mt-2">Linguagem de Programação Orientada a Objetos | Semestre 2025.2</p>
+    <div class="container mx-auto px-6 py-6 flex items-center justify-between">
+      <div class="text-center flex-1">
+        <h1 class="text-3xl font-bold text-white">Política de Uso</h1>
+        <p class="text-slate-300 mt-2">Linguagem de Programação Orientada a Objetos | Semestre 2025.2</p>
+      </div>
+      <button id="policy-theme-toggle" aria-pressed="false" title="Alternar tema" aria-label="Alternar tema"
+        class="ml-4 inline-flex items-center justify-center w-10 h-10 rounded bg-slate-700 text-white hover:bg-slate-600">
+        <i class="fa-solid fa-moon"></i>
+      </button>
     </div>
   </header>
 
@@ -80,6 +92,31 @@
       <p class="text-sm text-slate-400">Material acadêmico desenvolvido para os cursos de ADS e SI da UniFametro.</p>
     </div>
   </footer>
+  <script>
+    (function () {
+      var btn = document.getElementById('policy-theme-toggle');
+      function apply(theme) {
+        var dark = theme === 'dark';
+        document.documentElement.classList.toggle('theme-dark', dark);
+        if (btn) {
+          btn.setAttribute('aria-pressed', String(dark));
+          btn.innerHTML = dark ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+        }
+        try { localStorage.setItem('lpoo:theme', theme); } catch(e){}
+      }
+      try {
+        var saved = localStorage.getItem('lpoo:theme');
+        var theme = (saved === 'dark' || saved === 'light') ? saved : 'light';
+        apply(theme);
+      } catch(e){}
+      if (btn) {
+        btn.addEventListener('click', function(){
+          var dark = document.documentElement.classList.contains('theme-dark');
+          apply(dark ? 'light' : 'dark');
+        });
+      }
+    })();
+  </script>
 </body>
 
 </html>

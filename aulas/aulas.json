@@ -4,34 +4,153 @@
     "titulo": "Aula 1: Fundamentos da Programação Orientada a Objetos",
     "descricao": "Explora o paradigma OO, sintaxe do Java e criação de classes e objetos.",
     "arquivo": "aula1.html",
-    "ativo": true
+    "unidade": "Unidade I",
+    "ativo": true,
+    "styles": [],
+    "scripts": [],
+    "init": null
   },
   {
     "id": "aula2",
     "titulo": "Aula 2: Estrutura de um Programa Java e Sintaxe Básica",
     "descricao": "Aprenda a estrutura mínima de um programa Java, o método main, sintaxe básica e entrada/saída de dados.",
     "arquivo": "aula2.html",
-    "ativo": true
+    "unidade": "Unidade I",
+    "ativo": true,
+    "styles": [],
+    "scripts": [],
+    "init": null
   },
   {
     "id": "aula3",
     "titulo": "Aula 3: Objetos, Atributos e Métodos",
     "descricao": "Aprenda os conceitos fundamentais de objetos, atributos e métodos em Java, base da Programação Orientada a Objetos.",
     "arquivo": "aula3.html",
-    "ativo": true
+    "unidade": "Unidade II",
+    "ativo": true,
+    "styles": [],
+    "scripts": [],
+    "init": null
   },
   {
     "id": "aula4",
     "titulo": "Aula 4: Visibilidade, Modificadores de Acesso e Encapsulamento",
     "descricao": "Entenda os modificadores de acesso (public, private, protected, default) e como aplicar encapsulamento para proteger e organizar o código em Java.",
     "arquivo": "aula4.html",
-    "ativo": true
+    "unidade": "Unidade II",
+    "ativo": true,
+    "styles": [],
+    "scripts": [],
+    "init": null
   },
   {
     "id": "aula5",
     "titulo": "Aula 5: Resolução da AV1 e Introdução à Herança",
     "descricao": "Resolução comentada da AV1 e introdução ao conceito de Herança em Java com extends, superclasses e subclasses.",
     "arquivo": "aula5.html",
-    "ativo": true
+    "unidade": "Unidade III",
+    "ativo": true,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula6",
+    "titulo": "Aula 6: Aprofundando em Herança e Polimorfismo",
+    "descricao": "Aprofundamento em herança com o modificador protected, sobrescrita de métodos (@Override), polimorfismo e o papel da classe Object (toString()).",
+    "arquivo": "aula6.html",
+    "unidade": "Unidade III",
+    "ativo": true,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula7",
+    "titulo": "Aula 7: Classes Abstratas e Interfaces",
+    "descricao": "Quando usar classes abstratas e interfaces; diferenças práticas; regras de sobrescrita/implementação; boas práticas de design.",
+    "arquivo": "aula7.html",
+    "unidade": "Unidade III",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula8",
+    "titulo": "Aula 8: Projeto OO – Modelagem Inicial (UML) e Definição do Domínio (APS)",
+    "descricao": "Modelagem de domínio com UML (classes, relacionamentos, agregação/composição) e definição do escopo do projeto APS.",
+    "arquivo": "aula8.html",
+    "unidade": "Unidade III",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula9",
+    "titulo": "Aula 9: Implementação do Projeto (Etapa 1)",
+    "descricao": "Criação de classes, atributos, construtores e métodos com encapsulamento; validações básicas e integração inicial.",
+    "arquivo": "aula9.html",
+    "unidade": "Unidade III",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula10",
+    "titulo": "Aula 10: Resolução da AV2 e Introdução ao Tratamento de Exceções",
+    "descricao": "Correção comentada da AV2 e introdução ao tratamento de exceções em Java: try/catch/finally, hierarquia e lançamento com throw.",
+    "arquivo": "aula10.html",
+    "unidade": "Unidade IV",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula11",
+    "titulo": "Aula 11: Boas Práticas de Exceções e Testes com JUnit",
+    "descricao": "Checked vs unchecked, criação de exceções customizadas, mensagens úteis; testes unitários com JUnit e assertions.",
+    "arquivo": "aula11.html",
+    "unidade": "Unidade IV",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula12",
+    "titulo": "Aula 12: Refatoração Orientada a Testes no Projeto",
+    "descricao": "Refatoração para reduzir acoplamento e melhorar coesão; prática com TDD/lacunas de teste; melhoria contínua do código.",
+    "arquivo": "aula12.html",
+    "unidade": "Unidade IV",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula13",
+    "titulo": "Aula 13: Finalização do Projeto – Exceções e Testes Integrados",
+    "descricao": "Integração final do tratamento de erros e testes; revisão de decisões de design; preparação para apresentação/relatório.",
+    "arquivo": "aula13.html",
+    "unidade": "Unidade IV",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula14",
+    "titulo": "Aula 14: AV3 – Tratamento de Exceções, Testes e Refatoração",
+    "descricao": "Avaliação final sobre tratamento de exceções, testes e práticas de refatoração. Orientações para 2ª chamada e encerramento.",
+    "arquivo": "aula14.html",
+    "unidade": "Unidade IV",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
   }
 ]

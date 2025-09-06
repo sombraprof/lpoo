@@ -32,41 +32,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     
     <!-- Estilos Customizados -->
-    <style>
-      body {
-        font-family: "Inter", sans-serif;
-        background-color: #f8fafc;
-        color: #334155;
-        padding-top: 60px;
-      }
-      .callout {
-        border-left-width: 4px; padding: 1.5rem; margin: 1.5rem 0; border-radius: 0.5rem;
-      }
-      .callout-info {
-        background-color: #f0f9ff; border-color: #7dd3fc; color: #0c4a6e;
-      }
-      .callout-practice {
-        background-color: #f0fdf4; border-color: #6ee7b7; color: #065f46;
-      }
-      .callout-academic {
-        background-color: #fefce8; border-color: #facc15; color: #854d0e;
-      }
-      .code-block {
-        background-color: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 0.5rem;
-        margin-top: 1rem; position: relative; overflow-x: auto;
-      }
-      .code-block pre {
-          font-family: "Roboto Mono", monospace; font-size: 0.875rem;
-      }
-      .copy-btn {
-        position: absolute; top: 0.5rem; right: 0.5rem; background-color: #334155;
-        color: #cbd5e1; border: none; padding: 0.25rem 0.75rem; border-radius: 0.375rem;
-        font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: background-color 0.2s;
-      }
-      .copy-btn:hover {
-        background-color: #475569;
-      }
-    </style>
+    <!-- estilos locais removidos: usamos css/style.css global para callouts, code-block e copy-btn -->
 </head>
 
 <body class="text-slate-800">
@@ -183,7 +149,7 @@
             <h3 class="text-2xl font-semibold text-slate-800 mb-4">1. Classes e Objetos</h3>
             <p class="text-slate-700 leading-relaxed mb-4">A <strong>classe</strong> é o molde. O <strong>objeto</strong> é a instância concreta criada a partir do molde. Usamos a palavra-chave <code-text>new</code-text> para criar um objeto.</p>
             <div class="code-block">
-                <button class="copy-btn" title="Copiar código" aria-label="Copiar código da classe Book"><i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar</button>
+                <button class="copy-btn" data-tooltip="Copiar código" aria-label="Copiar código da classe Book"><i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar</button>
                 <pre><code class="language-java">
 /**
  * Represents a book with a title, author, and page count.
@@ -210,7 +176,7 @@ public class Book {
             <h3 class="text-2xl font-semibold text-slate-800 mb-4">2. Métodos com Retorno</h3>
             <p class="text-slate-700 leading-relaxed mb-4">Nem todos os métodos são <code-text>void</code-text>. Muitos realizam um cálculo ou uma operação e <strong>retornam</strong> um valor. Para isso, declaramos o tipo de retorno (ex: <code-text>String</code-text>, <code-text>int</code-text>) e usamos a palavra-chave <code-text>return</code-text>.</p>
             <div class="code-block">
-                <button class="copy-btn" title="Copiar código" aria-label="Copiar código da classe Calculator"><i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar</button>
+                <button class="copy-btn" data-tooltip="Copiar código" aria-label="Copiar código da classe Calculator"><i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar</button>
                 <pre><code class="language-java">
 /**
  * A simple calculator to demonstrate methods that return values.
@@ -269,7 +235,7 @@ public class TestCalculator {
                     <strong>Crie a classe <code-text>Carro.java</code-text></strong>
                     <p class="text-sm mb-2">Um carro simples com marca, modelo e ano.</p>
                     <div class="code-block">
-                        <button class="copy-btn" title="Copiar código" aria-label="Copiar código da classe Carro (Parte 1)"><i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar</button>
+                        <button class="copy-btn" data-tooltip="Copiar código" aria-label="Copiar código da classe Carro (Parte 1)"><i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar</button>
                         <pre><code class="language-java">
 public class Carro {
     String marca;
@@ -283,7 +249,7 @@ public class Carro {
                     <strong>Crie a classe <code-text>Motorista.java</code-text></strong>
                     <p class="text-sm mb-2">O motorista terá um nome e um carro associado a ele.</p>
                     <div class="code-block">
-                        <button class="copy-btn" title="Copiar código" aria-label="Copiar código da classe Motorista (Parte 1)"><i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar</button>
+                        <button class="copy-btn" data-tooltip="Copiar código" aria-label="Copiar código da classe Motorista (Parte 1)"><i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar</button>
                         <pre><code class="language-java">
 public class Motorista {
     String nome;
@@ -301,7 +267,7 @@ public class Motorista {
                     <strong>Crie a classe <code-text>Corrida.java</code-text> para testar</strong>
                     <p class="text-sm mb-2">Aqui vamos criar os objetos e conectá-los.</p>
                     <div class="code-block">
-                        <button class="copy-btn" title="Copiar código" aria-label="Copiar código da classe Corrida para teste"><i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar</button>
+                        <button class="copy-btn" data-tooltip="Copiar código" aria-label="Copiar código da classe Corrida para teste"><i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar</button>
                         <pre><code class="language-java">
 public class Corrida {
     public static void main(String[] args) {

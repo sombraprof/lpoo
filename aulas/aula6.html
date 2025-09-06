@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <!-- Metadados Essenciais -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LPOO - Aula 6: Aprofundando em Herança e Polimorfismo</title>
+    <meta
+      name="description"
+      content="Aula 6 da disciplina de LPOO. Aprofunde-se em Herança com o modificador protected, sobrescrita de métodos (@Override) e o conceito fundamental de Polimorfismo em Java."
+    />
+    <meta name="author" content="Prof. Tiago Guimarães Sombra" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="LPOO - Aula 6: Aprofundando em Herança e Polimorfismo"
+    />
+    <meta
+      property="og:description"
+      content="Aprofunde-se em Herança com o modificador protected, sobrescrita de métodos (@Override) e o conceito fundamental de Polimorfismo em Java."
+    />
+    <meta
+      property="og:image"
+      content="https://placehold.co/1200x630/4f46e5/ffffff?text=LPOO%0AAula%206"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:title"
+      content="LPOO - Aula 6: Aprofundando em Herança e Polimorfismo"
+    />
+    <meta
+      property="twitter:description"
+      content="Aprofunde-se em Herança com o modificador protected, sobrescrita de métodos (@Override) e o conceito fundamental de Polimorfismo em Java."
+    />
+    <meta
+      property="twitter:image"
+      content="https://placehold.co/1200x630/4f46e5/ffffff?text=LPOO%0AAula%206"
+    />
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Roboto Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Estilos locais removidos: usamos css/style.css global para callouts, code-block e copy-btn -->
+  </head>
+
+  <body class="text-slate-800">
+    <nav
+      class="bg-white/80 backdrop-blur-md shadow-sm fixed top-0 left-0 right-0 z-50"
+      aria-label="Menu de navegação principal"
+    >
+      <div class="container mx-auto px-6">
+        <div class="flex justify-between items-center h-16">
+          <span class="text-lg font-bold text-indigo-700">LPOO - Aula 6</span>
+          <div class="hidden md:flex space-x-4 text-sm font-semibold">
+            <a href="#plano-aula" class="text-slate-600 hover:text-indigo-600"
+              >Plano</a
+            >
+            <a href="#teoria" class="text-slate-600 hover:text-indigo-600"
+              >Teoria</a
+            >
+            <a href="#pratica" class="text-slate-600 hover:text-indigo-600"
+              >Prática</a
+            >
+            <a href="#ted" class="text-slate-600 hover:text-indigo-600">TED</a>
+            <a href="#bibliografia" class="text-slate-600 hover:text-indigo-600"
+              >Bibliografia</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Live region para leitores de tela (feedback do botão Copiar) -->
+    <div class="sr-only" aria-live="polite" id="copy-live"></div>
+
+    <header
+      class="bg-gradient-to-r from-indigo-700 to-indigo-900 text-white shadow-lg"
+    >
+      <div class="container mx-auto px-6 py-10">
+        <h1 class="text-4xl font-bold">
+          Aprofundando em Herança e Polimorfismo
+        </h1>
+        <p class="text-xl text-indigo-200 mt-2">
+          Aula 6: Unidade III - Conceitos práticos de OO e seus pilares
+        </p>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-10" role="main">
+      <section
+        id="ementa"
+        class="mb-12 bg-white p-8 rounded-lg shadow"
+        aria-labelledby="ementa-heading"
+      >
+        <h2
+          id="ementa-heading"
+          class="text-3xl font-semibold text-slate-800 mb-6"
+        >
+          Ementa e Contextualização
+        </h2>
+        <p class="text-slate-700 leading-relaxed">
+          Na aula anterior, introduzimos a Herança como um dos pilares da POO.
+          Agora, vamos aprofundar nosso entendimento, explorando como as
+          subclasses podem não apenas herdar, mas também
+          <strong>modificar</strong> comportamentos através da
+          <strong>sobrescrita de métodos</strong>. Isso nos levará diretamente
+          ao conceito de <strong>Polimorfismo</strong>, talvez a característica
+          mais poderosa da POO. Polimorfismo nos permite escrever um código mais
+          flexível, genérico e extensível, tratando objetos de diferentes
+          classes de maneira uniforme. Dominar esses conceitos é o que separa um
+          programador iniciante de um arquiteto de software capaz de criar
+          sistemas robustos e de fácil manutenção.
+        </p>
+      </section>
+
+      <section
+        id="plano-aula"
+        class="mb-12 bg-indigo-50 border border-indigo-200 p-8 rounded-2xl shadow-lg"
+        aria-labelledby="plano-aula-heading"
+      >
+        <h2
+          id="plano-aula-heading"
+          class="text-3xl font-bold text-indigo-700 mb-6 text-center"
+        >
+          Plano da Aula
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+              <i class="fa-solid fa-book-open mr-2" aria-hidden="true"></i
+              >CONTEÚDO
+            </h3>
+            <p class="text-slate-600">
+              Modificador <code>protected</code>, Sobrescrita de Métodos (<code>@Override</code>),
+              Polimorfismo, a classe <code>Object</code> e o método <code>toString()</code>.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+              <i class="fa-solid fa-bullseye mr-2" aria-hidden="true"></i
+              >OBJETIVO
+            </h3>
+            <p class="text-slate-600">
+              Capacitar o aluno a sobrescrever métodos, aplicar o polimorfismo
+              para criar um código mais flexível e entender o papel da classe
+              <code>Object</code>.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+              <i class="fa-solid fa-gears mr-2" aria-hidden="true"></i
+              >METODOLOGIA
+            </h3>
+            <p class="text-slate-600">
+              Aula expositiva, exemplos comparativos de código, e uma atividade
+              prática focada na aplicação do polimorfismo.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="teoria" class="mb-12" aria-labelledby="teoria-heading">
+        <h2
+          id="teoria-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8"
+        >
+          🚀 Elevando o Nível da Herança
+        </h2>
+
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-2xl font-semibold text-slate-800 mb-4">
+            1. Visibilidade Protegida (<code>protected</code>)
+          </h3>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            Até agora, usamos <code>private</code> para encapsulamento máximo. Mas e se
+            quisermos que uma subclasse acesse diretamente um atributo da
+            superclasse, sem que ele seja público para o resto do mundo? Para
+            isso, usamos o modificador <code>protected</code>.
+          </p>
+          <ul class="list-disc list-inside space-y-2 text-slate-700">
+            <li>
+              <strong>private:</strong> Acessível apenas dentro da própria
+              classe.
+            </li>
+            <li>
+              <strong>protected:</strong> Acessível dentro da própria classe,
+              por classes no mesmo pacote e por subclasses (mesmo em pacotes
+              diferentes).
+            </li>
+            <li><strong>public:</strong> Acessível de qualquer lugar.</li>
+          </ul>
+
+          <div class="callout callout-info mt-6">
+            <h4 class="font-bold mb-2">Nuance importante de <code>protected</code></h4>
+            <p class="mb-2">
+              Fora do mesmo pacote, o acesso <code>protected</code> só é permitido em
+              <strong>subclasses</strong> e, ainda assim, via a <em>instância da subclasse</em>
+              (não via referência de <code>Base</code>).
+            </p>
+            <div class="code-block">
+              <button class="copy-btn" title="Copiar código" aria-label="Copiar código">
+                <i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar
+              </button>
+              <pre><code class="language-java">
+// English comments for clarity
+// package base;
+public class Base {
+    protected int x = 42;
+}
+
+// package outro;
+public class SubB extends Base {
+    public void ok() {
+        // OK: access via subclass instance (even if package is different)
+        this.x = 10;
+    }
+
+    public void notOk() {
+        Base b = new Base();
+        // b.x; // ERROR: cannot access protected via superclass ref from another package
+    }
+}
+              </code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-2xl font-semibold text-slate-800 mb-4">
+            2. Sobrescrita de Métodos (<code>@Override</code>)
+          </h3>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            Sobrescrever (ou anular) um método significa que uma subclasse
+            fornece uma implementação <strong>específica</strong> para um método
+            que já é fornecido por sua superclasse. A assinatura do método (nome
+            e parâmetros) deve ser idêntica.
+          </p>
+          <div class="callout callout-practice">
+            <h4 class="font-bold">A anotação <code>@Override</code></h4>
+            <p>
+              Embora opcional, é uma boa prática usar a anotação <code>@Override</code>
+              acima de um método sobrescrito. Se houver erro na assinatura,
+              o compilador alerta — evitando bugs sutis.
+            </p>
+          </div>
+
+          <!-- Quadro comparativo Overloading x Overriding -->
+          <div class="grid md:grid-cols-2 gap-4 mt-6">
+            <div class="bg-white p-4 rounded-lg shadow border border-slate-200">
+              <h4 class="font-semibold text-indigo-800 mb-2">
+                Overloading (compile-time)
+              </h4>
+              <ul class="list-disc list-inside text-slate-700 text-sm">
+                <li>Mesmo nome; <strong>assinaturas diferentes</strong>.</li>
+                <li>Resolução em <strong>tempo de compilação</strong>.</li>
+                <li>Não envolve herança, em geral.</li>
+              </ul>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow border border-slate-200">
+              <h4 class="font-semibold text-indigo-800 mb-2">
+                Overriding (runtime)
+              </h4>
+              <ul class="list-disc list-inside text-slate-700 text-sm">
+                <li><strong>Mesma assinatura</strong> em subclasse.</li>
+                <li><strong>Binding dinâmico</strong> em execução.</li>
+                <li>Permite polimorfismo real.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-2xl font-semibold text-slate-800 mb-4">
+            3. Polimorfismo: Múltiplas Formas
+          </h3>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            Polimorfismo significa "muitas formas". Em POO, é a capacidade de um
+            objeto ser referenciado de múltiplas maneiras. A forma mais comum é
+            usar uma variável de referência do tipo da
+            <strong>superclasse</strong> para apontar para um objeto da
+            <strong>subclasse</strong>.
+          </p>
+          <div class="code-block">
+            <button class="copy-btn" title="Copiar código" aria-label="Copiar código de exemplo de polimorfismo">
+              <i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar
+            </button>
+            <pre><code class="language-java">
+// English comment: Upcasting allows superclass reference to point to subclass object
+Funcionario f = new Gerente("Ana", 8000.0, 1500.0);
+            </code></pre>
+          </div>
+          <p class="text-slate-700 leading-relaxed mt-4">
+            A "mágica" acontece quando chamamos um método sobrescrito a partir
+            dessa referência. O Java, em tempo de execução, sabe qual é o tipo
+            <strong>real</strong> do objeto (<code>Gerente</code>) e chama a versão correta.
+          </p>
+
+          <!-- instanceof pattern matching -->
+          <div class="callout callout-info mt-6">
+            <h4 class="font-bold">Downcasting seguro com <code>instanceof</code> (pattern matching)</h4>
+            <div class="code-block">
+              <button class="copy-btn" title="Copiar código" aria-label="Copiar código">
+                <i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar
+              </button>
+              <pre><code class="language-java">
+// English comments: Pattern matching for instanceof (Java 16+)
+Funcionario ref = new Gerente("Maria", 5000.0);
+if (ref instanceof Gerente gerente) { // auto-cast bound to variable
+    System.out.println("Bônus especial: " + gerente.getBonificacao());
+}
+              </code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-2xl font-semibold text-slate-800 mb-4">
+            4. A Classe <code>Object</code>: A Mãe de Todas
+          </h3>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            Em Java, toda classe herda implicitamente de <code>Object</code>. Isso garante
+            métodos como <code>equals()</code>, <code>hashCode()</code> e <code>toString()</code>.
+          </p>
+          <p class="text-slate-700 leading-relaxed">
+            É uma ótima prática sobrescrever <code>toString()</code> para
+            representações textuais úteis.
+          </p>
+
+          <div class="callout callout-warning mt-6">
+            <h4 class="font-bold">Contrato <code>equals()</code> / <code>hashCode()</code></h4>
+            <p>
+              Ao sobrescrever <code>equals()</code>, <strong>também</strong> sobrescreva
+              <code>hashCode()</code> de forma consistente (coerência em coleções como
+              <code>HashSet</code>/<code>HashMap</code>).
+            </p>
+          </div>
+
+          <div class="callout callout-challenge mt-4">
+            <h4 class="font-bold">Prefira composição a herança</h4>
+            <p>
+              Use herança quando respeitar o princípio de substituição de Liskov (LSP)
+              e houver uma relação "é-um". Em muitos casos, composição oferece
+              <em>acoplamento menor</em> e <em>maior reuso</em>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="pratica" class="mb-12" aria-labelledby="pratica-heading">
+        <h2
+          id="pratica-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8"
+        >
+          💻 Praticando Polimorfismo
+        </h2>
+        <p class="mb-4">
+          Vamos evoluir nosso exemplo <code>Funcionario</code>/<code>Gerente</code>. Adicionaremos um
+          <code>Programador</code> e usaremos polimorfismo para calcular uma folha de
+          pagamento.
+        </p>
+
+        <div class="code-block">
+          <button
+            class="copy-btn"
+            title="Copiar código"
+            aria-label="Copiar código de exemplo de polimorfismo"
+          >
+            <i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar
+          </button>
+          <pre><code class="language-java">
+// Superclass Funcionario (educational example)
+public class Funcionario {
+    protected String nome;   // For teaching purposes; in production prefer private + getters
+    protected double salario;
+
+    public Funcionario(String nome, double salario) {
+        this.nome = nome;
+        this.salario = salario;
+    }
+
+    // A general bonus calculation
+    public double getBonificacao() {
+        return this.salario * 0.05; // 5% bonus for a regular employee
+    }
+    
+    @Override
+    public String toString() {
+        return "Funcionario [Nome=" + this.nome + ", Salário=" + this.salario + "]";
+    }
+}
+
+// Subclass Gerente
+public class Gerente extends Funcionario {
+    public Gerente(String nome, double salario) {
+        super(nome, salario);
+    }
+
+    @Override // Overriding the method for a specific implementation
+    public double getBonificacao() {
+        return super.getBonificacao() + 1000.0; // 5% + a fixed bonus of 1000
+    }
+}
+
+// Subclass Programador
+public class Programador extends Funcionario {
+     public Programador(String nome, double salario) {
+        super(nome, salario);
+    }
+    
+    @Override // Specific bonus for programmers
+    public double getBonificacao() {
+        return this.salario * 0.15; // 15% bonus for programmers
+    }
+}
+
+// Test Class
+import java.util.List;
+
+public class ControleBonificacao {
+    public static void main(String[] args) {
+        // Polymorphism in action: Superclass reference for subclass objects
+        Funcionario f1 = new Funcionario("João", 2000.0);
+        Funcionario g1 = new Gerente("Maria", 5000.0);
+        Funcionario p1 = new Programador("Pedro", 3500.0);
+
+        System.out.println("Bônus do Funcionário: " + f1.getBonificacao()); // Calls Funcionario's method
+        System.out.println("Bônus do Gerente: " + g1.getBonificacao());     // Calls Gerente's method
+        System.out.println("Bônus do Programador: " + p1.getBonificacao()); // Calls Programador's method
+        
+        System.out.println(f1); // Prints the result of the overridden toString() method
+        System.out.println(g1);
+
+        // Optional: polymorphic collections
+        List<Funcionario> funcionarios = List.of(f1, g1, p1);
+        double total = 0;
+        for (Funcionario f : funcionarios) {
+            total += f.getBonificacao(); // runtime dispatch
+        }
+        System.out.println("Total de bonificações: " + total);
+    }
+}
+            </code></pre>
+        </div>
+
+        <p class="text-xs text-slate-500 mt-2">
+          Nota: para valores monetários em produção, prefira <code>BigDecimal</code>.
+        </p>
+      </section>
+
+      <!-- Seção atualizada com vídeo DevDojo e links modernos -->
+      <section
+        id="recursos-auxiliares"
+        class="mb-12"
+        aria-labelledby="recursos-heading"
+      >
+        <h2
+          id="recursos-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8"
+        >
+          🎥 Vídeos e Links de Apoio
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="space-y-6">
+            <div class="bg-white p-4 rounded-lg shadow">
+              <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+                Polimorfismo em Java (DevDojo)
+              </h3>
+              <div class="aspect-video w-full">
+                <!-- English comment: Correct DevDojo embed; lazy load; strict referrer; descriptive title -->
+                <iframe
+                  class="w-full h-full rounded-md"
+                  src="https://www.youtube.com/embed/Ps2ptq1twyA"
+                  title="DevDojo — Curso Java Completo: Polimorfismo (parte 01)"
+                  frameborder="0"
+                  loading="lazy"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p class="text-sm text-slate-600 mt-2">
+                Aula introdutória e direta ao ponto sobre polimorfismo, com exemplos práticos.
+              </p>
+            </div>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow">
+            <h3 class="font-semibold text-lg text-indigo-800 mb-4">
+              Leituras Recomendadas
+            </h3>
+            <ul class="space-y-4">
+              <li>
+                <a
+                  href="https://dev.java/learn/inheritance/polymorphism/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block font-semibold text-indigo-600 hover:underline"
+                >
+                  <i class="fa-solid fa-book-bookmark mr-2"></i>Polymorphism (dev.java/Oracle)
+                </a>
+                <p class="text-sm text-slate-600">
+                  Explicação concisa de polimorfismo com exemplos e relação com herança.
+                </p>
+              </li>
+              <li>
+                <a
+                  href="https://dev.java/learn/inheritance/overriding/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block font-semibold text-indigo-600 hover:underline"
+                >
+                  <i class="fa-solid fa-file-alt mr-2"></i>Overriding and Hiding Methods (dev.java)
+                </a>
+                <p class="text-sm text-slate-600">
+                  Reforça regras de sobrescrita, assinatura idêntica e retorno covariante.
+                </p>
+              </li>
+              <li>
+                <a
+                  href="https://dev.java/learn/inheritance/objects/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block font-semibold text-indigo-600 hover:underline"
+                >
+                  <i class="fa-solid fa-layer-group mr-2"></i>Object as a Superclass (dev.java)
+                </a>
+                <p class="text-sm text-slate-600">
+                  Papel da classe <code>Object</code> e quando sobrescrever <code>toString()</code>, <code>equals()</code> e <code>hashCode()</code>.
+                </p>
+              </li>
+              <li>
+                <a
+                  href="https://docs.oracle.com/javase/tutorial/java/IandI/polymorphism.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block font-semibold text-indigo-600 hover:underline"
+                >
+                  <i class="fa-solid fa-book mr-2"></i>Polymorphism (The Java™ Tutorials — JDK 8)
+                </a>
+                <p class="text-sm text-slate-600">
+                  Material clássico (arquivado) — bom como referência complementar.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="ted"
+        class="mb-12 bg-amber-50 border border-amber-300 p-8 rounded-lg shadow-lg"
+        aria-labelledby="ted-heading"
+      >
+        <h2 id="ted-heading" class="text-3xl font-bold text-amber-800 mb-6">
+          <i class="fa-solid fa-laptop-code mr-2" aria-hidden="true"></i
+          >Atividade Prática (TED): Figuras Geométricas
+        </h2>
+        <p class="text-amber-900 leading-relaxed mb-4">
+          Vamos aplicar a herança e o polimorfismo para calcular a área de
+          diferentes formas geométricas.
+        </p>
+        <ol class="list-decimal list-inside space-y-4 text-amber-900">
+          <li>
+            <strong>Crie a superclasse abstrata <code>FormaGeometrica.java</code></strong>. 
+            Ela deve declarar o método <code>public abstract double calcularArea()</code>.
+          </li>
+          <li>
+            <strong>Crie a subclasse <code>Retangulo.java</code></strong> que herda de
+            <code>FormaGeometrica</code>. Adicione os atributos <code>largura</code> e <code>altura</code>.
+            Implemente <code>calcularArea()</code> retornando <code>largura * altura</code>.
+          </li>
+          <li>
+            <strong>Crie a subclasse <code>Circulo.java</code></strong> que herda de
+            <code>FormaGeometrica</code>. Adicione o atributo <code>raio</code>. Implemente 
+            <code>calcularArea()</code> retornando <code>Math.PI * raio * raio</code>.
+          </li>
+          <li>
+            <strong>Crie a classe <code>TesteFormas.java</code></strong> com um método
+            <code>main</code>. Crie uma coleção (<code>List&lt;FormaGeometrica&gt;</code>) com instâncias
+            de <code>Retangulo</code> e <code>Circulo</code>. Percorra e imprima a área de cada forma, 
+            observando o polimorfismo em ação (binding dinâmico).
+          </li>
+        </ol>
+
+        <!-- Snippet sugerido para TED -->
+        <div class="code-block mt-6">
+          <button class="copy-btn" title="Copiar código" aria-label="Copiar código">
+            <i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar
+          </button>
+          <pre><code class="language-java">
+// English comments: Abstract base class to enforce area calculation
+public abstract class FormaGeometrica {
+    public abstract double calcularArea();
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName();
+    }
+}
+
+public class Retangulo extends FormaGeometrica {
+    private final double largura;
+    private final double altura;
+
+    public Retangulo(double largura, double altura) {
+        this.largura = largura;
+        this.altura = altura;
+    }
+
+    @Override
+    public double calcularArea() {
+        return largura * altura;
+    }
+}
+
+public class Circulo extends FormaGeometrica {
+    private final double raio;
+
+    public Circulo(double raio) {
+        this.raio = raio;
+    }
+
+    @Override
+    public double calcularArea() {
+        return Math.PI * raio * raio;
+    }
+}
+
+import java.util.List;
+
+public class TesteFormas {
+    public static void main(String[] args) {
+        List<FormaGeometrica> formas = List.of(
+            new Retangulo(3, 4),
+            new Circulo(2.5)
+        );
+
+        for (FormaGeometrica f : formas) {
+            System.out.printf("%s -> área = %.2f%n", f, f.calcularArea());
+        }
+    }
+}
+          </code></pre>
+        </div>
+      </section>
+
+      <section id="checklist" class="mt-12" aria-labelledby="checklist-heading">
+        <div
+          class="bg-green-50 border-l-4 border-green-500 text-green-800 p-6 rounded-lg shadow"
+        >
+          <h3 id="checklist-heading" class="font-bold text-lg mb-3">
+            <i class="fa-solid fa-list-check mr-2" aria-hidden="true"></i
+            >Checklist de Aprendizagem da Aula
+          </h3>
+          <p>Ao final desta aula, você deve ser capaz de:</p>
+          <ul class="list-none space-y-2 mt-2">
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Explicar a diferença de visibilidade entre <code>private</code> e
+              <code>protected</code>.
+            </li>
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Sobrescrever um método de uma superclasse usando a anotação
+              <code>@Override</code>.
+            </li>
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Definir Polimorfismo e demonstrar seu uso com uma referência de
+              superclasse para um objeto de subclasse.
+            </li>
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Sobrescrever o método <code>toString()</code> da classe <code>Object</code> para
+              fornecer uma representação textual útil de um objeto.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section
+        id="bibliografia"
+        class="prose prose-slate max-w-none lg:prose-lg mt-12"
+        aria-labelledby="bibliografia-heading"
+      >
+        <h2
+          id="bibliografia-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-4"
+        >
+          📚 Bibliografia de Apoio
+        </h2>
+        <div class="bg-white p-8 rounded-lg shadow space-y-4 not-prose">
+          <p>
+            <strong>DEITEL, Harvey M.; DEITEL, Paul J.</strong>
+            <em>Java: como programar.</em> 8. ed. São Paulo: Pearson Prentice
+            Hall, 2014.
+          </p>
+          <p>
+            <strong>SCHILDT, Herbert.</strong>
+            <em
+              >Java para iniciantes: crie, compile e execute programas Java
+              rapidamente.</em
+            >
+            6. ed. Porto Alegre: Bookman, 2015.
+          </p>
+          <p>
+            <strong>GOODRICH, Michael T.; TAMASSIA, Roberto.</strong>
+            <em>Estruturas de dados e algoritmos em Java.</em> 5. ed. Porto
+            Alegre: Bookman, 2013.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-slate-800 text-slate-300 mt-12" role="contentinfo">
+      <div class="container mx-auto px-6 py-8 text-center">
+        <p class="font-semibold text-white">Prof. Tiago Guimarães Sombra</p>
+        <p class="text-sm mt-1">
+          Material acadêmico para os cursos de ADS e SI.
+        </p>
+        <p class="text-sm font-bold text-indigo-300">UniFametro</p>
+        <div class="mt-4 flex justify-center items-center space-x-4">
+          <a
+            href="https://github.com/sombraprof/lpoo"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-indigo-400 hover:text-white transition-colors"
+            aria-label="Visitar o repositório do projeto no GitHub"
+          >
+            <i class="fab fa-github fa-lg mr-1" aria-hidden="true"></i>
+            Repositório GitHub
+          </a>
+          <span class="text-slate-500">|</span>
+          <a
+            href="#"
+            class="text-indigo-400 hover:text-white transition-colors"
+            aria-label="Ver a política de uso do material"
+            >Política de Uso</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
