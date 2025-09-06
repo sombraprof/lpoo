@@ -1,29 +1,36 @@
 <!DOCTYPE html>
-<html lang="pt-PT" class="scroll-smooth">
+<html lang="pt-BR" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Linguagem de Programação Orientada a Objetos - UniFametro</title>
+    <meta name="description" content="LPOO – Materiais, aulas e listas da disciplina de Programação Orientada a Objetos (Unifametro)." />
+    <meta name="theme-color" content="#0f172a" />
+    <title>Linguagem de Programação Orientada a Objetos - Unifametro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Fonts and Icons centralized -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="manifest" href="manifest.webmanifest" />
     <!-- Highlight.js (syntax highlight) -->
-    <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" />
-    <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" disabled />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" integrity="sha256-Oppd74ucMR5a5Dq96FxjEzGF7tTw2fZ/6ksAqDCM8GY=" crossorigin="anonymous" />
+    <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" integrity="sha256-nyCNAiECsdDHrr/s2OQsp5l9XeY2ZJ0rMepjCT2AkBk=" crossorigin="anonymous" disabled />
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha256-g3pvpbDHNrUrveKythkPMF2j/J7UFoHbUyFQcFe1yEY=" crossorigin="anonymous"></script>
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').catch(()=>{});
+          navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(()=>{});
         });
       }
     </script>
+    <link rel="icon" href="imagens/icon-192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="imagens/icon-180.png" />
   </head>
   <body>
+    <a href="#main-root" class="skip-link">Ir para o conteúdo principal</a>
     <div class="flex min-h-screen">
       <!-- Sidebar -->
       <aside id="sidebar"
@@ -33,7 +40,7 @@
           <div class="flex items-center justify-start">
             <h2 class="text-xl font-bold mono inline-flex items-center gap-2"><span class="icon"><i class="fa-solid fa-graduation-cap"></i></span><span class="label">LPOO</span></h2>
           </div>
-          <p class="text-sm text-slate-400 mt-1"><span class="label">ADS & SI | UniFametro</span></p>
+          <p class="text-sm text-slate-400 mt-1"><span class="label">ADS & SI | Unifametro</span></p>
         </div>
         <div id="sidebar-fade-top" aria-hidden="true"></div>
         <div id="sidebar-scroll">
@@ -55,7 +62,7 @@
             <nav class="text-sm font-semibold text-slate-600 flex items-center gap-4">
               <a href="#home" class="hover:text-indigo-600">Início</a>
               <a href="#listas" class="hover:text-indigo-600">Listas</a>
-              <a href="politica_uso/polita-uso.html" target="_blank" class="hover:text-indigo-600">Política de Uso</a>
+              <a href="politica_uso/politica-uso.html" target="_blank" class="hover:text-indigo-600">Política de Uso</a>
             </nav>
             <div class="flex items-center gap-3">
               <div class="relative w-full max-w-md">

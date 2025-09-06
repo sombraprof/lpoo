@@ -155,6 +155,15 @@ function loadAula(file) {
 
       conteudo.appendChild(frag);
 
+      // A11y: mover foco para o primeiro título da página carregada
+      try {
+        const firstHeading = conteudo.querySelector('h1, h2, h3');
+        if (firstHeading) {
+          if (!firstHeading.hasAttribute('tabindex')) firstHeading.setAttribute('tabindex','-1');
+          firstHeading.focus();
+        }
+      } catch(_){}
+
       // Inicializações genéricas
       initAccordions();
       initAdvancedCopyButtons();
@@ -554,6 +563,7 @@ document.addEventListener("DOMContentLoaded", () => {
   try { setupTOCToggle(); } catch (_) {}
   try { setupSidebarTooltips(); } catch(_){}
   try { setupSidebarFade(); } catch(_){}
+  try { setupShortcuts(); } catch(_){}
 
   try { setupSidebarInteractions(); } catch(_){}
   try { showHomeSkeleton(); } catch(_){}
@@ -1037,8 +1047,42 @@ function setupShortcuts() {
 }
 
 function showShortcutHelp() {
-  const help = `Atalhos:\n  t — Alternar tema claro/escuro\n  s — Abrir/fechar sumário (TOC)\n  f — Focar busca`;
-  alert(help);
+  const modal = document.getElementById('shortcut-modal');
+  const closeBtn = document.getElementById('shortcut-close');
+  const mainRoot = document.getElementById('main-root');
+  if (!modal) return;
+  let lastFocused = document.activeElement;
+  function close() {
+    modal.classList.add('hidden');
+    if (mainRoot) mainRoot.removeAttribute('aria-hidden');
+    if (modal.__keydown) document.removeEventListener('keydown', modal.__keydown);
+    if (lastFocused && typeof lastFocused.focus === 'function') { try { lastFocused.focus(); } catch(_){} }
+  }
+  function open() {
+    modal.classList.remove('hidden');
+    if (mainRoot) mainRoot.setAttribute('aria-hidden','true');
+    // Trap de foco e ESC
+    function onKey(e) {
+      if (e.key === 'Escape') { e.preventDefault(); close(); }
+      if (e.key === 'Tab') {
+        const focusables = Array.from(modal.querySelectorAll('button, a, [tabindex]:not([tabindex="-1"])')).filter(el=>!el.hasAttribute('disabled'));
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length-1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    }
+    modal.__keydown = onKey;
+    document.addEventListener('keydown', onKey);
+    // Foco inicial
+    const initial = closeBtn || modal.querySelector('button, a, [tabindex]:not([tabindex="-1"])');
+    if (initial) initial.focus();
+  }
+  if (closeBtn && !closeBtn.__wired) { closeBtn.addEventListener('click', close); closeBtn.__wired = true; }
+  const backdrop = modal.querySelector('.absolute.inset-0');
+  if (backdrop && !backdrop.__wired) { backdrop.addEventListener('click', close); backdrop.__wired = true; }
+  open();
 }
 
 function setupSidebarFade() {
@@ -1063,7 +1107,8 @@ function setupSidebarFade() {
 }
 
 function setupSidebarTooltips() {
-  document.body.classList.add('js-tooltips');
+  const aside = document.getElementById('sidebar');
+  if (aside) aside.classList.add('js-tooltips');
   function enable() { return window.innerWidth >= 1024; }
   let tipEl = null;
   let tipId = null;
@@ -1368,7 +1413,11 @@ function setupCardsControls() {
 
   // Filtro
   function applyFilter(mode) {
-    chips.forEach((c) => c.classList.toggle('active', c.getAttribute('data-filter') === mode));
+    chips.forEach((c) => {
+      const active = c.getAttribute('data-filter') === mode;
+      c.classList.toggle('active', active);
+      c.setAttribute('aria-pressed', String(active));
+    });
     if (mode === 'aulas') { if (home) home.classList.remove('hidden'); if (listas) listas.classList.add('hidden'); }
     else if (mode === 'listas') { if (home) home.classList.add('hidden'); if (listas) listas.classList.remove('hidden'); }
     else { if (home) home.classList.remove('hidden'); if (listas) listas.classList.remove('hidden'); }
@@ -1382,7 +1431,11 @@ function setupCardsControls() {
 
   // List state filter
   function applyListStateFilter(mode) {
-    listStateChips.forEach((c)=> c.classList.toggle('active', c.getAttribute('data-list-filter')===mode));
+    listStateChips.forEach((c)=>{
+      const active = c.getAttribute('data-list-filter')===mode;
+      c.classList.toggle('active', active);
+      c.setAttribute('aria-pressed', String(active));
+    });
     localStorage.setItem('lpoo:listFilter', mode);
     const listContainer = document.getElementById('listas-container');
     if (!listContainer) return;
@@ -1403,8 +1456,12 @@ function setupCardsControls() {
 
   // Exibição
   function applyView(mode) {
-    gridBtn.classList.toggle('active', mode==='grid');
-    listBtn.classList.toggle('active', mode==='list');
+    const isGrid = mode==='grid';
+    const isList = mode==='list';
+    gridBtn.classList.toggle('active', isGrid);
+    listBtn.classList.toggle('active', isList);
+    gridBtn.setAttribute('aria-pressed', String(isGrid));
+    listBtn.setAttribute('aria-pressed', String(isList));
     const cards = document.getElementById('cards-container');
     const listCards = document.getElementById('listas-container');
     function setGrid(el, isGrid) {

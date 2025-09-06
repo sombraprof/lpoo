@@ -84,14 +84,24 @@ Capacitar o discente a:
 
 ```
 📦 lpoo
-┣ 📂 src
-┃ ┣ 📂 exemplos
-┃ ┣ 📂 projetos
-┣ 📂 docs
-┃ ┣ 📜 diagramas-uml
-┃ ┣ 📜 slides
-┣ 📂 tarefas
-┣ README.md
+┣ 📜 index.html                 # SPA (aulas/listas) com sidebar e TOC
+┣ 📜 sw.js                      # Service Worker (PWA/offline)
+┣ 📜 manifest.webmanifest       # Manifesto PWA
+┣ 📜 offline.html               # Página de fallback offline
+┣ 📂 css
+┃ ┗ 📜 style.css                # Estilos globais (tema claro/escuro, sidebar, TOC)
+┣ 📂 js
+┃ ┗ 📜 main.js                  # Lógica da aplicação (rotas, sidebar, TOC, listas)
+┣ 📂 aulas
+┃ ┣ 📜 aulas.json               # Manifesto das aulas
+┃ ┣ 📜 aula1.html …             # Conteúdo das aulas
+┣ 📂 listas
+┃ ┣ 📜 listas.json              # Manifesto das listas
+┃ ┗ 📜 lista1.json …            # Itens das listas
+┣ 📂 politica_uso
+┃ ┗ 📜 politica-uso.html        # versão preferida
+┣ 📂 imagens                    # ícones/figuras (adicione aqui os ícones do PWA)
+┗ 📜 README.md
 ```
 ---
 

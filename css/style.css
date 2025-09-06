@@ -343,9 +343,13 @@ code-text,
 /* Dark-mode overrides for common Tailwind utility classes embedded in content */
 html.theme-dark .bg-white { background-color: var(--panel-bg) !important; }
 html.theme-dark .bg-slate-50 { background-color: var(--bg) !important; }
+/* Subtle header strip for tables/cards in dark */
+html.theme-dark .bg-slate-100 { background-color: rgba(255,255,255,0.08) !important; }
 html.theme-dark .text-slate-900,
 html.theme-dark .text-slate-800,
 html.theme-dark .text-slate-700 { color: var(--text) !important; }
+/* Slightly muted table headers that use text-slate-700 */
+html.theme-dark thead.text-slate-700 { color: var(--muted) !important; }
 html.theme-dark .text-slate-600,
 html.theme-dark .text-slate-500 { color: var(--muted) !important; }
 html.theme-dark .border-slate-200 { border-color: var(--panel-border) !important; }
@@ -434,6 +438,19 @@ html.theme-dark .text-sky-600 { color: #7dd3fc !important; }
 }
 /* Back to top */
 #back-to-top { display: grid; place-items: center; }
+
+/* Skip link: visível ao focar */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--accent);
+  color: #fff;
+  padding: .5rem .75rem;
+  border-radius: .375rem;
+  z-index: 1000;
+}
+.skip-link:focus { left: 1rem; top: 1rem; }
 
 /* Mini sidebar (all breakpoints) */
 html.sidebar-mini #sidebar, #sidebar.mini { width: 4rem !important; padding-left: 0.75rem; padding-right: 0.75rem; }
@@ -625,3 +642,11 @@ html.theme-dark .badge-new { color: #fcd34d; }
 
 /* Grupos de aulas */
 .group-title { font-size: 1.25rem; font-weight: 700; color: var(--text); }
+
+/* Reduce motion for users preferring it */
+@media (prefers-reduced-motion: reduce) {
+  #sidebar { transition: none !important; }
+  #sidebar ul[data-section-list] { transition: none !important; }
+  .accordion-content { transition: none !important; }
+  .view-toggle, .filter-chip, #toast { transition: none !important; }
+}

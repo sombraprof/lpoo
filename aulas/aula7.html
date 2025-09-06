@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <!-- Metadados Essenciais -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LPOO - Aula 7: Classes Abstratas e Interfaces</title>
+    <meta
+      name="description"
+      content="Aula 7 da disciplina de LPOO. Aprenda a usar classes abstratas e interfaces em Java para criar designs de software flexíveis e robustos."
+    />
+    <meta name="author" content="Prof. Tiago Guimarães Sombra" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="LPOO - Aula 7: Classes Abstratas e Interfaces"
+    />
+    <meta
+      property="og:description"
+      content="Aprenda a usar classes abstratas e interfaces em Java para criar designs de software flexíveis e robustos."
+    />
+    <meta
+      property="og:image"
+      content="https://placehold.co/1200x630/4f46e5/ffffff?text=LPOO%0AAula%207"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:title"
+      content="LPOO - Aula 7: Classes Abstratas e Interfaces"
+    />
+    <meta
+      property="twitter:description"
+      content="Aprenda a usar classes abstratas e interfaces em Java para criar designs de software flexíveis e robustos."
+    />
+    <meta
+      property="twitter:image"
+      content="https://placehold.co/1200x630/4f46e5/ffffff?text=LPOO%0AAula%207"
+    />
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Roboto Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8="
+      crossorigin="anonymous"
+    />
+
+    <!-- Estilos locais removidos: usamos css/style.css global para callouts, code-block e copy-btn -->
+  </head>
+
+  <body class="text-slate-800">
+    <nav
+      class="bg-white/80 backdrop-blur-md shadow-sm fixed top-0 left-0 right-0 z-50"
+      aria-label="Menu de navegação principal"
+    >
+      <div class="container mx-auto px-6">
+        <div class="flex justify-between items-center h-16">
+          <span class="text-lg font-bold text-indigo-700">LPOO - Aula 7</span>
+          <div class="hidden md:flex space-x-4 text-sm font-semibold">
+            <a href="#plano-aula" class="text-slate-600 hover:text-indigo-600"
+              >Plano</a
+            >
+            <a href="#teoria" class="text-slate-600 hover:text-indigo-600"
+              >Teoria</a
+            >
+            <a href="#pratica" class="text-slate-600 hover:text-indigo-600"
+              >Prática</a
+            >
+            <a href="#ted" class="text-slate-600 hover:text-indigo-600">TED</a>
+            <a href="#bibliografia" class="text-slate-600 hover:text-indigo-600"
+              >Bibliografia</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <header
+      class="bg-gradient-to-r from-indigo-700 to-indigo-900 text-white shadow-lg"
+    >
+      <div class="container mx-auto px-6 py-10">
+        <h1 class="text-4xl font-bold">Classes Abstratas e Interfaces</h1>
+        <p class="text-xl text-indigo-200 mt-2">
+          Aula 7: Unidade III - Conceitos práticos de OO e seus pilares
+        </p>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-10" role="main">
+      <section
+        id="ementa"
+        class="mb-12 bg-white p-8 rounded-lg shadow"
+        aria-labelledby="ementa-heading"
+      >
+        <h2
+          id="ementa-heading"
+          class="text-3xl font-semibold text-slate-800 mb-6"
+        >
+          Ementa e Contextualização
+        </h2>
+        <p class="text-slate-700 leading-relaxed">
+          Até agora, trabalhamos com classes concretas, que podem ser
+          instanciadas diretamente. No entanto, ao modelar sistemas complexos,
+          muitas vezes precisamos de um nível maior de abstração. As
+          <strong>classes abstratas</strong> nos permitem criar "modelos" de
+          classes incompletas, forçando as subclasses a fornecerem
+          implementações específicas. Já as <strong>interfaces</strong> levam a
+          abstração a um novo patamar, definindo "contratos" de comportamento
+          que classes completamente diferentes podem seguir. Dominar esses dois
+          conceitos é crucial para projetar sistemas desacoplados, flexíveis e
+          que seguem os princípios de design SOLID.
+        </p>
+      </section>
+
+      <section
+        id="plano-aula"
+        class="mb-12 bg-indigo-50 border border-indigo-200 p-8 rounded-2xl shadow-lg"
+        aria-labelledby="plano-aula-heading"
+      >
+        <h2
+          id="plano-aula-heading"
+          class="text-3xl font-bold text-indigo-700 mb-6 text-center"
+        >
+          Plano da Aula
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+              <i class="fa-solid fa-book-open mr-2" aria-hidden="true"></i
+              >CONTEÚDO
+            </h3>
+            <p class="text-slate-600">
+              Classes Abstratas, Métodos Abstratos, Interfaces, palavra-chave
+              <code-text>implements</code-text>, e a diferença entre os dois
+              conceitos.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+              <i class="fa-solid fa-bullseye mr-2" aria-hidden="true"></i
+              >OBJETIVO
+            </h3>
+            <p class="text-slate-600">
+              Capacitar o aluno a projetar e implementar hierarquias de classes
+              flexíveis usando classes abstratas e a definir contratos com
+              interfaces.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+              <i class="fa-solid fa-gears mr-2" aria-hidden="true"></i
+              >METODOLOGIA
+            </h3>
+            <p class="text-slate-600">
+              Aula expositiva, exemplos comparativos de código, uma tabela de
+              diferenças e uma atividade prática de modelagem de sistema.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow mt-6">
+          <h3 class="text-xl font-semibold text-slate-800 mb-2">Exemplo 3: Conflito de <code-text>default</code-text> em Múltiplas Interfaces</h3>
+          <p class="text-slate-600 mb-4">Quando duas interfaces definem o mesmo método <code-text>default</code-text>, a classe precisa resolver o conflito explicitamente.</p>
+          <div class="code-block">
+            <button class="copy-btn" data-tooltip="Copiar código" aria-label="Copiar código de múltiplas interfaces com default"><i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar</button>
+            <pre><code class="language-java">interface A { default void log() { System.out.println("A"); } }
+interface B { default void log() { System.out.println("B"); } }
+
+class C implements A, B {
+    @Override // Must resolve the conflict explicitly
+    public void log() {
+        A.super.log(); // or B.super.log(); or custom logic
+        System.out.println("C");
+    }
+}
+            </code></pre>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow mt-6">
+          <h3 class="text-xl font-semibold text-slate-800 mb-2">Extras Modernos: Hierarquias <em>sealed</em> (Java 17+)</h3>
+          <p class="text-slate-600 mb-4">Interfaces e classes podem ser seladas para restringir quem pode implementá-las/herdá-las.</p>
+          <div class="code-block">
+            <button class="copy-btn" data-tooltip="Copiar código" aria-label="Copiar código de sealed interfaces"><i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar</button>
+            <pre><code class="language-java">public sealed interface Voavel permits Passaro, Aviao {
+    void voar();
+}
+
+public final class Passaro implements Voavel { // final: cannot be subclassed further
+    @Override public void voar() { System.out.println("Batendo asas"); }
+}
+
+public non-sealed class Aviao implements Voavel {
+    @Override public void voar() { System.out.println("Turbinas ligadas"); }
+}
+            </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="teoria" class="mb-12" aria-labelledby="teoria-heading">
+        <h2
+          id="teoria-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8"
+        >
+          📜 Definindo Contratos e Modelos
+        </h2>
+
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-2xl font-semibold text-slate-800 mb-4">
+            1. Classes Abstratas: O Modelo Incompleto
+          </h3>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            Uma classe abstrata é uma classe que
+            <strong>não pode ser instanciada</strong>. Ela serve como um modelo
+            base para outras classes. Pode conter tanto métodos concretos (com
+            implementação) quanto métodos abstratos (sem implementação).
+          </p>
+          <ul class="list-disc list-inside space-y-2 text-slate-700">
+            <li>
+              <strong>Palavra-chave <code-text>abstract</code-text>:</strong>
+              Usada para declarar tanto a classe quanto os métodos abstratos.
+            </li>
+            <li>
+              <strong>Métodos Abstratos:</strong> São como uma promessa. Eles
+              declaram uma assinatura de método, mas sem corpo. Qualquer classe
+              concreta que herda da classe abstrata é
+              <strong>obrigada</strong> a implementar todos os métodos
+              abstratos.
+            </li>
+            <li>
+              <strong>Quando usar?</strong> Quando você tem uma relação "é-um"
+              (herança) e quer fornecer um comportamento base comum para todas
+              as subclasses, mas ao mesmo tempo forçar que cada uma delas
+              implemente uma parte específica do comportamento.
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-2xl font-semibold text-slate-800 mb-4">
+            2. Interfaces: O Contrato de Comportamento
+          </h3>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            Uma interface é uma referência de tipo completamente abstrata. Ela
+            só pode conter assinaturas de métodos e constantes (<code-text
+              >public static final</code-text
+            >). Uma classe pode <strong>implementar</strong> uma ou mais
+            interfaces.
+          </p>
+          <ul class="list-disc list-inside space-y-2 text-slate-700">
+            <li>
+              <strong
+                >Palavra-chave <code-text>interface</code-text> e
+                <code-text>implements</code-text>:</strong
+              >
+              <code-text>interface</code-text> para declarar e
+              <code-text>implements</code-text> para uma classe implementar a
+              interface.
+            </li>
+            <li>
+              <strong>100% Abstrata (antes do Java 8):</strong> Todos os métodos
+              são implicitamente <code-text>public</code-text> e
+              <code-text>abstract</code-text>. Todos os atributos são
+              <code-text>public static final</code-text>.
+            </li>
+            <li>
+              <strong>Quando usar?</strong> Quando você quer definir um
+              "contrato" de comportamento que pode ser implementado por classes
+              de diferentes hierarquias. É a base para um design de software
+              desacoplado e a forma como Java simula a "herança múltipla".
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-8 rounded-lg shadow">
+          <h3 class="text-2xl font-semibold text-slate-800 mb-4 text-center">
+            Classe Abstrata vs. Interface
+          </h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left text-slate-500">
+              <thead class="text-xs text-slate-700 uppercase bg-slate-100">
+                <tr>
+                  <th scope="col" class="px-6 py-3">Característica</th>
+                  <th scope="col" class="px-6 py-3">Classe Abstrata</th>
+                  <th scope="col" class="px-6 py-3">Interface (Java 8+)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="bg-white border-b">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-slate-900 whitespace-nowrap"
+                  >
+                    Instanciação
+                  </th>
+                  <td class="px-6 py-4">Não pode ser instanciada; pode ter construtor (chamado via <code-text>super()</code-text>).</td>
+                  <td class="px-6 py-4">Não pode ser instanciada; sem construtor.</td>
+                </tr>
+                <tr class="bg-slate-50 border-b">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-slate-900 whitespace-nowrap"
+                  >
+                    Métodos
+                  </th>
+                  <td class="px-6 py-4">
+                    Pode ter métodos abstratos e concretos.
+                  </td>
+                  <td class="px-6 py-4">
+                    Abstratos, <strong>default</strong>, <strong>static</strong> e (Java 9+) <strong>private</strong>.
+                  </td>
+                </tr>
+                <tr class="bg-white border-b">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-slate-900 whitespace-nowrap"
+                  >
+                    Atributos/Estado
+                  </th>
+                  <td class="px-6 py-4">
+                    Pode ter qualquer tipo de atributo (static, final,
+                    non-final).
+                  </td>
+                  <td class="px-6 py-4">
+                    Só pode ter constantes (<code-text
+                      >public static final</code-text
+                    >).
+                  </td>
+                </tr>
+                <tr class="bg-slate-50 border-b">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-slate-900 whitespace-nowrap"
+                  >
+                    Herança
+                  </th>
+                  <td class="px-6 py-4">
+                    Uma classe pode herdar de apenas <strong>uma</strong> classe
+                    abstrata (<code-text>extends</code-text>).
+                  </td>
+                  <td class="px-6 py-4">
+                    Pode <code-text>extends</code-text> múltiplas interfaces
+                    (herança múltipla de tipo).
+                  </td>
+                </tr>
+                <tr class="bg-white border-b">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-slate-900 whitespace-nowrap"
+                  >
+                    Construtor
+                  </th>
+                  <td class="px-6 py-4">
+                    Pode ter construtores (chamados via
+                    <code-text>super()</code-text> pelas subclasses).
+                  </td>
+                  <td class="px-6 py-4">Não pode ter construtores.</td>
+                </tr>
+                <tr class="bg-slate-50 border-b">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-slate-900 whitespace-nowrap"
+                  >
+                    Propósito
+                  </th>
+                  <td class="px-6 py-4">
+                    Definir um modelo base com comportamento comum para uma
+                    hierarquia (relação "é-um").
+                  </td>
+                  <td class="px-6 py-4">
+                    Definir um contrato de capacidades que podem ser
+                    compartilhadas por classes não relacionadas.
+                  </td>
+                </tr>
+                <tr class="bg-white">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-slate-900 whitespace-nowrap"
+                  >
+                    Extras modernos
+                  </th>
+                  <td class="px-6 py-4">Pode ser <em>sealed</em> (Java 17+) para controlar subclasses.</td>
+                  <td class="px-6 py-4">Conflitos de <code-text>default</code-text>; <code-text>@FunctionalInterface</code-text>; também pode ser <em>sealed</em>.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="pratica" class="mb-12" aria-labelledby="pratica-heading">
+        <h2
+          id="pratica-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8"
+        >
+          💻 Abstração na Prática
+        </h2>
+
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-xl font-semibold text-slate-800 mb-2">
+            Exemplo 1: Classe Abstrata <code-text>FormaGeometrica</code-text>
+          </h3>
+          <p class="text-slate-600 mb-4">
+            <code-text>FormaGeometrica</code-text> define o conceito de "área",
+            mas não sabe como calculá-la. <code-text>Retangulo</code-text> e
+            <code-text>Circulo</code-text> são obrigados a fornecer a fórmula.
+          </p>
+          <div class="code-block">
+            <button
+              class="copy-btn"
+              data-tooltip="Copiar código"
+              aria-label="Copiar código da classe abstrata FormaGeometrica e subclasses"
+            >
+              <i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar
+            </button>
+            <pre><code class="language-java">// Abstract base class with state and constructor
+public abstract class FormaGeometrica {
+    private final String nome;
+
+    public FormaGeometrica(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNome() { // Exposes read-only state
+        return nome;
+    }
+
+    public abstract double calcularArea(); // Must be implemented by subclasses
+}
+
+public class Retangulo extends FormaGeometrica {
+    private final double largura;
+    private final double altura;
+
+    public Retangulo(double largura, double altura) {
+        super("Retangulo");
+        this.largura = largura;
+        this.altura = altura;
+    }
+
+    @Override
+    public double calcularArea() {
+        return largura * altura;
+    }
+}
+
+public class Circulo extends FormaGeometrica {
+    private final double raio;
+
+    public Circulo(double raio) {
+        super("Circulo");
+        this.raio = raio;
+    }
+
+    @Override
+    public double calcularArea() {
+        return Math.PI * raio * raio;
+    }
+}
+                </code></pre>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h3 class="text-xl font-semibold text-slate-800 mb-2">
+            Exemplo 2: Interface <code-text>Tributavel</code-text>
+          </h3>
+          <p class="text-slate-600 mb-4">
+            Tanto uma <code-text>ContaCorrente</code-text> quanto um
+            <code-text>SeguroDeVida</code-text> podem ser tributáveis, mas não
+            têm uma relação de herança. A interface
+            <code-text>Tributavel</code-text> cria um contrato comum.
+          </p>
+          <div class="code-block">
+            <button
+              class="copy-btn"
+              data-tooltip="Copiar código"
+              aria-label="Copiar código da interface Tributavel e implementações"
+            >
+              <i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar
+            </button>
+            <pre><code class="language-java">// Contract for taxable entities (Java 8+ features demonstrated)
+public interface Tributavel {
+    double getValorImposto();             // Abstract method (must be implemented)
+
+    default double aplicarAcrescimo(double valor) {
+        // Default method provides reusable behavior for implementors
+        return valor + calcularAcrescimo(valor);
+    }
+
+    private double calcularAcrescimo(double valor) { // Java 9+ private reuse
+        return valor * 0.02; // 2% extra fee as an example
+    }
+
+    static double arredonda(double v) {   // Utility static method
+        return Math.round(v * 100.0) / 100.0;
+    }
+}
+
+// Simple account (educational)
+class Conta {
+    private double saldo;
+    public Conta(double saldo) { this.saldo = saldo; }
+    public double getSaldo() { return saldo; }
+}
+
+class ContaCorrente extends Conta implements Tributavel {
+    public ContaCorrente(double saldo) { super(saldo); }
+    @Override public double getValorImposto() {
+        return getSaldo() * 0.01; // 1% of balance
+    }
+}
+
+class SeguroDeVida implements Tributavel {
+    @Override public double getValorImposto() {
+        return 42.0; // fixed tax
+    }
+}
+
+import java.util.List;
+
+class CalculadoraImpostos {
+    public static void main(String[] args) {
+        // Polymorphism with interfaces: unrelated classes share a contract
+        List<Tributavel> itens = List.of(
+            new ContaCorrente(2500.0),
+            new SeguroDeVida()
+        );
+
+        double total = 0;
+        for (Tributavel t : itens) {
+            double base = t.getValorImposto();
+            // Using default + static methods from the interface
+            double comAcrescimo = Tributavel.arredonda(t.aplicarAcrescimo(base));
+            total += comAcrescimo;
+            System.out.println("Item -> imposto: " + comAcrescimo);
+        }
+        System.out.println("Total: " + Tributavel.arredonda(total));
+    }
+}
+                </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="recursos-auxiliares"
+        class="mb-12"
+        aria-labelledby="recursos-heading"
+      >
+        <h2
+          id="recursos-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8"
+        >
+          🎥 Vídeos e Links de Apoio
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white p-6 rounded-lg shadow">
+              <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+                Classes Abstratas (Curso em Vídeo)
+              </h3>
+              <div class="aspect-video w-full">
+                <iframe
+                  class="w-full h-full rounded-md"
+                  src="https://www.youtube-nocookie.com/embed/ws1NVBGeegs"
+                  title="DevDojo - Maratona Java 84: Classes Abstratas (pt 01)"
+                  frameborder="0"
+                  loading="lazy"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+          <div class="bg-white p-6 rounded-lg shadow">
+              <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+                Interfaces em Java (Loiane Groner)
+              </h3>
+              <div class="aspect-video w-full">
+                <iframe
+                  class="w-full h-full rounded-md"
+                  src="https://www.youtube-nocookie.com/embed/6uLLfRNgRA4"
+                  title="Loiane Groner - Curso de Java 44: Orientação a Objetos: Interfaces"
+                  frameborder="0"
+                  loading="lazy"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow md:col-span-2">
+            <h3 class="font-semibold text-lg text-indigo-800 mb-4">
+              Leituras Recomendadas
+            </h3>
+            <ul class="space-y-4">
+              <li>
+                <a
+                  href="https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block font-semibold text-indigo-600 hover:underline"
+                >
+                  <i class="fa-solid fa-book-bookmark mr-2"></i>Abstract Methods
+                  and Classes (Oracle)
+                </a>
+                <p class="text-sm text-slate-600">
+                  A documentação oficial sobre classes e métodos abstratos.
+                </p>
+              </li>
+              <li>
+                <a
+                  href="https://www.baeldung.com/java-interfaces"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block font-semibold text-indigo-600 hover:underline"
+                >
+                  <i class="fa-solid fa-file-alt mr-2"></i>Java Interfaces
+                  (Baeldung)
+                </a>
+                <p class="text-sm text-slate-600">
+                  Um guia técnico completo sobre o uso de interfaces em Java.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="ted"
+        class="mb-12 bg-amber-50 border border-amber-300 p-8 rounded-lg shadow-lg"
+        aria-labelledby="ted-heading"
+      >
+        <h2 id="ted-heading" class="text-3xl font-bold text-amber-800 mb-6">
+          <i class="fa-solid fa-laptop-code mr-2" aria-hidden="true"></i
+          >Atividade Prática (TED): Modelando um Zoológico
+        </h2>
+        <p class="text-amber-900 leading-relaxed mb-4">
+          Vamos projetar um sistema simples para um zoológico, combinando
+          classes abstratas e interfaces.
+        </p>
+        <ol class="list-decimal list-inside space-y-4 text-amber-900">
+          <li>
+            <strong
+              >Crie a classe abstrata <code-text>Animal.java</code-text></strong
+            >. Ela deve ter um atributo <code-text>nome</code-text> e um método
+            abstrato <code-text>public abstract void emitirSom()</code-text>.
+          </li>
+          <li>
+            <strong
+              >Crie as classes concretas <code-text>Leao.java</code-text> e
+              <code-text>Passaro.java</code-text></strong
+            >, ambas herdando de <code-text>Animal</code-text>. Implemente o
+            método <code-text>emitirSom()</code-text> em cada uma (ex: "Rugido!"
+            e "Pio!").
+          </li>
+          <li>
+            <strong>Crie a interface <code-text>Voavel.java</code-text></strong
+            >. Ela deve ter um único método:
+            <code-text>public void voar()</code-text>.
+          </li>
+          <li>
+            <strong
+              >Faça a classe <code-text>Passaro</code-text> implementar a
+              interface <code-text>Voavel</code-text></strong
+            >
+            e forneça uma implementação para o método
+            <code-text>voar()</code-text>. O Leão não deve implementar esta
+            interface.
+          </li>
+          <li>
+            <strong
+              >Crie uma classe <code-text>Zoologico.java</code-text> com um
+              método <code-text>main</code-text></strong
+            >. Crie um <code-text>Leao</code-text> e um
+            <code-text>Passaro</code-text>. Use polimorfismo para chamar
+            <code-text>emitirSom()</code-text> de ambos. Verifique se o pássaro
+            pode voar, mas o leão não.
+          </li>
+        </ol>
+      </section>
+
+      <section id="checklist" class="mt-12" aria-labelledby="checklist-heading">
+        <div
+          class="bg-green-50 border-l-4 border-green-500 text-green-800 p-6 rounded-lg shadow"
+        >
+          <h3 id="checklist-heading" class="font-bold text-lg mb-3">
+            <i class="fa-solid fa-list-check mr-2" aria-hidden="true"></i
+            >Checklist de Aprendizagem da Aula
+          </h3>
+          <p>Ao final desta aula, você deve ser capaz de:</p>
+          <ul class="list-none space-y-2 mt-2">
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Definir e criar uma classe abstrata com métodos abstratos e
+              concretos.
+            </li>
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Compreender que classes abstratas não podem ser instanciadas.
+            </li>
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Definir e implementar uma interface em uma ou mais classes.
+            </li>
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Explicar as diferenças cruciais entre uma classe abstrata e uma
+              interface.
+            </li>
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Escolher entre uma classe abstrata e uma interface com base no
+              problema de design.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section
+        id="bibliografia"
+        class="prose prose-slate max-w-none lg:prose-lg mt-12"
+        aria-labelledby="bibliografia-heading"
+      >
+        <h2
+          id="bibliografia-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-4"
+        >
+          📚 Bibliografia de Apoio
+        </h2>
+        <div class="bg-white p-8 rounded-lg shadow space-y-4 not-prose">
+          <p>
+            <strong>DEITEL, Harvey M.; DEITEL, Paul J.</strong>
+            <em>Java: como programar.</em> 8. ed. São Paulo: Pearson Prentice
+            Hall, 2014.
+          </p>
+          <p>
+            <strong>SCHILDT, Herbert.</strong>
+            <em
+              >Java para iniciantes: crie, compile e execute programas Java
+              rapidamente.</em
+            >
+            6. ed. Porto Alegre: Bookman, 2015.
+          </p>
+          <p>
+            <strong>GOODRICH, Michael T.; TAMASSIA, Roberto.</strong>
+            <em>Estruturas de dados e algoritmos em Java.</em> 5. ed. Porto
+            Alegre: Bookman, 2013.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-slate-800 text-slate-300 mt-12" role="contentinfo">
+      <div class="container mx-auto px-6 py-8 text-center">
+        <p class="font-semibold text-white">Prof. Tiago Guimarães Sombra</p>
+        <p class="text-sm mt-1">
+          Material acadêmico para os cursos de ADS e SI.
+        </p>
+        <p class="text-sm font-bold text-indigo-300">Unifametro</p>
+        <div class="mt-4 flex justify-center items-center space-x-4">
+          <a
+            href="https://github.com/sombraprof/lpoo"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-indigo-400 hover:text-white transition-colors"
+            aria-label="Visitar o repositório do projeto no GitHub"
+          >
+            <i class="fab fa-github fa-lg mr-1" aria-hidden="true"></i>
+            Repositório GitHub
+          </a>
+          <span class="text-slate-500">|</span>
+          <a
+            href="#"
+            class="text-indigo-400 hover:text-white transition-colors"
+            aria-label="Ver a política de uso do material"
+            >Política de Uso</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

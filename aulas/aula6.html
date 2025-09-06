@@ -54,6 +54,7 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous"
     />
 
     <!-- Estilos locais removidos: usamos css/style.css global para callouts, code-block e copy-btn -->
@@ -147,8 +148,8 @@
               >CONTEÚDO
             </h3>
             <p class="text-slate-600">
-              Modificador <code>protected</code>, Sobrescrita de Métodos (<code>@Override</code>),
-              Polimorfismo, a classe <code>Object</code> e o método <code>toString()</code>.
+              Modificador <code-text>protected</code-text>, Sobrescrita de Métodos (<code-text>@Override</code-text>),
+              Polimorfismo, a classe <code-text>Object</code-text> e o método <code-text>toString()</code-text>.
             </p>
           </div>
           <div class="bg-white p-6 rounded-lg shadow-sm">
@@ -159,7 +160,7 @@
             <p class="text-slate-600">
               Capacitar o aluno a sobrescrever métodos, aplicar o polimorfismo
               para criar um código mais flexível e entender o papel da classe
-              <code>Object</code>.
+              <code-text>Object</code-text>.
             </p>
           </div>
           <div class="bg-white p-6 rounded-lg shadow-sm">
@@ -185,13 +186,13 @@
 
         <div class="bg-white p-6 rounded-lg shadow mb-6">
           <h3 class="text-2xl font-semibold text-slate-800 mb-4">
-            1. Visibilidade Protegida (<code>protected</code>)
+            1. Visibilidade Protegida (<code-text>protected</code-text>)
           </h3>
           <p class="text-slate-700 leading-relaxed mb-4">
-            Até agora, usamos <code>private</code> para encapsulamento máximo. Mas e se
+            Até agora, usamos <code-text>private</code-text> para encapsulamento máximo. Mas e se
             quisermos que uma subclasse acesse diretamente um atributo da
             superclasse, sem que ele seja público para o resto do mundo? Para
-            isso, usamos o modificador <code>protected</code>.
+            isso, usamos o modificador <code-text>protected</code-text>.
           </p>
           <ul class="list-disc list-inside space-y-2 text-slate-700">
             <li>
@@ -207,11 +208,11 @@
           </ul>
 
           <div class="callout callout-info mt-6">
-            <h4 class="font-bold mb-2">Nuance importante de <code>protected</code></h4>
+            <h4 class="font-bold mb-2">Nuance importante de <code-text>protected</code-text></h4>
             <p class="mb-2">
-              Fora do mesmo pacote, o acesso <code>protected</code> só é permitido em
+              Fora do mesmo pacote, o acesso <code-text>protected</code-text> só é permitido em
               <strong>subclasses</strong> e, ainda assim, via a <em>instância da subclasse</em>
-              (não via referência de <code>Base</code>).
+              (não via referência de <code-text>Base</code-text>).
             </p>
             <div class="code-block">
               <button class="copy-btn" title="Copiar código" aria-label="Copiar código">
@@ -243,7 +244,7 @@ public class SubB extends Base {
 
         <div class="bg-white p-6 rounded-lg shadow mb-6">
           <h3 class="text-2xl font-semibold text-slate-800 mb-4">
-            2. Sobrescrita de Métodos (<code>@Override</code>)
+            2. Sobrescrita de Métodos (<code-text>@Override</code-text>)
           </h3>
           <p class="text-slate-700 leading-relaxed mb-4">
             Sobrescrever (ou anular) um método significa que uma subclasse
@@ -252,9 +253,9 @@ public class SubB extends Base {
             e parâmetros) deve ser idêntica.
           </p>
           <div class="callout callout-practice">
-            <h4 class="font-bold">A anotação <code>@Override</code></h4>
+            <h4 class="font-bold">A anotação <code-text>@Override</code-text></h4>
             <p>
-              Embora opcional, é uma boa prática usar a anotação <code>@Override</code>
+              Embora opcional, é uma boa prática usar a anotação <code-text>@Override</code-text>
               acima de um método sobrescrito. Se houver erro na assinatura,
               o compilador alerta — evitando bugs sutis.
             </p>
@@ -308,12 +309,12 @@ Funcionario f = new Gerente("Ana", 8000.0, 1500.0);
           <p class="text-slate-700 leading-relaxed mt-4">
             A "mágica" acontece quando chamamos um método sobrescrito a partir
             dessa referência. O Java, em tempo de execução, sabe qual é o tipo
-            <strong>real</strong> do objeto (<code>Gerente</code>) e chama a versão correta.
+            <strong>real</strong> do objeto (<code-text>Gerente</code-text>) e chama a versão correta.
           </p>
 
           <!-- instanceof pattern matching -->
           <div class="callout callout-info mt-6">
-            <h4 class="font-bold">Downcasting seguro com <code>instanceof</code> (pattern matching)</h4>
+            <h4 class="font-bold">Downcasting seguro com <code-text>instanceof</code-text> (pattern matching)</h4>
             <div class="code-block">
               <button class="copy-btn" title="Copiar código" aria-label="Copiar código">
                 <i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar
@@ -331,23 +332,23 @@ if (ref instanceof Gerente gerente) { // auto-cast bound to variable
 
         <div class="bg-white p-6 rounded-lg shadow mb-6">
           <h3 class="text-2xl font-semibold text-slate-800 mb-4">
-            4. A Classe <code>Object</code>: A Mãe de Todas
+            4. A Classe <code-text>Object</code-text>: A Mãe de Todas
           </h3>
           <p class="text-slate-700 leading-relaxed mb-4">
-            Em Java, toda classe herda implicitamente de <code>Object</code>. Isso garante
-            métodos como <code>equals()</code>, <code>hashCode()</code> e <code>toString()</code>.
+            Em Java, toda classe herda implicitamente de <code-text>Object</code-text>. Isso garante
+            métodos como <code-text>equals()</code-text>, <code-text>hashCode()</code-text> e <code-text>toString()</code-text>.
           </p>
           <p class="text-slate-700 leading-relaxed">
-            É uma ótima prática sobrescrever <code>toString()</code> para
+            É uma ótima prática sobrescrever <code-text>toString()</code-text> para
             representações textuais úteis.
           </p>
 
           <div class="callout callout-warning mt-6">
-            <h4 class="font-bold">Contrato <code>equals()</code> / <code>hashCode()</code></h4>
+            <h4 class="font-bold">Contrato <code-text>equals()</code-text> / <code-text>hashCode()</code-text></h4>
             <p>
-              Ao sobrescrever <code>equals()</code>, <strong>também</strong> sobrescreva
-              <code>hashCode()</code> de forma consistente (coerência em coleções como
-              <code>HashSet</code>/<code>HashMap</code>).
+              Ao sobrescrever <code-text>equals()</code-text>, <strong>também</strong> sobrescreva
+              <code-text>hashCode()</code-text> de forma consistente (coerência em coleções como
+              <code-text>HashSet</code-text>/<code-text>HashMap</code-text>).
             </p>
           </div>
 
@@ -370,8 +371,8 @@ if (ref instanceof Gerente gerente) { // auto-cast bound to variable
           💻 Praticando Polimorfismo
         </h2>
         <p class="mb-4">
-          Vamos evoluir nosso exemplo <code>Funcionario</code>/<code>Gerente</code>. Adicionaremos um
-          <code>Programador</code> e usaremos polimorfismo para calcular uma folha de
+          Vamos evoluir nosso exemplo <code-text>Funcionario</code-text>/<code-text>Gerente</code-text>. Adicionaremos um
+          <code-text>Programador</code-text> e usaremos polimorfismo para calcular uma folha de
           pagamento.
         </p>
 
@@ -459,7 +460,7 @@ public class ControleBonificacao {
         </div>
 
         <p class="text-xs text-slate-500 mt-2">
-          Nota: para valores monetários em produção, prefira <code>BigDecimal</code>.
+          Nota: para valores monetários em produção, prefira <code-text>BigDecimal</code-text>.
         </p>
       </section>
 
@@ -540,7 +541,7 @@ public class ControleBonificacao {
                   <i class="fa-solid fa-layer-group mr-2"></i>Object as a Superclass (dev.java)
                 </a>
                 <p class="text-sm text-slate-600">
-                  Papel da classe <code>Object</code> e quando sobrescrever <code>toString()</code>, <code>equals()</code> e <code>hashCode()</code>.
+                  Papel da classe <code-text>Object</code-text> e quando sobrescrever <code-text>toString()</code-text>, <code-text>equals()</code-text> e <code-text>hashCode()</code-text>.
                 </p>
               </li>
               <li>
@@ -576,23 +577,23 @@ public class ControleBonificacao {
         </p>
         <ol class="list-decimal list-inside space-y-4 text-amber-900">
           <li>
-            <strong>Crie a superclasse abstrata <code>FormaGeometrica.java</code></strong>. 
-            Ela deve declarar o método <code>public abstract double calcularArea()</code>.
+            <strong>Crie a superclasse abstrata <code-text>FormaGeometrica.java</code-text></strong>. 
+            Ela deve declarar o método <code-text>public abstract double calcularArea()</code-text>.
           </li>
           <li>
-            <strong>Crie a subclasse <code>Retangulo.java</code></strong> que herda de
-            <code>FormaGeometrica</code>. Adicione os atributos <code>largura</code> e <code>altura</code>.
-            Implemente <code>calcularArea()</code> retornando <code>largura * altura</code>.
+            <strong>Crie a subclasse <code-text>Retangulo.java</code-text></strong> que herda de
+            <code-text>FormaGeometrica</code-text>. Adicione os atributos <code-text>largura</code-text> e <code-text>altura</code-text>.
+            Implemente <code-text>calcularArea()</code-text> retornando <code-text>largura * altura</code-text>.
           </li>
           <li>
-            <strong>Crie a subclasse <code>Circulo.java</code></strong> que herda de
-            <code>FormaGeometrica</code>. Adicione o atributo <code>raio</code>. Implemente 
-            <code>calcularArea()</code> retornando <code>Math.PI * raio * raio</code>.
+            <strong>Crie a subclasse <code-text>Circulo.java</code-text></strong> que herda de
+            <code-text>FormaGeometrica</code-text>. Adicione o atributo <code-text>raio</code-text>. Implemente 
+            <code-text>calcularArea()</code-text> retornando <code-text>Math.PI * raio * raio</code-text>.
           </li>
           <li>
-            <strong>Crie a classe <code>TesteFormas.java</code></strong> com um método
-            <code>main</code>. Crie uma coleção (<code>List&lt;FormaGeometrica&gt;</code>) com instâncias
-            de <code>Retangulo</code> e <code>Circulo</code>. Percorra e imprima a área de cada forma, 
+            <strong>Crie a classe <code-text>TesteFormas.java</code-text></strong> com um método
+            <code-text>main</code-text>. Crie uma coleção (<code-text>List&lt;FormaGeometrica&gt;</code-text>) com instâncias
+            de <code-text>Retangulo</code-text> e <code-text>Circulo</code-text>. Percorra e imprima a área de cada forma, 
             observando o polimorfismo em ação (binding dinâmico).
           </li>
         </ol>
@@ -674,8 +675,8 @@ public class TesteFormas {
                 class="fa-solid fa-check text-green-600 mr-2"
                 aria-hidden="true"
               ></i
-              >Explicar a diferença de visibilidade entre <code>private</code> e
-              <code>protected</code>.
+              >Explicar a diferença de visibilidade entre <code-text>private</code-text> e
+              <code-text>protected</code-text>.
             </li>
             <li>
               <i
@@ -683,7 +684,7 @@ public class TesteFormas {
                 aria-hidden="true"
               ></i
               >Sobrescrever um método de uma superclasse usando a anotação
-              <code>@Override</code>.
+              <code-text>@Override</code-text>.
             </li>
             <li>
               <i
@@ -698,7 +699,7 @@ public class TesteFormas {
                 class="fa-solid fa-check text-green-600 mr-2"
                 aria-hidden="true"
               ></i
-              >Sobrescrever o método <code>toString()</code> da classe <code>Object</code> para
+              >Sobrescrever o método <code-text>toString()</code-text> da classe <code-text>Object</code-text> para
               fornecer uma representação textual útil de um objeto.
             </li>
           </ul>
@@ -745,7 +746,7 @@ public class TesteFormas {
         <p class="text-sm mt-1">
           Material acadêmico para os cursos de ADS e SI.
         </p>
-        <p class="text-sm font-bold text-indigo-300">UniFametro</p>
+        <p class="text-sm font-bold text-indigo-300">Unifametro</p>
         <div class="mt-4 flex justify-center items-center space-x-4">
           <a
             href="https://github.com/sombraprof/lpoo"

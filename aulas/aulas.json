@@ -71,7 +71,7 @@
     "descricao": "Quando usar classes abstratas e interfaces; diferenças práticas; regras de sobrescrita/implementação; boas práticas de design.",
     "arquivo": "aula7.html",
     "unidade": "Unidade III",
-    "ativo": false,
+    "ativo": true,
     "styles": [],
     "scripts": [],
     "init": null
