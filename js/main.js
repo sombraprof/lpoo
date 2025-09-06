@@ -1,3 +1,152 @@
+// Branding/config defaults (podem ser definidos em js/config.js)
+const APP_NOME_DISCIPLINA = window.APP_NOME_DISCIPLINA || 'Curso';
+const APP_SIGLA = window.APP_SIGLA || 'DISC';
+const APP_NOME_PROFESSOR = window.APP_NOME_PROFESSOR || '';
+const APP_INSTITUICAO   = window.APP_INSTITUICAO || '';
+const APP_SEMESTRE      = window.APP_SEMESTRE || '';
+const APP_STORAGE_PREFIX = window.APP_STORAGE_PREFIX || 'app';
+
+function lsGet(suffix) { try { return localStorage.getItem(`${APP_STORAGE_PREFIX}:${suffix}`); } catch(_) { return null; } }
+function lsSet(suffix, value) { try { localStorage.setItem(`${APP_STORAGE_PREFIX}:${suffix}`, value); } catch(_) {} }
+
+function applyBranding() {
+  try {
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', `${APP_NOME_DISCIPLINA} – Materiais, aulas e listas${APP_INSTITUICAO ? ` (${APP_INSTITUICAO})` : ''}.`);
+  } catch(_){}
+  try {
+    const sidebarTitle = document.querySelector('#sidebar-header h2 .label');
+    if (sidebarTitle) sidebarTitle.textContent = APP_NOME_DISCIPLINA;
+  } catch(_){}
+  try {
+    const sidebarSub = document.querySelector('#sidebar-header p .label');
+    if (sidebarSub) sidebarSub.textContent = APP_INSTITUICAO || sidebarSub.textContent || '';
+  } catch(_){}
+  try {
+    const headerBrand = document.getElementById('brand-header');
+    if (headerBrand) headerBrand.textContent = `${APP_NOME_DISCIPLINA}${APP_NOME_PROFESSOR ? ' · ' + APP_NOME_PROFESSOR : ''}`;
+  } catch(_){}
+  try {
+    if (!document.title || /Curso\s*-\s*Materiais/i.test(document.title)) {
+      document.title = APP_INSTITUICAO ? `${APP_NOME_DISCIPLINA} - ${APP_INSTITUICAO}` : APP_NOME_DISCIPLINA;
+    }
+  } catch(_){}
+
+  // Tornar visíveis placeholders após aplicar branding
+  try { document.querySelectorAll('.brand-ph').forEach(el => el.classList.remove('brand-ph')); } catch(_){}
+
+  // Favicon e Apple Touch com sigla (SVG + fallback PNG para iOS)
+  try {
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    const bg = themeMeta ? themeMeta.getAttribute('content') : '#0f172a';
+    const fg = '#ffffff';
+    function makeSvg(text, size, radius) {
+      const L = text.length;
+      let ratio = L <= 2 ? 0.58 : L === 3 ? 0.52 : L === 4 ? 0.44 : 0.38;
+      if (size <= 48) ratio *= 0.85;
+      const fs = Math.round(size * ratio);
+      const family = 'Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif';
+      const svg = `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">\n  <rect x="0" y="0" width="${size}" height="${size}" rx="${radius}" ry="${radius}" fill="${bg}"/>\n  <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" dy=".06em"\n        font-family="${family}" font-weight="700" font-size="${fs}" fill="${fg}">${text}</text>\n</svg>`;
+      return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+    }
+    function svgToPng(svgUrl, size) {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => {
+          try {
+            const canvas = document.createElement('canvas');
+            canvas.width = size; canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            ctx.drawImage(img, 0, 0, size, size);
+            resolve(canvas.toDataURL('image/png'));
+          } catch { resolve(''); }
+        };
+        img.onerror = () => resolve('');
+        img.src = svgUrl;
+      });
+    }
+    const fav = document.getElementById('favicon');
+    const fav16 = document.getElementById('favicon-16');
+    const fav32 = document.getElementById('favicon-32');
+    const fav48 = document.getElementById('favicon-48');
+    const favPng = document.getElementById('favicon-png');
+    const a120 = document.getElementById('apple-icon-120');
+    const a152 = document.getElementById('apple-icon-152');
+    const a167 = document.getElementById('apple-icon-167');
+    const a180 = document.getElementById('apple-icon-180');
+    // Gerar diferentes tamanhos com mais margem para tamanhos pequenos
+    const svg16  = makeSvg(APP_SIGLA, 16,  Math.round(16*0.18));
+    const svg32  = makeSvg(APP_SIGLA, 32,  Math.round(32*0.18));
+    const svg48  = makeSvg(APP_SIGLA, 48,  Math.round(48*0.18));
+    const svg96  = makeSvg(APP_SIGLA, 96,  Math.round(96*0.18));
+    const svg120 = makeSvg(APP_SIGLA, 120, Math.round(120*0.18));
+    const svg152 = makeSvg(APP_SIGLA, 152, Math.round(152*0.18));
+    const svg167 = makeSvg(APP_SIGLA, 167, Math.round(167*0.18));
+    const svg180 = makeSvg(APP_SIGLA, 180, Math.round(180*0.18));
+    const svg192 = makeSvg(APP_SIGLA, 192, Math.round(192*0.18));
+    if (fav)  fav.setAttribute('href', svg192);
+    if (fav16) { svgToPng(svg16, 16).then((png)=>{ if (png) fav16.setAttribute('href', png); }); }
+    if (fav32) { svgToPng(svg32, 32).then((png)=>{ if (png) fav32.setAttribute('href', png); }); }
+    if (fav48) { svgToPng(svg48, 48).then((png)=>{ if (png) fav48.setAttribute('href', png); }); }
+    if (favPng){ svgToPng(svg192, 192).then((png)=>{ if (png) favPng.setAttribute('href', png); }); }
+    if (a120) { svgToPng(svg120, 120).then((png)=>{ if (png) a120.setAttribute('href', png); }); }
+    if (a152) { svgToPng(svg152, 152).then((png)=>{ if (png) a152.setAttribute('href', png); }); }
+    if (a167) { svgToPng(svg167, 167).then((png)=>{ if (png) a167.setAttribute('href', png); }); }
+    if (a180) { svgToPng(svg180, 180).then((png)=>{ if (png) a180.setAttribute('href', png); }); }
+  } catch(_){}
+
+  // Manifest dinâmico baseado na config
+  try {
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    const themeColor = themeMeta ? themeMeta.getAttribute('content') : '#0f172a';
+    // Gerar SVGs para ícones do manifesto
+    function svgData(size) {
+      const radius = Math.round(size * 0.18);
+      const L = APP_SIGLA.length;
+      let ratio = L <= 2 ? 0.58 : L === 3 ? 0.52 : L === 4 ? 0.44 : 0.38;
+      if (size <= 48) ratio *= 0.85;
+      const fs = Math.round(size * ratio);
+      const family = 'Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif';
+      const svg = `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">\n  <rect x="0" y="0" width="${size}" height="${size}" rx="${radius}" ry="${radius}" fill="${themeColor}"/>\n  <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" dy=".06em" font-family="${family}" font-weight="700" font-size="${fs}" fill="#ffffff">${APP_SIGLA}</text>\n</svg>`;
+      return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+    }
+    const link = document.querySelector('link[rel="manifest"]');
+    // Passo 1: define manifesto rápido com SVG
+    const manifestSvg = {
+      name: APP_INSTITUICAO ? `${APP_NOME_DISCIPLINA} – ${APP_INSTITUICAO}` : APP_NOME_DISCIPLINA,
+      short_name: APP_NOME_DISCIPLINA,
+      start_url: './index.html',
+      scope: './',
+      display: 'standalone',
+      background_color: themeColor,
+      theme_color: themeColor,
+      lang: 'pt-BR',
+      icons: [
+        { src: svgData(192), sizes: '192x192', type: 'image/svg+xml', purpose: 'any maskable' },
+        { src: svgData(512), sizes: '512x512', type: 'image/svg+xml', purpose: 'any maskable' }
+      ]
+    };
+    if (link) {
+      let url = URL.createObjectURL(new Blob([JSON.stringify(manifestSvg)], { type: 'application/manifest+json' }));
+      link.setAttribute('href', url);
+      // Passo 2: em segundo plano, gerar PNGs e atualizar
+      Promise.all([
+        (async()=>{ const s = svgData(192); return await (new Promise(r=>{ const i=new Image(); i.onload=()=>{ const c=document.createElement('canvas'); c.width=192;c.height=192; const x=c.getContext('2d'); x.imageSmoothingEnabled=true; x.imageSmoothingQuality='high'; x.drawImage(i,0,0,192,192); r(c.toDataURL('image/png')); }; i.onerror=()=>r(''); i.src=s; })); })(),
+        (async()=>{ const s = svgData(512); return await (new Promise(r=>{ const i=new Image(); i.onload=()=>{ const c=document.createElement('canvas'); c.width=512;c.height=512; const x=c.getContext('2d'); x.imageSmoothingEnabled=true; x.imageSmoothingQuality='high'; x.drawImage(i,0,0,512,512); r(c.toDataURL('image/png')); }; i.onerror=()=>r(''); i.src=s; })); })()
+      ]).then(([png192, png512]) => {
+        const manifestPng = { ...manifestSvg, icons: [
+          { src: png192 || svgData(192), sizes: '192x192', type: png192 ? 'image/png' : 'image/svg+xml', purpose: 'any maskable' },
+          { src: png512 || svgData(512), sizes: '512x512', type: png512 ? 'image/png' : 'image/svg+xml', purpose: 'any maskable' }
+        ]};
+        const newUrl = URL.createObjectURL(new Blob([JSON.stringify(manifestPng)], { type: 'application/manifest+json' }));
+        link.setAttribute('href', newUrl);
+      }).catch(()=>{});
+    }
+  } catch(_){}
+}
+
 async function loadAulas() {
   try {
     const res = await fetch("aulas/aulas.json");
@@ -179,7 +328,7 @@ function loadAula(file) {
         const base = file.split("/").pop() || file;
         const id = base.replace(/\.html$/i, "");
         history.replaceState(null, "", `#aula=${encodeURIComponent(id)}`);
-        localStorage.setItem("lpoo:lastRoute", `aula=${id}`);
+        lsSet("lastRoute", `aula=${id}`);
         // progress: marca aula como visitada
         markVisited('aula', id);
         try { renderSidebar(); } catch(_){}
@@ -327,7 +476,7 @@ async function loadListaDetalhe(file) {
     initAccordions();
     enhanceHeadingsAndTOC();
     markActiveRoute();
-    updateDocumentTitle(`LPOO - Lista - ${data.titulo || "Lista"}`);
+    updateDocumentTitle(`${APP_NOME_DISCIPLINA} - Lista - ${data.titulo || "Lista"}`);
     // Marca lista como visitada e atualiza sidebar
     try { const listId2 = (file.split('/').pop()||file).replace(/\.json$/i,''); markVisited('lista', listId2); renderSidebar(); } catch(_){}
     // Handlers de progresso
@@ -414,7 +563,7 @@ async function loadListaDetalhe(file) {
       const base = file.split("/").pop() || file;
       const id = base.replace(/\.json$/i, "");
       history.replaceState(null, "", `#lista=${encodeURIComponent(id)}`);
-      localStorage.setItem("lpoo:lastRoute", `lista=${id}`);
+        lsSet("lastRoute", `lista=${id}`);
     } catch (_) {}
     requestAnimationFrame(() => {
       section.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -554,6 +703,7 @@ function initLaboratorioGeneros() {
 
 // Quando o DOM estiver pronto, carrega aulas e resolve hash
 document.addEventListener("DOMContentLoaded", () => {
+  try { applyBranding(); } catch(_){}
   // Inicializações resilientes em try/catch para não interromper as demais
   try { setupTheme(); } catch (_) {}
   try { setupMobileNav(); } catch (_) {}
@@ -596,7 +746,7 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
       }
-      const last = localStorage.getItem("lpoo:lastRoute");
+      const last = lsGet("lastRoute");
       if (last) {
         const [k, v] = last.split("=");
         const newHash = `#${k}=${encodeURIComponent(v)}`;
@@ -618,7 +768,7 @@ function notFound(message) {
   if (toc) { setTocOpen(false); toc.innerHTML = ''; }
   const nav = document.getElementById('aula-nav');
   if (nav) nav.classList.add('hidden');
-  updateDocumentTitle('LPOO');
+  updateDocumentTitle(APP_NOME_DISCIPLINA);
 }
 
 function showHomeSkeleton() {
@@ -653,7 +803,7 @@ function showHomeAnchor(anchorId) {
   const nav = document.getElementById('aula-nav');
   if (nav) nav.classList.add('hidden');
   setTocOpen(false);
-  updateDocumentTitle('LPOO');
+  updateDocumentTitle(APP_NOME_DISCIPLINA);
 }
 
 function setupMobileNav() {
@@ -760,25 +910,25 @@ function setupSearch() {
 // Sidebar: pins and collapsible sections
 function getPins() {
   try {
-    const raw = localStorage.getItem('lpoo:pins');
+    const raw = lsGet('pins');
     return Array.isArray(JSON.parse(raw)) ? JSON.parse(raw) : [];
   } catch(_) { return []; }
 }
 // Progress (visited)
 function getVisitedSet(type) {
   try {
-    const raw = localStorage.getItem(`lpoo:visited:${type}`);
+    const raw = lsGet(`visited:${type}`);
     const arr = Array.isArray(JSON.parse(raw)) ? JSON.parse(raw) : [];
     return new Set(arr);
   } catch(_) { return new Set(); }
 }
 function markVisited(type, id) {
   try {
-    const raw = localStorage.getItem(`lpoo:visited:${type}`);
+    const raw = lsGet(`visited:${type}`);
     const arr = Array.isArray(JSON.parse(raw)) ? JSON.parse(raw) : [];
     if (!arr.includes(id)) {
       arr.push(id);
-      localStorage.setItem(`lpoo:visited:${type}`, JSON.stringify(arr));
+      lsSet(`visited:${type}`, JSON.stringify(arr));
     }
   } catch(_){}
 }
@@ -786,13 +936,13 @@ function markVisited(type, id) {
 // Listas: progresso por questão resolvida
 function getListaSolvedSet(id) {
   try {
-    const raw = localStorage.getItem(`lpoo:visited:lista:${id}:solved`);
+    const raw = lsGet(`visited:lista:${id}:solved`);
     const arr = Array.isArray(JSON.parse(raw)) ? JSON.parse(raw) : [];
     return new Set(arr);
   } catch(_) { return new Set(); }
 }
 function setListaSolvedSet(id, set) {
-  try { localStorage.setItem(`lpoo:visited:lista:${id}:solved`, JSON.stringify(Array.from(set))); } catch(_){}
+  try { lsSet(`visited:lista:${id}:solved`, JSON.stringify(Array.from(set))); } catch(_){}
 }
 
 function updateListCardProgress(listId) {
@@ -813,7 +963,7 @@ function updateListCardProgress(listId) {
   } catch (_) {}
 }
 function setPins(pins) {
-  try { localStorage.setItem('lpoo:pins', JSON.stringify(pins)); } catch(_){}
+  try { lsSet('pins', JSON.stringify(pins)); } catch(_){}
 }
 function isPinned(type, id) {
   const pins = getPins();
@@ -829,10 +979,10 @@ function togglePin(type, id) {
   markActiveRoute();
 }
 function getCollapse(section) {
-  try { return localStorage.getItem(`lpoo:collapse:${section}`) === 'true'; } catch(_) { return false; }
+  try { return lsGet(`collapse:${section}`) === 'true'; } catch(_) { return false; }
 }
 function setCollapse(section, collapsed) {
-  try { localStorage.setItem(`lpoo:collapse:${section}`, String(!!collapsed)); } catch(_){}
+  try { lsSet(`collapse:${section}`, String(!!collapsed)); } catch(_){}
 }
 function renderSidebar() {
   const sidebar = document.getElementById('sidebar-links');
@@ -991,7 +1141,7 @@ function setupSidebarMini() {
   function apply(mini) {
     root.classList.toggle('sidebar-mini', mini);
     if (aside) aside.classList.toggle('mini', mini);
-    try { localStorage.setItem('lpoo:sidebarMini', String(!!mini)); } catch(_){}
+    try { lsSet('sidebarMini', String(!!mini)); } catch(_){}
     if (btn) {
       btn.setAttribute('aria-pressed', String(mini));
       btn.setAttribute('title', mini ? 'Expandir sidebar' : 'Colapsar sidebar');
@@ -1011,7 +1161,7 @@ function setupSidebarMini() {
     }
   }
   try {
-    const saved = localStorage.getItem('lpoo:sidebarMini');
+    const saved = lsGet('sidebarMini');
     apply(saved === 'true');
   } catch(_){}
   function handleClick() {
@@ -1323,7 +1473,7 @@ function scrollActiveLinkIntoView(link) {
 function updateDocumentTitleFromAula(doc) {
   const h1 = doc.querySelector('h1');
   const t = h1 ? h1.textContent.trim() : null;
-  updateDocumentTitle(t ? `LPOO - ${t}` : 'LPOO');
+  updateDocumentTitle(t ? `${APP_NOME_DISCIPLINA} - ${t}` : APP_NOME_DISCIPLINA);
 }
 function updateDocumentTitle(title) {
   if (title) document.title = title;
@@ -1380,12 +1530,12 @@ function setTocOpen(open) {
     main.classList.remove('toc-open');
     if (fab) fab.setAttribute('aria-expanded', 'false');
   }
-  try { localStorage.setItem('lpoo:tocOpen', String(!!open)); } catch (_) {}
+  try { lsSet('tocOpen', String(!!open)); } catch (_) {}
 }
 
 function getTocInitialOpen() {
   try {
-    const v = localStorage.getItem('lpoo:tocOpen');
+    const v = lsGet('tocOpen');
     if (v === null) return false; // padrão: fechado
     return v === 'true';
   } catch (_) {
@@ -1421,9 +1571,9 @@ function setupCardsControls() {
     if (mode === 'aulas') { if (home) home.classList.remove('hidden'); if (listas) listas.classList.add('hidden'); }
     else if (mode === 'listas') { if (home) home.classList.add('hidden'); if (listas) listas.classList.remove('hidden'); }
     else { if (home) home.classList.remove('hidden'); if (listas) listas.classList.remove('hidden'); }
-    try { localStorage.setItem('lpoo:cardsFilter', mode); } catch(_){}
+    try { lsSet('cardsFilter', mode); } catch(_){}
   }
-  const savedFilter = localStorage.getItem('lpoo:cardsFilter') || 'all';
+  const savedFilter = lsGet('cardsFilter') || 'all';
   applyFilter(savedFilter);
   chips.forEach((chip) => {
     chip.addEventListener('click', () => applyFilter(chip.getAttribute('data-filter')));
@@ -1436,7 +1586,7 @@ function setupCardsControls() {
       c.classList.toggle('active', active);
       c.setAttribute('aria-pressed', String(active));
     });
-    localStorage.setItem('lpoo:listFilter', mode);
+    lsSet('listFilter', mode);
     const listContainer = document.getElementById('listas-container');
     if (!listContainer) return;
     Array.from(listContainer.children).forEach((card) => {
@@ -1450,7 +1600,7 @@ function setupCardsControls() {
       card.style.display = show ? '' : 'none';
     });
   }
-  const savedListFilter = localStorage.getItem('lpoo:listFilter') || 'all';
+  const savedListFilter = lsGet('listFilter') || 'all';
   applyListStateFilter(savedListFilter);
   listStateChips.forEach((chip)=> chip.addEventListener('click', ()=> applyListStateFilter(chip.getAttribute('data-list-filter'))));
 
@@ -1474,9 +1624,9 @@ function setupCardsControls() {
     // Ajusta todas as grades de grupos de aulas
     if (cards) { cards.querySelectorAll('.group-grid').forEach((grid)=> setGrid(grid, mode==='grid')); }
     setGrid(listCards, mode==='grid');
-    try { localStorage.setItem('lpoo:viewMode', mode); } catch(_){}
+    try { lsSet('viewMode', mode); } catch(_){}
   }
-  const savedView = localStorage.getItem('lpoo:viewMode') || 'grid';
+  const savedView = lsGet('viewMode') || 'grid';
   applyView(savedView);
   if (gridBtn) gridBtn.addEventListener('click', () => applyView('grid'));
   if (listBtn) listBtn.addEventListener('click', () => applyView('list'));
@@ -1511,13 +1661,13 @@ function setupTheme() {
       hlLight.disabled = dark;
       hlDark.disabled = !dark;
     }
-    try { localStorage.setItem('lpoo:theme', theme); } catch(_){}
+    try { lsSet('theme', theme); } catch(_){}
   }
 
   // Initial
   let theme = 'light';
   try {
-    const saved = localStorage.getItem('lpoo:theme');
+    const saved = lsGet('theme');
     if (saved === 'dark' || saved === 'light') theme = saved;
     else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) theme = 'dark';
   } catch(_){}

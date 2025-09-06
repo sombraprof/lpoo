@@ -1,4 +1,6 @@
-const CACHE_NAME = 'lpoo-v2-2025-09-06';
+// Config do Service Worker
+try { importScripts('./js/sw-config.js'); } catch(e) {}
+const CACHE_NAME = (self.APP_CACHE_PREFIX || 'spa-starter') + '-' + (self.APP_CACHE_VERSION || 'v1');
 const CORE_ASSETS = [
   './',
   './index.html',

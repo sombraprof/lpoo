@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="LPOO – Materiais, aulas e listas da disciplina de Programação Orientada a Objetos (Unifametro)." />
+    <meta name="description" content="Materiais, aulas e listas da disciplina." />
     <meta name="theme-color" content="#0f172a" />
-    <title>Linguagem de Programação Orientada a Objetos - Unifametro</title>
+    <title>Curso - Materiais e Aulas</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Fonts and Icons centralized -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="manifest" href="manifest.webmanifest" />
+    <script src="js/config.js"></script>
+    <style> .brand-ph{ visibility: hidden; } </style>
     <!-- Highlight.js (syntax highlight) -->
     <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" integrity="sha256-Oppd74ucMR5a5Dq96FxjEzGF7tTw2fZ/6ksAqDCM8GY=" crossorigin="anonymous" />
     <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" integrity="sha256-nyCNAiECsdDHrr/s2OQsp5l9XeY2ZJ0rMepjCT2AkBk=" crossorigin="anonymous" disabled />
@@ -26,8 +28,15 @@
         });
       }
     </script>
-    <link rel="icon" href="imagens/icon-192.png" sizes="192x192" />
-    <link rel="apple-touch-icon" href="imagens/icon-180.png" />
+    <link id="favicon" rel="icon" type="image/svg+xml" href="" />
+    <link id="favicon-16" rel="icon" type="image/png" sizes="16x16" href="" />
+    <link id="favicon-32" rel="icon" type="image/png" sizes="32x32" href="" />
+    <link id="favicon-48" rel="icon" type="image/png" sizes="48x48" href="" />
+    <link id="favicon-png" rel="icon" type="image/png" sizes="192x192" href="" />
+    <link id="apple-icon-120" rel="apple-touch-icon" sizes="120x120" type="image/png" href="" />
+    <link id="apple-icon-152" rel="apple-touch-icon" sizes="152x152" type="image/png" href="" />
+    <link id="apple-icon-167" rel="apple-touch-icon" sizes="167x167" type="image/png" href="" />
+    <link id="apple-icon-180" rel="apple-touch-icon" sizes="180x180" type="image/png" href="" />
   </head>
   <body>
     <a href="#main-root" class="skip-link">Ir para o conteúdo principal</a>
@@ -38,9 +47,9 @@
       >
         <div id="sidebar-header" class="mb-2">
           <div class="flex items-center justify-start">
-            <h2 class="text-xl font-bold mono inline-flex items-center gap-2"><span class="icon"><i class="fa-solid fa-graduation-cap"></i></span><span class="label">LPOO</span></h2>
+            <h2 class="text-xl font-bold mono inline-flex items-center gap-2"><span class="icon"><i class="fa-solid fa-graduation-cap"></i></span><span class="label brand-ph">Curso</span></h2>
           </div>
-          <p class="text-sm text-slate-400 mt-1"><span class="label">ADS & SI | Unifametro</span></p>
+          <p class="text-sm text-slate-400 mt-1"><span class="label brand-ph">Instituição</span></p>
         </div>
         <div id="sidebar-fade-top" aria-hidden="true"></div>
         <div id="sidebar-scroll">
@@ -109,9 +118,7 @@
         <!-- Cards Aulas -->
         <section id="home" class="pt-2 md:pt-3 pb-6">
           <header class="sticky top-0 bg-[var(--bg)]/80 backdrop-blur z-10 py-2">
-            <div class="text-sm md:text-base font-semibold text-slate-700">
-              LPOO · Prof. Tiago Sombra
-            </div>
+            <div class="text-sm md:text-base font-semibold text-slate-700 brand-ph" id="brand-header"></div>
           </header>
           <h2 class="mt-3 mb-3 text-2xl font-bold text-slate-900">Aulas</h2>
           <div
