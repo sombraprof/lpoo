@@ -78,11 +78,11 @@
   },
   {
     "id": "aula8",
-    "titulo": "Aula 8: Projeto OO – Modelagem Inicial (UML) e Definição do Domínio (APS)",
-    "descricao": "Modelagem de domínio com UML (classes, relacionamentos, agregação/composição) e definição do escopo do projeto APS.",
+    "titulo": "Aula 8: Projeto Prático – Sistema Bancário Simplificado",
+    "descricao": "Integração dos pilares de POO (encapsulamento, herança, polimorfismo, classes abstratas e interfaces) em um projeto prático guiado.",
     "arquivo": "aula8.html",
     "unidade": "Unidade III",
-    "ativo": false,
+    "ativo": true,
     "styles": [],
     "scripts": [],
     "init": null

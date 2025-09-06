@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <!-- Metadados Essenciais -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LPOO - Aula 8: Projeto Prático - Sistema Bancário</title>
+    <meta
+      name="description"
+      content="Aula 8 da disciplina de LPOO. Uma aula prática para construir um sistema bancário simplificado, aplicando Encapsulamento, Herança, Classes Abstratas e Interfaces."
+    />
+    <meta name="author" content="Prof. Tiago Guimarães Sombra" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="LPOO - Aula 8: Projeto Prático - Sistema Bancário"
+    />
+    <meta
+      property="og:description"
+      content="Uma aula prática para construir um sistema bancário simplificado, aplicando Encapsulamento, Herança, Classes Abstratas e Interfaces."
+    />
+    <meta
+      property="og:image"
+      content="https://placehold.co/1200x630/4f46e5/ffffff?text=LPOO%0AAula%208"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:title"
+      content="LPOO - Aula 8: Projeto Prático - Sistema Bancário"
+    />
+    <meta
+      property="twitter:description"
+      content="Uma aula prática para construir um sistema bancário simplificado, aplicando Encapsulamento, Herança, Classes Abstratas e Interfaces."
+    />
+    <meta
+      property="twitter:image"
+      content="https://placehold.co/1200x630/4f46e5/ffffff?text=LPOO%0AAula%208"
+    />
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Roboto Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous"
+    />
+
+    <!-- Estilos locais removidos: usamos css/style.css global para callouts, code-block e copy-btn -->
+  </head>
+
+  <body class="text-slate-800">
+    <nav
+      class="bg-white/80 backdrop-blur-md shadow-sm fixed top-0 left-0 right-0 z-50"
+      aria-label="Menu de navegação principal"
+    >
+      <div class="container mx-auto px-6">
+        <div class="flex justify-between items-center h-16">
+          <span class="text-lg font-bold text-indigo-700">LPOO - Aula 8</span>
+          <div class="hidden md:flex space-x-4 text-sm font-semibold">
+            <a href="#plano-aula" class="text-slate-600 hover:text-indigo-600"
+              >Plano</a
+            >
+            <a href="#projeto" class="text-slate-600 hover:text-indigo-600"
+              >Projeto</a
+            >
+            <a
+              href="#roteiro-pratico"
+              class="text-slate-600 hover:text-indigo-600"
+              >Roteiro</a
+            >
+            <a href="#solucao" class="text-slate-600 hover:text-indigo-600"
+              >Solução</a
+            >
+            <a href="#bibliografia" class="text-slate-600 hover:text-indigo-600"
+              >Bibliografia</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <header
+      class="bg-gradient-to-r from-indigo-700 to-indigo-900 text-white shadow-lg"
+    >
+      <div class="container mx-auto px-6 py-10">
+        <h1 class="text-4xl font-bold">
+          Projeto Prático: Sistema Bancário Simplificado
+        </h1>
+        <p class="text-xl text-indigo-200 mt-2">
+          Aula 8: Unidade III - Integrando os Pilares da POO
+        </p>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-10" role="main">
+      <section
+        id="ementa"
+        class="mb-12 bg-white p-8 rounded-lg shadow"
+        aria-labelledby="ementa-heading"
+      >
+        <h2
+          id="ementa-heading"
+          class="text-3xl font-semibold text-slate-800 mb-6"
+        >
+          Contextualização da Aula Prática
+        </h2>
+        <p class="text-slate-700 leading-relaxed">
+          Chegamos a um ponto crucial da disciplina. Após estudarmos os pilares
+          da POO de forma isolada — Encapsulamento, Herança, Polimorfismo,
+          Classes Abstratas e Interfaces — esta aula tem como objetivo conectar
+          todos esses conceitos. Através da construção de um projeto prático e
+          guiado, um sistema bancário simplificado, vamos materializar a teoria
+          e entender como esses pilares trabalham juntos para criar um software
+          organizado, coeso e extensível. Esta é a aula onde a "mágica" da POO
+          acontece, transformando conceitos teóricos em código funcional e bem
+          estruturado.
+        </p>
+      </section>
+
+      <section
+        id="plano-aula"
+        class="mb-12 bg-indigo-50 border border-indigo-200 p-8 rounded-2xl shadow-lg"
+        aria-labelledby="plano-aula-heading"
+      >
+        <h2
+          id="plano-aula-heading"
+          class="text-3xl font-bold text-indigo-700 mb-6 text-center"
+        >
+          Plano da Aula Prática (2 h/a)
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+              <i class="fa-solid fa-book-open mr-2" aria-hidden="true"></i
+              >CONTEÚDO
+            </h3>
+            <p class="text-slate-600">
+              Aplicação prática integrada de Encapsulamento, Herança, Classes
+              Abstratas, Polimorfismo e Interfaces em um único projeto.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+              <i class="fa-solid fa-bullseye mr-2" aria-hidden="true"></i
+              >OBJETIVO
+            </h3>
+            <p class="text-slate-600">
+              Desenvolver um pequeno sistema do zero, aplicando os pilares da
+              POO para resolver um problema, reforçando a conexão entre teoria e
+              prática.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="font-semibold text-lg text-indigo-800 mb-2">
+              <i class="fa-solid fa-gears mr-2" aria-hidden="true"></i
+              >METODOLOGIA
+            </h3>
+            <p class="text-slate-600">
+              Aula de laboratório com desenvolvimento de projeto guiado (live
+              coding), incentivando a prática de *pair programming* entre os
+              alunos.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="projeto" class="mb-12" aria-labelledby="projeto-heading">
+        <h2
+          id="projeto-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8"
+        >
+          🎯 O Projeto: Sistema Bancário Simplificado
+        </h2>
+
+        <div class="bg-white p-8 rounded-lg shadow">
+          <h3 class="text-2xl font-semibold text-slate-800 mb-4">
+            Descrição do Problema
+          </h3>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            Precisamos modelar um sistema para um banco que trabalha com
+            diferentes tipos de contas. Por enquanto, teremos
+            <strong>Conta Corrente</strong> e <strong>Conta Poupança</strong>.
+            Ambas as contas possuem um número, um titular e um saldo. Ambas
+            permitem depositar e sacar dinheiro. No entanto, elas têm regras
+            diferentes:
+          </p>
+          <ul class="list-disc list-inside space-y-2 text-slate-700 mb-6">
+            <li>
+              Uma <strong>Conta Corrente</strong> cobra uma pequena taxa a cada
+              saque.
+            </li>
+            <li>
+              Uma <strong>Conta Poupança</strong> não cobra taxa de saque, mas
+              não pode ficar com saldo negativo.
+            </li>
+            <li>
+              Além disso, a <strong>Conta Corrente</strong> é um serviço
+              tributável, ou seja, paga um imposto anual, enquanto a Conta
+              Poupança é isenta.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- AJUSTE: Seção "Passo a Passo" reestruturada para ser um roteiro ativo -->
+      <section
+        id="roteiro-pratico"
+        class="mb-12"
+        aria-labelledby="roteiro-heading"
+      >
+        <h2
+          id="roteiro-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8"
+        >
+          🛠️ Roteiro da Atividade Prática (Live Coding)
+        </h2>
+
+        <!-- Etapa 1 -->
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-xl font-semibold text-slate-800 mb-2">
+            Etapa 1: Planejamento e UML
+          </h3>
+          <p class="text-slate-600 mb-4">
+            Antes de codificar, vamos desenhar um diagrama de classes UML
+            simples para visualizar a estrutura do nosso sistema.
+          </p>
+          <div
+            class="bg-slate-50 p-4 rounded-lg font-mono text-sm text-slate-800"
+          >
+            <p>
+              <strong>Interface:</strong> Tributavel { +getValorImposto():
+              double }
+            </p>
+            <p class="mt-4">
+              <strong>Classe Abstrata:</strong> Conta { -numero: int; -titular:
+              String; #saldo: double; +sacar(): boolean; ... }
+            </p>
+            <p class="ml-4">
+              |--&gt; <strong>Classe:</strong> ContaCorrente (herda de Conta,
+              implementa Tributavel)
+            </p>
+            <p class="ml-4">
+              |--&gt; <strong>Classe:</strong> ContaPoupanca (herda de Conta)
+            </p>
+          </div>
+        </div>
+
+        <!-- Etapa 2 -->
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-xl font-semibold text-slate-800 mb-2">
+            Etapa 2: A Classe Abstrata <code-text>Conta</code-text>
+          </h3>
+          <p class="text-slate-600 mb-4">
+            Crie a classe <code-text>Conta</code-text>. Ela deve conter os atributos e métodos comuns
+            a todas as contas. O método <code-text>sacar</code-text> deve ser abstrato.
+          </p>
+        </div>
+
+        <!-- Etapa 3 -->
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-xl font-semibold text-slate-800 mb-2">
+            Etapa 3: A Interface <code-text>Tributavel</code-text>
+          </h3>
+          <p class="text-slate-600 mb-4">
+            Crie a interface <code-text>Tributavel</code-text>. Ela deve definir o "contrato" para
+            qualquer classe que precise calcular impostos, declarando o método
+            <code-text>getValorImposto</code-text>.
+          </p>
+        </div>
+
+        <!-- Etapa 4 -->
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-xl font-semibold text-slate-800 mb-2">
+            Etapa 4: As Classes Concretas <code-text>ContaCorrente</code-text> e <code-text>ContaPoupanca</code-text>
+          </h3>
+          <p class="text-slate-600 mb-4">
+            Crie as duas subclasses. Elas devem herdar de <code-text>Conta</code-text> e implementar
+            o método abstrato <code-text>sacar</code-text> com suas regras específicas. A
+            <code-text>ContaCorrente</code-text> também deve implementar a interface <code-text>Tributavel</code-text>.
+          </p>
+        </div>
+
+        <!-- Etapa 5 -->
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h3 class="text-xl font-semibold text-slate-800 mb-2">
+            Etapa 5: Testando Tudo na Classe <code-text>Banco</code-text>
+          </h3>
+          <p class="text-slate-600 mb-4">
+            Crie uma classe <code-text>Banco</code-text> com um método <code-text>main</code-text>. Nela, instancie
+            objetos de <code-text>ContaCorrente</code-text> e <code-text>ContaPoupanca</code-text>, realize depósitos e
+            saques, e imprima os saldos para verificar se as regras de negócio
+            estão funcionando corretamente.
+          </p>
+        </div>
+
+        <!-- Desafios Adicionais -->
+        <div class="callout callout-challenge">
+          <h4 class="font-bold text-lg mb-2">
+            <i class="fa-solid fa-bolt mr-2"></i>Desafios Adicionais (Opcional)
+          </h4>
+          <ul class="list-disc list-inside text-sm mt-2 space-y-2">
+            <li>
+              <strong>Transferência:</strong> Adicione um método
+              <code-text>transferir(double valor, Conta destino)</code-text> na classe <code-text>Conta</code-text>. Ele
+              deve sacar de uma conta e depositar na outra.
+            </li>
+            <li>
+              <strong>Gerenciador de Impostos:</strong> Crie uma classe
+              <code-text>GerenciadorDeImposto</code-text> com um método <code-text>calculaTotal(Tributavel t)</code-text>
+              que recebe um objeto tributável e exibe o imposto devido.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- AJUSTE: Nova seção com a solução proposta dentro de 'details' -->
+      <section id="solucao" class="mb-12" aria-labelledby="solucao-heading">
+        <h2
+          id="solucao-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-8"
+        >
+          💡 Solução Proposta
+        </h2>
+        <div class="space-y-4">
+          <details>
+            <summary>Classe Abstrata <code-text>Conta.java</code-text></summary>
+            <div class="code-block">
+              <button
+                class="copy-btn"
+                data-tooltip="Copiar código"
+                aria-label="Copiar código da classe abstrata Conta"
+              >
+                <i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar
+              </button>
+              <pre><code class="language-java">
+public abstract class Conta {
+    private int numero;
+    private String titular;
+    protected double saldo;
+
+    public Conta(int numero, String titular) {
+        this.numero = numero;
+        this.titular = titular;
+    }
+
+    public void depositar(double valor) {
+        if (valor > 0) {
+            this.saldo += valor;
+        }
+    }
+
+    public abstract boolean sacar(double valor);
+
+    public double getSaldo() {
+        return this.saldo;
+    }
+
+    public String getTitular() {
+        return this.titular;
+    }
+}
+                    </code></pre>
+            </div>
+          </details>
+          <details>
+            <summary>Interface <code-text>Tributavel.java</code-text></summary>
+            <div class="code-block">
+              <button
+                class="copy-btn"
+                data-tooltip="Copiar código"
+                aria-label="Copiar código da interface Tributavel"
+              >
+                <i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar
+              </button>
+              <pre><code class="language-java">
+public interface Tributavel {
+    double getValorImposto();
+}
+                    </code></pre>
+            </div>
+          </details>
+          <details>
+            <summary>
+              Classes Concretas: <code-text>ContaCorrente.java</code-text> e <code-text>ContaPoupanca.java</code-text>
+            </summary>
+            <div class="code-block">
+              <button
+                class="copy-btn"
+                data-tooltip="Copiar código"
+                aria-label="Copiar código das classes concretas"
+              >
+                <i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar
+              </button>
+              <pre><code class="language-java">
+public class ContaCorrente extends Conta implements Tributavel {
+    public ContaCorrente(int numero, String titular) {
+        super(numero, titular);
+    }
+
+    @Override
+    public boolean sacar(double valor) {
+        double taxa = 0.50;
+        if (super.saldo >= valor + taxa) {
+            super.saldo -= (valor + taxa);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public double getValorImposto() {
+        return super.saldo * 0.01;
+    }
+}
+
+public class ContaPoupanca extends Conta {
+    public ContaPoupanca(int numero, String titular) {
+        super(numero, titular);
+    }
+
+    @Override
+    public boolean sacar(double valor) {
+        if (super.saldo >= valor) {
+            super.saldo -= valor;
+            return true;
+        }
+        return false;
+    }
+}
+                    </code></pre>
+            </div>
+          </details>
+          <details>
+            <summary>Classe de Teste <code-text>Banco.java</code-text></summary>
+            <div class="code-block">
+              <button
+                class="copy-btn"
+                data-tooltip="Copiar código"
+                aria-label="Copiar código da classe de teste Banco"
+              >
+                <i class="fa-solid fa-copy mr-1" aria-hidden="true"></i>Copiar
+              </button>
+              <pre><code class="language-java">
+public class Banco {
+    public static void main(String[] args) {
+        ContaCorrente cc = new ContaCorrente(101, "João Silva");
+        ContaPoupanca cp = new ContaPoupanca(202, "Maria Santos");
+
+        cc.depositar(1000.0);
+        cp.depositar(500.0);
+
+        cc.sacar(200.0);
+        cp.sacar(100.0);
+
+        System.out.println("Saldo CC: R$ " + cc.getSaldo());
+        System.out.println("Saldo CP: R$ " + cp.getSaldo());
+        
+        Tributavel t = cc;
+        System.out.println("Imposto da CC: R$ " + t.getValorImposto());
+    }
+}
+                    </code></pre>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section id="checklist" class="mt-12" aria-labelledby="checklist-heading">
+        <div
+          class="bg-green-50 border-l-4 border-green-500 text-green-800 p-6 rounded-lg shadow"
+        >
+          <h3 id="checklist-heading" class="font-bold text-lg mb-3">
+            <i class="fa-solid fa-list-check mr-2" aria-hidden="true"></i
+            >Checklist da Aula Prática
+          </h3>
+          <p>Ao final desta aula, você deve ter aplicado e entendido como:</p>
+          <ul class="list-none space-y-2 mt-2">
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Usar uma <strong>classe abstrata</strong> para definir um modelo
+              comum.
+            </li>
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Proteger dados com
+              <strong>encapsulamento</strong> (<code-text>private</code-text>/<code-text>protected</code-text>).
+            </li>
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Especializar classes usando <strong>herança</strong> (<code-text>extends</code-text>).
+            </li>
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Criar comportamentos específicos com
+              <strong>polimorfismo</strong> e sobrescrita de métodos.
+            </li>
+            <li>
+              <i
+                class="fa-solid fa-check text-green-600 mr-2"
+                aria-hidden="true"
+              ></i
+              >Adicionar "capacidades" a classes com
+              <strong>interfaces</strong>.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section
+        id="bibliografia"
+        class="prose prose-slate max-w-none lg:prose-lg mt-12"
+        aria-labelledby="bibliografia-heading"
+      >
+        <h2
+          id="bibliografia-heading"
+          class="text-3xl font-semibold text-slate-800 border-b-2 border-indigo-500 pb-2 mb-4"
+        >
+          📚 Bibliografia de Apoio
+        </h2>
+        <div class="bg-white p-8 rounded-lg shadow space-y-4 not-prose">
+          <p>
+            <strong>DEITEL, Harvey M.; DEITEL, Paul J.</strong>
+            <em>Java: como programar.</em> 8. ed. São Paulo: Pearson Prentice
+            Hall, 2014.
+          </p>
+          <p>
+            <strong>SCHILDT, Herbert.</strong>
+            <em
+              >Java para iniciantes: crie, compile e execute programas Java
+              rapidamente.</em
+            >
+            6. ed. Porto Alegre: Bookman, 2015.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-slate-800 text-slate-300 mt-12" role="contentinfo">
+      <div class="container mx-auto px-6 py-8 text-center">
+        <p class="font-semibold text-white">Prof. Tiago Guimarães Sombra</p>
+        <p class="text-sm mt-1">
+          Material acadêmico para os cursos de ADS e SI.
+        </p>
+        <p class="text-sm font-bold text-indigo-300">UniFametro</p>
+        <div class="mt-4 flex justify-center items-center space-x-4">
+          <a
+            href="https://github.com/sombraprof/lpoo"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-indigo-400 hover:text-white transition-colors"
+            aria-label="Visitar o repositório do projeto no GitHub"
+          >
+            <i class="fab fa-github fa-lg mr-1" aria-hidden="true"></i>
+            Repositório GitHub
+          </a>
+          <span class="text-slate-500">|</span>
+          <a
+            href="#"
+            class="text-indigo-400 hover:text-white transition-colors"
+            aria-label="Ver a política de uso do material"
+            >Política de Uso</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
