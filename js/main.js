@@ -1681,3 +1681,8 @@ function setupTheme() {
     });
   }
 }
+
+
+if (typeof module !== 'undefined') {
+  module.exports = { loadAulas, initAdvancedCopyButtons };
+}

@@ -1,0 +1,14 @@
+{
+  "name": "lpoo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "license": "ISC",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jsdom": "^24.0.0"
+  }
+}
